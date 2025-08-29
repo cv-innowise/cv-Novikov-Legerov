@@ -1,17 +1,33 @@
+import "@app/providers/i18n/I18nProvider"
+
 import type { Metadata } from "next"
 import type { ReactNode } from "react"
 
+import I18nProvider from "@/app/providers/i18n/I18nProvider"
+import { CssBaseline } from "@mui/material"
+
+import ApolloProvider from "@app/providers/apollo/ApolloProvider"
+import ThemeProvider from "@app/providers/theme/ThemeProvider"
 import "@app/styles/global.scss"
 
 export const metadata: Metadata = {
-	title: "Let's Develop!",
-	description: "FSD Template with Next.js by yunglocokid",
+	title: "CV manager",
+	description: "CV manager",
 }
 
-export default function RootLayout({children}: Readonly<{children: ReactNode}>) {
+export default function RootLayout({
+	children,
+}: Readonly<{ children: ReactNode }>) {
 	return (
 		<html lang="en">
-			<body>{children}</body>
+			<ApolloProvider>
+				<I18nProvider>
+					<ThemeProvider>
+						<CssBaseline />
+						<body>{children}</body>
+					</ThemeProvider>
+				</I18nProvider>
+			</ApolloProvider>
 		</html>
 	)
 }
