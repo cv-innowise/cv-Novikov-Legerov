@@ -1,0 +1,27 @@
+{
+	"auth": {
+		"loginTab": "ВОЙТИ",
+		"signupTab": "СОЗДАТЬ",
+		"login": {
+			"title": "С возвращением",
+			"subtitle": "Рады вас видеть! Войдите, чтобы продолжить",
+			"button": "ВОЙТИ",
+			"link": "ЗАБЫЛИ ПАРОЛЬ"
+		},
+		"signup": {
+			"title": "Зарегистрируйтесь",
+			"subtitle": "Добро пожаловать! Создайте аккаунт, чтобы продолжить",
+			"button": "СОЗДАТЬ АККАУНТ",
+			"link": "У МЕНЯ ЕСТЬ АККАУНТ"
+		},
+		"errors": {
+			"minLength": "Должен быть как минимум {{count}} символов",
+			"maxLength": "Должен быть не более {{count}} символов",
+			"emailInvalid": "Неверный формат email",
+			"passwordInvalid": "Password must contain at least one uppercase letter, one lowercase letter, one number and one special character"
+		}
+	},
+	"email": "Почта",
+	"password": "Пароль"
+}
+
