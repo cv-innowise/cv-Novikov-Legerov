@@ -25,13 +25,13 @@ const AuthLayout = ({ children }: { children: React.ReactNode }) => {
 				>
 					<Tab
 						value={routes.authRoutes.login}
-						label={t("Log in")}
+						label={t('auth.loginTab')}
 						component={Link}
 						href={routes.authRoutes.login}
 					/>
 					<Tab
 						value={routes.authRoutes.signup}
-						label={t("Sign up")}
+						label={t("auth.signupTab")}
 						component={Link}
 						href={routes.authRoutes.signup}
 					/>

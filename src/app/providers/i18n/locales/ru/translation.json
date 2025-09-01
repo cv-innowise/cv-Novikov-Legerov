@@ -23,5 +23,6 @@
 		}
 	},
 	"email": "Почта",
-	"password": "Пароль"
+	"password": "Пароль",
+	"Invalid credentials": "Неверный логин или пароль"
 }

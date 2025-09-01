@@ -8,7 +8,10 @@ import { CssBaseline } from "@mui/material"
 
 import ApolloProvider from "@app/providers/apollo/ApolloProvider"
 import ThemeProvider from "@app/providers/theme/ThemeProvider"
+
 import "@app/styles/global.scss"
+
+import Notification from "@shared/ui/notification/Notification"
 
 export const metadata: Metadata = {
 	title: "CV manager",
@@ -24,7 +27,10 @@ export default function RootLayout({
 				<I18nProvider>
 					<ThemeProvider>
 						<CssBaseline />
-						<body>{children}</body>
+						<body>
+							{children}
+							<Notification />
+						</body>
 					</ThemeProvider>
 				</I18nProvider>
 			</ApolloProvider>

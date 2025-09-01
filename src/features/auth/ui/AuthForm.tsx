@@ -12,18 +12,20 @@ import { useSignup } from "../hooks/useSignup"
 import { authValidation } from "../model/validation/authValidation"
 import { successAuth } from "../model/authService"
 import { useRouter } from "next/navigation"
+import Loader from "@shared/ui/loader"
+import { addNotification } from "@shared/ui/notification/notification.service"
 
 const AuthForm = ({ mode }: { mode: "login" | "signup" }) => {
-	const [login, { error: loginError, loading: loginLoading, data: loginResponseData }] = useLogin()
-	const [signup, { error: signupError, loading: signupLoading, data: signupResponseData }] = useSignup()
+	const [login, { error: loginError, loading: loginLoading }] = useLogin()
+	const [signup, { error: signupError, loading: signupLoading }] = useSignup()
 	const error = mode === "login" ? loginError : signupError
 	const loading = mode === "login" ? loginLoading : signupLoading
 	const link = mode === "login" ? routes.forgotPassword : routes.authRoutes.login
-	const { t } = useTranslation()
+	const { t } = useTranslation();
 	const schema = authValidation(t);
   	const router = useRouter();
   
-	const handleLink = () => {
+	const handleLink = (): void => {
 		router.push(link);
 	}
 
@@ -34,7 +36,6 @@ const AuthForm = ({ mode }: { mode: "login" | "signup" }) => {
 					auth: data,
 				},
 			}).then((result) => {
-				console.log(result.data!.login.user);
 				successAuth(result.data!.login);
 				router.push(routes.usersRoutes.users + `/${result.data!.login.user.id}`)
 			})
@@ -47,6 +48,8 @@ const AuthForm = ({ mode }: { mode: "login" | "signup" }) => {
 		}
 	}
 
+	if (error) addNotification(t(error.message), 'error');
+
 	return (
 		<FormWrapper<AuthInput> onSubmit={handleSubmit} schema={schema} width="100%">
 			<Stack alignItems="center" direction="column" sx={{ gap: "20px" }}>
@@ -58,7 +61,7 @@ const AuthForm = ({ mode }: { mode: "login" | "signup" }) => {
 						disabled={loading}
 						type="submit"
 					>
-						{t(`auth.${mode}.button`)}
+						{loading ? <Loader /> : t(`auth.${mode}.button`)}
 					</Button>
 					<Button onClick={handleLink} color="secondary">
 						{t(`auth.${mode}.link`)}
