@@ -10,7 +10,7 @@ import routes from "@shared/model/routes"
 
 import { authFormStyles } from "./styles/AuthPage.styles"
 
-const AuthLayout = ({ children }: { children: React.ReactNode }) => {
+export const AuthLayout = ({ children }: { children: React.ReactNode }) => {
 	const pathname = usePathname()
 	const { t } = useTranslation()
 
@@ -43,5 +43,3 @@ const AuthLayout = ({ children }: { children: React.ReactNode }) => {
 		</>
 	)
 }
-
-export default AuthLayout
