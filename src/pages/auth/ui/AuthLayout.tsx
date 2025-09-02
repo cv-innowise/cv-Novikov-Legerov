@@ -8,7 +8,7 @@ import { usePathname } from "next/navigation"
 
 import routes from "@shared/model/routes"
 
-import { authFormStyles } from "./styles/AuthPage.styles"
+import { authFormStyles } from "../styles/AuthPage.styles"
 
 export const AuthLayout = ({ children }: { children: React.ReactNode }) => {
 	const pathname = usePathname()

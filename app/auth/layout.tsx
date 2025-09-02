@@ -1,1 +1,1 @@
-export { AuthLayout as default } from "@pages/auth/AuthLayout";
+export { AuthLayout as default } from "@pages/auth/ui/AuthLayout";
