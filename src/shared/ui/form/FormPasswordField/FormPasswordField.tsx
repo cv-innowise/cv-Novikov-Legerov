@@ -47,6 +47,7 @@ const FormPasswordField = <T extends FieldValues>({
 					</InputLabel>
 					<OutlinedInput
 						{...field}
+						value={field.value || ""}
 						id="outlined-adornment-password"
 						type={showPassword ? "text" : "password"}
 						label="Password"

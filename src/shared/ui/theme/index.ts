@@ -1,12 +1,17 @@
 import { createTheme, PaletteMode } from "@mui/material/styles"
-
 import palette from "./palette"
+import { Roboto } from 'next/font/google';
+
+export const roboto = Roboto({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+});
 
 export const getTheme = (mode: PaletteMode) =>
 	createTheme({
 		palette: palette[mode],
 		typography: {
-			fontFamily: `Roboto, Helvetica, Arial, sans-serif`,
+			fontFamily: roboto.style.fontFamily,
 		},
 		components: {
 			MuiButton: {
