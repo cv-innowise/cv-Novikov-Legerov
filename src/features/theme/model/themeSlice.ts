@@ -7,7 +7,7 @@ type ThemeState = {
 }
 
 const initialState: ThemeState = {
-  theme: (localStorage.getItem("theme") as Theme) || "system",
+  theme: "system",
 };
 
 const themeSlice = createSlice({
@@ -16,7 +16,7 @@ const themeSlice = createSlice({
   reducers: {
     setTheme: (state, action: PayloadAction<Theme>) => {
       state.theme = action.payload;
-      localStorage.setItem("theme", action.payload);
+      // localStorage.setItem("theme", action.payload);
     },
   },
 });

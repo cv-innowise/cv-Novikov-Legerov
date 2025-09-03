@@ -1,9 +1,11 @@
 import * as yup from 'yup';
-import type { TFunction } from 'i18next';
+import { useTranslations } from 'next-intl';
 import { AuthInput } from 'cv-graphql';
 import { minMaxFieldValidation } from '@shared/lib/validation/minMaxFieldValidation';
 import { PASSWORD_REGEXP } from '@shared/const/regexp/password';
 import { EMAIL_REGEXP } from '@shared/const/regexp/email';
+
+type TFunction = ReturnType<typeof useTranslations>;
 
 function passwordValidation(t: TFunction, minValue = 5, maxValue = 32): yup.StringSchema {
   return minMaxFieldValidation(t, minValue, maxValue).matches(

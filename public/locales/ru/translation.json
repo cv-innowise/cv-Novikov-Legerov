@@ -1,7 +1,7 @@
 {
 	"auth": {
-		"loginTab": "ENTER",
-		"signupTab": "SUGNUP",
+		"loginTab": "ВОЙТИ",
+		"signupTab": "СОЗДАТЬ",
 		"login": {
 			"title": "С возвращением",
 			"subtitle": "Рады вас видеть! Войдите, чтобы продолжить",

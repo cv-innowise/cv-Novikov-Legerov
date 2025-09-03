@@ -1,7 +1,7 @@
 "use client"
 
 import type { AuthInput } from "cv-graphql"
-import { useTranslation } from "react-i18next"
+import { useTranslations } from "next-intl"
 import { Button, Stack } from "@mui/material"
 import routes from "@shared/model/routes"
 import FormTextField from "@shared/ui/form/FormTextField"
@@ -21,7 +21,7 @@ const AuthForm = ({ mode }: { mode: "login" | "signup" }) => {
 	const error = mode === "login" ? loginError : signupError
 	const loading = mode === "login" ? loginLoading : signupLoading
 	const link = mode === "login" ? routes.forgotPassword : routes.authRoutes.login
-	const { t } = useTranslation();
+	const t = useTranslations();
 	const schema = authValidation(t);
   	const router = useRouter();
   

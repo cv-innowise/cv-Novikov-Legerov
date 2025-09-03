@@ -1,6 +1,6 @@
 "use client"
 
-import { useTranslation } from "react-i18next"
+import { useTranslations } from "next-intl"
 
 import { Tab, Tabs, Box } from "@mui/material"
 import Link from "next/link"
@@ -12,7 +12,7 @@ import { authFormStyles } from "../styles/AuthPage.styles"
 
 export const AuthLayout = ({ children }: { children: React.ReactNode }) => {
 	const pathname = usePathname()
-	const { t } = useTranslation()
+	const t = useTranslations()
 
 	return (
 		<>

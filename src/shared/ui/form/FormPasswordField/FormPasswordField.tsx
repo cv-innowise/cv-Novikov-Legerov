@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { Controller, FieldValues, useFormContext } from "react-hook-form"
-import { useTranslation } from "react-i18next"
+import { useTranslations } from "next-intl"
 
 import { Visibility, VisibilityOff } from "@mui/icons-material"
 import {
@@ -21,7 +21,7 @@ const FormPasswordField = <T extends FieldValues>({
 }: FormPasswordFieldProps<T>) => {
 	const { control } = useFormContext<T>()
 	const [showPassword, setShowPassword] = useState(false)
-	const { t } = useTranslation()
+	const t = useTranslations()
 	const handleClickShowPassword = () => setShowPassword((show) => !show)
 
 	const handleMouseDownPassword = (
@@ -52,7 +52,7 @@ const FormPasswordField = <T extends FieldValues>({
 						type={showPassword ? "text" : "password"}
 						label="Password"
 						endAdornment={
-							<InputAdornment position="end">
+							<InputAdornment sx={{paddingRight: '12px'}} position="end">
 								<IconButton
 									onClick={handleClickShowPassword}
 									onMouseDown={handleMouseDownPassword}
