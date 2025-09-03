@@ -1,6 +1,6 @@
 "use client"
 
-import { useTranslation } from "react-i18next"
+import { useTranslations } from "next-intl"
 
 import { Tab, Tabs, Box } from "@mui/material"
 import Link from "next/link"
@@ -8,11 +8,11 @@ import { usePathname } from "next/navigation"
 
 import routes from "@shared/model/routes"
 
-import { authFormStyles } from "./styles/AuthPage.styles"
+import { authFormStyles } from "../styles/AuthPage.styles"
 
-const AuthLayout = ({ children }: { children: React.ReactNode }) => {
+export const AuthLayout = ({ children }: { children: React.ReactNode }) => {
 	const pathname = usePathname()
-	const { t } = useTranslation()
+	const t = useTranslations()
 
 	return (
 		<>
@@ -25,13 +25,13 @@ const AuthLayout = ({ children }: { children: React.ReactNode }) => {
 				>
 					<Tab
 						value={routes.authRoutes.login}
-						label={t("Log in")}
+						label={t('auth.loginTab')}
 						component={Link}
 						href={routes.authRoutes.login}
 					/>
 					<Tab
 						value={routes.authRoutes.signup}
-						label={t("Sign up")}
+						label={t("auth.signupTab")}
 						component={Link}
 						href={routes.authRoutes.signup}
 					/>
@@ -43,5 +43,3 @@ const AuthLayout = ({ children }: { children: React.ReactNode }) => {
 		</>
 	)
 }
-
-export default AuthLayout

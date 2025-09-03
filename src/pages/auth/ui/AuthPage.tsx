@@ -1,12 +1,12 @@
 "use client"
 
-import { useTranslation } from "react-i18next"
+import { useTranslations } from "next-intl"
 import { Stack, Typography } from "@mui/material"
 import AuthForm from "@features/auth/ui/AuthForm"
-import { authFormStyles } from "./styles/AuthPage.styles"
+import { authFormStyles } from "../styles/AuthPage.styles"
 
 const AuthPage = ({ mode }: { mode: "login" | "signup" }) => {
-	const { t } = useTranslation()
+	const t = useTranslations();
 
 	return (
 		<Stack direction="column" sx={authFormStyles.formContainer}>

@@ -1,5 +1,5 @@
-import AuthPage from "@pages/auth/AuthPage"
+import AuthPage from "@pages/auth/ui/AuthPage"
 
-export default function LoginPage() {
+export default function SignupPage() {
     return <AuthPage mode="signup" />;
 }

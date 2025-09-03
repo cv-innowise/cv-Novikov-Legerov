@@ -17,13 +17,14 @@ const FormTextField = <T extends FieldValues>({
 			render={({ field, fieldState: { error } }) => (
 				<TextField
 					{...field}
-					{...props}
+					value={field.value || ""}
 					error={!!error}
 					helperText={error?.message}
+					{...props}
 				/>
 			)}
 		/>
 	)
 }
 
-export default FormTextField;
+export default FormTextField

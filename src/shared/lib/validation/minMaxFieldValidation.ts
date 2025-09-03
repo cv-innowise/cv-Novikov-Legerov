@@ -1,5 +1,7 @@
 import * as yup from 'yup';
-import type { TFunction } from 'i18next';
+import { useTranslations } from "next-intl"
+
+type TFunction = ReturnType<typeof useTranslations>;
 
 export function minMaxFieldValidation(
   t: TFunction,
