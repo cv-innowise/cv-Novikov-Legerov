@@ -1,8 +1,16 @@
 import { PaletteMode, PaletteOptions } from '@mui/material'
 
-const palette: Record<PaletteMode, PaletteOptions> = {
-  light: {
-    mode: 'light',
+const commonPalette: PaletteOptions = {
+    primary: {
+      main: '#c63031'
+    },
+    secondary: {
+      main: '#767676'
+    }
+}
+
+export const lightPalette: PaletteOptions = {
+	...commonPalette,
     background: {
       default: '#f5f5f7',
       paper: '#ffffff'
@@ -10,21 +18,10 @@ const palette: Record<PaletteMode, PaletteOptions> = {
     text: {
       primary: '#2e2e2eff'
     },
-    primary: {
-      main: '#c63031'
-    },
-    secondary: {
-      main: '#767676'
-    },
-    warning: {
-      main: '#ffb800'
-    },
-    error: {
-      main: '#c63031'
-    }
-  },
-  dark: {
-    mode: 'dark',
+}
+
+export const darkPalette: PaletteOptions = {
+	...commonPalette,
     background: {
       default: '#353535',
       paper: '#121212'
@@ -32,19 +29,4 @@ const palette: Record<PaletteMode, PaletteOptions> = {
     text: {
       primary: '#ffffff'
     },
-    primary: {
-      main: '#c63031'
-    },
-    secondary: {
-      main: '#767676'
-    },
-    warning: {
-      main: '#ffb800'
-    },
-    error: {
-      main: '#c63031'
-    }
-  }
 }
-
-export default palette;

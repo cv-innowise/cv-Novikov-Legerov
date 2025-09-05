@@ -1,34 +1,28 @@
 "use client"
 
-import { ReactNode, useEffect, useState } from "react"
-
-import { ThemeProvider as MuiThemeProvider } from "@mui/material/styles"
-
-import { useTheme } from "@features/theme"
+import { ReactNode } from "react"
+import {
+	CssBaseline,
+	InitColorSchemeScript,
+	ThemeProvider as MuiThemeProvider,
+} from "@mui/material"
 import { getTheme } from "@shared/ui/theme"
-import { Theme } from "@features/theme/model/themeSlice"
 
-const ThemeProvider = ({ children }: { children: ReactNode }) => {
-	const [theme, setTheme] = useState<"light" | "dark">("light")
-	// const themePref = useTheme();
-
-	// useLayoutEffect(() => {
-	// 	const savedTheme = localStorage.getItem("theme") as Theme | null
-	// 	if (savedTheme) {
-	// 		setTheme(savedTheme)
-	// 	}
-	// }, [])
-
-	// useEffect(() => {
-	// 	if (themePref === "system") {
-	// 		const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)")
-	// 		setTheme(mediaQuery.matches ? "dark" : "light")
-	// 	} else {
-	// 		setTheme(themePref)
-	// 	}
-	// }, [themePref])
-
-	return <MuiThemeProvider theme={getTheme(theme)}>{children}</MuiThemeProvider>
+const ThemeProvider = ({
+	children,
+}: {
+	children: ReactNode
+}) => {
+	return (
+		<>
+			<InitColorSchemeScript attribute="class" />
+			<MuiThemeProvider theme={getTheme()}>
+				<CssBaseline />
+				{children}
+			</MuiThemeProvider>
+		</>
+	)
 }
 
-export default ThemeProvider
+
+export default ThemeProvider;

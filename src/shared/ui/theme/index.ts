@@ -1,15 +1,20 @@
 import { createTheme, PaletteMode } from "@mui/material/styles"
-import palette from "./palette"
-import { Roboto } from 'next/font/google';
+import { Roboto } from "next/font/google"
+import { lightPalette, darkPalette } from "./palette"
 
 export const roboto = Roboto({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-});
+	subsets: ["latin"],
+	weight: ["400", "500", "600", "700"],
+})
 
-export const getTheme = (mode: PaletteMode) =>
+export const getTheme = () =>
 	createTheme({
-		palette: palette[mode],
+		colorSchemes: { 
+			light: {palette: lightPalette}, 
+			dark:  {palette: darkPalette} },
+		cssVariables: {
+			colorSchemeSelector: "class",
+		},
 		typography: {
 			fontFamily: roboto.style.fontFamily,
 		},
@@ -25,13 +30,13 @@ export const getTheme = (mode: PaletteMode) =>
 			},
 			MuiTab: {
 				styleOverrides: {
-					root: {
-						color: mode === "light" ? "#2e2e2eff" : "#f5f5f7",
+					root: ({ theme }) => ({
+						color: theme.vars.palette.text.primary,
 						minWidth: 150,
 						"&.Mui-selected": {
 							fontWeight: 600,
 						},
-					},
+					}),
 				},
 			},
 			MuiOutlinedInput: {
