@@ -11,7 +11,6 @@ import "@app/styles/global.scss"
 
 import { NextIntlClientProvider } from "next-intl"
 
-import StoreProvider from "@app/providers/redux/StoreProvider"
 import Notification from "@shared/ui/notification/Notification"
 
 export const metadata: Metadata = {
