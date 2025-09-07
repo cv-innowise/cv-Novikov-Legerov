@@ -1,6 +1,6 @@
 import * as yup from 'yup';
 import { useTranslations } from 'next-intl';
-import { AuthInput } from 'cv-graphql';
+import { AuthInput, ForgotPasswordInput  } from 'cv-graphql';
 import { minMaxFieldValidation } from '@shared/lib/validation/minMaxFieldValidation';
 import { PASSWORD_REGEXP } from '@shared/const/regexp/password';
 import { EMAIL_REGEXP } from '@shared/const/regexp/email';
@@ -26,6 +26,14 @@ export function authValidation(t: TFunction): yup.ObjectSchema<AuthInput> {
     .object({
       email: emailValidation(t),
       password: passwordValidation(t),
+    })
+    .defined() as yup.ObjectSchema<AuthInput>;
+}
+
+export function emailValidationForm(t: TFunction): yup.ObjectSchema<ForgotPasswordInput> {
+  return yup
+    .object({
+      email: emailValidation(t),
     })
     .defined() as yup.ObjectSchema<AuthInput>;
 }
