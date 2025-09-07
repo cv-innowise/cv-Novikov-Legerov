@@ -1,6 +1,7 @@
 import { createTheme, PaletteMode } from "@mui/material/styles"
 import { Roboto } from "next/font/google"
-import { lightPalette, darkPalette } from "./palette"
+
+import { darkPalette, lightPalette } from "./palette"
 
 export const roboto = Roboto({
 	subsets: ["latin"],
@@ -9,9 +10,10 @@ export const roboto = Roboto({
 
 export const getTheme = () =>
 	createTheme({
-		colorSchemes: { 
-			light: {palette: lightPalette}, 
-			dark:  {palette: darkPalette} },
+		colorSchemes: {
+			light: { palette: lightPalette },
+			dark: { palette: darkPalette },
+		},
 		cssVariables: {
 			colorSchemeSelector: "class",
 		},
@@ -52,6 +54,16 @@ export const getTheme = () =>
 					notchedOutline: {
 						borderWidth: "1px !important",
 						transition: "border 200ms",
+					},
+				},
+			},
+			MuiInputLabel: {
+				styleOverrides: {
+					root: {
+						transform: "translate(12px, 12px) scale(1)",
+					},
+					shrink: {
+						transform: "translate(12px, -9px) scale(0.75)",
 					},
 				},
 			},
