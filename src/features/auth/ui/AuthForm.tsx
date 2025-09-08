@@ -41,7 +41,8 @@ const AuthForm = ({ mode }: { mode: "login" | "signup" }) => {
 				},
 			}).then((result) => {
 				successAuth(result.data!.login)
-				router.push(routes.usersRoutes.users + `/${result.data!.login.user.id}`)
+				// router.push(routes.usersRoutes.users + `/${result.data!.login.user.id}`)
+				router.push(routes.usersRoutes.users)
 			})
 		} else {
 			signup({
