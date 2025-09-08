@@ -1,13 +1,12 @@
 "use client"
 
-import type { AuthInput } from "cv-graphql"
-
-import { useState } from "react"
+import { useEffect } from "react"
 
 import { Button, Stack } from "@mui/material"
+import { ForgotPasswordInput } from "cv-graphql"
 import { useTranslations } from "next-intl"
 import { useRouter } from "next/navigation"
-
+import { useForgotPassword } from "@features/forgotPassword/hooks/useForgotPassword"
 import routes from "@shared/model/routes"
 import { emailValidationForm } from "@shared/model/validation/validation"
 import FormTextField from "@shared/ui/form/FormTextField"
@@ -20,28 +19,34 @@ const ForgotPasswordForm = () => {
 	const t = useTranslations()
 	const schema = emailValidationForm(t)
 	const router = useRouter()
-	const [loading, setLoading] = useState<boolean>(false)
 	const handleLink = (): void => {
 		router.push(link)
 	}
+	const [forgotPassword, { error, loading }] = useForgotPassword()
 
-	const handleSubmit = () => {
-		setLoading(true);
-		setTimeout(() => {
-			addNotification(t("forgot-password.message"), "info");
-			setLoading(false);
+	const handleSubmit = (data: ForgotPasswordInput) => {
+		forgotPassword({
+			variables: { auth: data },
+		}).then(() => {
+			addNotification(t("forgot-password.message"), "info")
 			router.push(link)
-		}, 1000)
+		})
 	}
 
+	useEffect(() => {
+		if (error) {
+			addNotification(t(`forgot-password.${error.message}`), "error")
+		}
+	}, [error])
+
 	return (
-		<FormWrapper<AuthInput>
+		<FormWrapper<ForgotPasswordInput>
 			onSubmit={handleSubmit}
 			schema={schema}
 			width="100%"
 		>
 			<Stack alignItems="center" direction="column" sx={{ gap: "20px" }}>
-				<FormTextField<AuthInput>
+				<FormTextField<ForgotPasswordInput>
 					name="email"
 					fullWidth
 					placeholder="example@mail.com"

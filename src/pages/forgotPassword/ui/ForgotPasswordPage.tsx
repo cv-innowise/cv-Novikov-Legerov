@@ -3,12 +3,10 @@
 import { Stack, Typography, Box } from "@mui/material"
 import { useTranslations } from "next-intl"
 
-import AuthForm from "@features/auth/ui/AuthForm"
-
 import { forgotPasswordStyles } from "../styles/ForgotPassword.styles"
-import ForgotPasswordForm from "@features/forgootPassword/ui/ForgotPasswordForm"
+import ForgotPasswordForm from "@features/forgotPassword/ui/ForgotPasswordForm"
 
-export const ForgotPasswordPage = ({ mode }: { mode: "login" | "signup" }) => {
+export const ForgotPasswordPage = () => {
 	const t = useTranslations()
 
 	return (

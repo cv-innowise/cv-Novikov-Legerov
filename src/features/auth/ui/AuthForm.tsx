@@ -1,32 +1,36 @@
 "use client"
 
 import type { AuthInput } from "cv-graphql"
-import { useTranslations } from "next-intl"
+import { useEffect } from "react"
 import { Button, Stack } from "@mui/material"
-import routes from "@shared/model/routes"
-import FormTextField from "@shared/ui/form/FormTextField"
-import FormPasswordField from "@shared/ui/form/FormPasswordField"
-import FormWrapper from "@shared/ui/form/FormWrapper/FormWrapper"
-import { useLogin } from "../hooks/useLogin"
-import { useSignup } from "../hooks/useSignup"
-import { authValidation } from "../../../shared/model/validation/validation"
-import { successAuth } from "../model/authService"
+import { useTranslations } from "next-intl"
 import { useRouter } from "next/navigation"
+
+import routes from "@shared/model/routes"
+import FormPasswordField from "@shared/ui/form/FormPasswordField"
+import FormTextField from "@shared/ui/form/FormTextField"
+import FormWrapper from "@shared/ui/form/FormWrapper/FormWrapper"
 import Loader from "@shared/ui/loader"
 import { addNotification } from "@shared/ui/notification/notification.service"
+
+import { authValidation } from "../../../shared/model/validation/validation"
+import { useLogin } from "../hooks/useLogin"
+import { useSignup } from "../hooks/useSignup"
+import { successAuth } from "../model/authService"
 
 const AuthForm = ({ mode }: { mode: "login" | "signup" }) => {
 	const [login, { error: loginError, loading: loginLoading }] = useLogin()
 	const [signup, { error: signupError, loading: signupLoading }] = useSignup()
 	const error = mode === "login" ? loginError : signupError
 	const loading = mode === "login" ? loginLoading : signupLoading
-	const link = mode === "login" ? routes.forgotPassword : routes.authRoutes.login
-	const t = useTranslations();
-	const schema = authValidation(t);
-  	const router = useRouter();
-  
+	const link =
+		mode === "login" ? routes.forgotPassword : routes.authRoutes.login
+	const t = useTranslations()
+	const schema = authValidation(t)
+	const router = useRouter()
+
 	const handleLink = (): void => {
-		router.push(link);
+		router.push(link)
 	}
 
 	const handleSubmit = (data: AuthInput) => {
@@ -36,7 +40,7 @@ const AuthForm = ({ mode }: { mode: "login" | "signup" }) => {
 					auth: data,
 				},
 			}).then((result) => {
-				successAuth(result.data!.login);
+				successAuth(result.data!.login)
 				router.push(routes.usersRoutes.users + `/${result.data!.login.user.id}`)
 			})
 		} else {
@@ -48,19 +52,28 @@ const AuthForm = ({ mode }: { mode: "login" | "signup" }) => {
 		}
 	}
 
-	if (error) addNotification(t(error.message), 'error');
+	useEffect(() => {
+		if (error) {
+			addNotification(t(error.message), "error")
+		}
+	}, [error])
 
 	return (
-		<FormWrapper<AuthInput> onSubmit={handleSubmit} schema={schema} width="100%">
+		<FormWrapper<AuthInput>
+			onSubmit={handleSubmit}
+			schema={schema}
+			width="100%"
+		>
 			<Stack alignItems="center" direction="column" sx={{ gap: "20px" }}>
-				<FormTextField<AuthInput> name="email" fullWidth placeholder="example@mail.com" label={t('email')} />
+				<FormTextField<AuthInput>
+					name="email"
+					fullWidth
+					placeholder="example@mail.com"
+					label={t("email")}
+				/>
 				<FormPasswordField<AuthInput> name="password" />
-				<Stack sx={{ margin: "40px 0 0" }}  spacing="8px">
-					<Button
-						variant="contained"
-						disabled={loading}
-						type="submit"
-					>
+				<Stack sx={{ margin: "40px 0 0" }} spacing="8px">
+					<Button variant="contained" disabled={loading} type="submit">
 						{loading ? <Loader /> : t(`auth.${mode}.button`)}
 					</Button>
 					<Button onClick={handleLink} color="secondary">
