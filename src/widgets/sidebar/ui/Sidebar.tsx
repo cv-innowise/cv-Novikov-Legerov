@@ -10,7 +10,7 @@ import { LeftArrowIcon, RightArrowIcon } from "@shared/ui/icons"
 import { sidebarStyles } from "./Sidebar.styles"
 
 export const Sidebar = () => {
-	const [open, setOpen] = useState(false)
+	const [open, setOpen] = useState(true)
 
 	const toggleDrawer = () => {
 		setOpen(!open)

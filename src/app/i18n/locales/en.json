@@ -40,4 +40,10 @@
     "languages": "Languages",
     "cvs": "CVs"
   }
+,
+   "user": {
+    "profile": "Profile",
+    "skills": "Skills",
+    "languages": "Languages"
+  }
 }
