@@ -3,7 +3,7 @@ import { SxThemeProps } from "@shared/types/sx.types"
 export const navItemStyles = {
 	container: {
 		width: "100%",
-		padding: "16px",
+		padding: "16px 0 16px 18px",
 		borderTopRightRadius: "50px",
 		borderBottomRightRadius: "50px",
 		transition: "all 0.3s ease",
@@ -21,6 +21,7 @@ export const navItemStyles = {
 	},
 
 	text: {
+		margin: 0,
 		"& .MuiListItemText-primary": {
 			fontSize: "16px",
 			fontWeight: "400",
