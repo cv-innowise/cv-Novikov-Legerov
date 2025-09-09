@@ -6,9 +6,9 @@ import { Sidebar } from "@widgets/sidebar"
 
 export const MainLayout: FC<PropsWithChildren> = ({ children }) => {
 	return (
-		<Box sx={{ display: "flex" }}>
+		<Box sx={{ display: "flex", width: "100%", height: "100%" }}>
 			<Sidebar />
-			<Box>{children}</Box>
+			<Box sx={{width: "100%"}}>{children}</Box>
 		</Box>
 	)
 }

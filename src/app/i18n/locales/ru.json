@@ -33,11 +33,15 @@
 	"email": "Почта",
 	"password": "Пароль",
 	"Invalid credentials": "Неверный логин или пароль",
-
+	"Delete": "Удалить",
+	"Cancel": "Отмена",
+	"Add skill": "Добавить навык",
+	"Remove skills": "Удалить навыки",
+	"Skills": "Навыки",
 	"navigation": {
-    "employees": "Employees",
-    "skills": "Skills",
-    "languages": "Languages",
-    "cvs": "CVs"
-  }
+		"employees": "Employees",
+		"skills": "Skills",
+		"languages": "Languages",
+		"cvs": "CVs"
+	}
 }
