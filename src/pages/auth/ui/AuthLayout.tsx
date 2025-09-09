@@ -6,6 +6,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 
 import routes from "@shared/model/routes"
+import AuthRoute from "@shared/ui/AuthRoute"
 
 import { authFormStyles } from "../styles/AuthPage.styles"
 
@@ -14,7 +15,7 @@ export const AuthLayout = ({ children }: { children: React.ReactNode }) => {
 	const t = useTranslations()
 
 	return (
-		<>
+		<AuthRoute>
 			<Tabs
 				sx={{ paddingTop: "6px" }}
 				value={pathname}
@@ -38,6 +39,6 @@ export const AuthLayout = ({ children }: { children: React.ReactNode }) => {
 			<Box component="main" sx={authFormStyles.main}>
 				{children}
 			</Box>
-		</>
+		</AuthRoute>
 	)
 }

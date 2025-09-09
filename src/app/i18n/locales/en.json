@@ -1,7 +1,7 @@
 {
 	"auth": {
-		"loginTab": "ENTER",
-		"signupTab": "SUGNUP",
+		"loginTab": "ВОЙТИ",
+		"signupTab": "СОЗДАТЬ",
 		"login": {
 			"title": "С возвращением",
 			"subtitle": "Рады вас видеть! Войдите, чтобы продолжить",
@@ -22,11 +22,19 @@
 			"passwordInvalid": "Пароль должен содержать как минимум одну большую букву, одну маленькую букву, одну цифру и один специальный символ"
 		}
 	},
+	"forgot-password": {
+		"title": "Забыли пароль",
+		"subtitle": "Мы отправим вам письмо с дальнейшими инструкциями",
+		"button": "СБРОСИТЬ ПАРОЛЬ",
+		"link": "ОТМЕНА",
+		"message": "Проверьте свой почтовый ящик",
+		"Failed to send email": "Не удалось отправить письмо"
+	},
 	"email": "Почта",
 	"password": "Пароль",
 	"Invalid credentials": "Неверный логин или пароль",
 
- "navigation": {
+	"navigation": {
     "employees": "Employees",
     "skills": "Skills",
     "languages": "Languages",

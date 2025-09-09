@@ -7,7 +7,7 @@ import UPDATE_TOKEN_MUTATION from "@features/auth/api/updateToken"
 import {
 	getRefreshToken,
 	setAccessToken,
-} from "@features/auth/model/authStorage"
+} from "@shared/model/authStorage";
 
 import client from "../client"
 
