@@ -1,5 +1,5 @@
 import { TabItem } from "@shared/types/tab.types"
 
-export interface TabsProps {
+export interface BasicTabsProps {
 	tabs: TabItem
 }

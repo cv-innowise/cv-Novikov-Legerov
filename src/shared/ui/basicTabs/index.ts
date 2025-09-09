@@ -1,0 +1,1 @@
+export { BasicTabs } from "./BasicTabs"
