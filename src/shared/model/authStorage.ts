@@ -20,7 +20,7 @@ function deleteCookie(name: string) {
 }
 
 export function getAccessToken() {
-  return getCookie("access_token");
+  return getCookie("access_token") || undefined;
 }
 
 export function setAccessToken(access_token: string) {
@@ -28,7 +28,7 @@ export function setAccessToken(access_token: string) {
 }
 
 export function getRefreshToken() {
-  return getCookie("refresh_token");
+  return getCookie("refresh_token") || undefined;
 }
 
 export function setTokens(access_token: string, refresh_token: string) {
@@ -39,4 +39,16 @@ export function setTokens(access_token: string, refresh_token: string) {
 export function clearTokens() {
   deleteCookie("access_token");
   deleteCookie("refresh_token");
+}
+
+export function setUserID(id: string) {
+    setCookie("userID", id);
+}
+
+export function removeUserID() {
+    deleteCookie("userID");
+}
+
+export function getUserID() {
+    return getCookie("userID");
 }
