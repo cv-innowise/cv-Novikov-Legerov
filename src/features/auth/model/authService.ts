@@ -1,12 +1,12 @@
 import { AuthResult } from "cv-graphql";
-import { setTokens } from "@shared/model/authStorage";
-import client from "@app/providers/apollo/client";
+import { removeUserID, setTokens, setUserID } from "@shared/model/authStorage";
 
 export const successAuth = ({access_token, refresh_token, user}: AuthResult) => {
     setTokens(access_token, refresh_token);
+    setUserID(user.id);
 }
 
 export const logout = () => {
   setTokens('', '')
-  client.clearStore()
+  removeUserID();
 }

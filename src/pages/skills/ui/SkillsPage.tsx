@@ -1,4 +1,5 @@
 const SkillsPage = () => {
+
 	return <div>skilolllllllll</div>
 }
 

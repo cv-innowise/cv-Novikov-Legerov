@@ -5,7 +5,7 @@ import { NextResponse } from "next/server"
 export function middleware(req: NextRequest) {
 	const url = req.nextUrl.clone()
 	const token = req.cookies.get("access_token")?.value
-  
+
   const isAuthPage = url.pathname.startsWith("/auth") || url.pathname === "/forgot-password"
   const isProtected = !isAuthPage
 
