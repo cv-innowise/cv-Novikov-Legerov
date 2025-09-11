@@ -12,7 +12,7 @@ import { navItemStyles } from "./NavItem.styles"
 export const NavItem: FC<NavItemProps> = ({ to, label, icon, id }) => {
 	const pathname = usePathname()
 
-	const isActive = pathname === to
+	const isActive = pathname === to || pathname?.startsWith(`${to}/`)
 
 	return (
 		<ListItemButton

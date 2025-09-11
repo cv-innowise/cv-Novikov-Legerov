@@ -2,8 +2,8 @@
 
 import { FC } from "react"
 
-import { Breadcrumbs, Link, Typography } from "@mui/material"
-import NextLink from "next/link"
+import { Breadcrumbs, Link as MuiLink, Typography } from "@mui/material"
+import Link from "next/link"
 import { usePathname } from "next/navigation"
 
 import { NavigationNextIcon } from "../icons"
@@ -45,15 +45,15 @@ export const BasicBreadcrumbs: FC = () => {
 						{link.label}
 					</Typography>
 				) : (
-					<Link
+					<MuiLink
 						sx={basicBreadcrumbsStyles.link}
 						key={link.to}
-						component={NextLink}
+						component={Link}
 						href={link.to}
 						underline="hover"
 					>
 						{link.label}
-					</Link>
+					</MuiLink>
 				),
 			)}
 		</Breadcrumbs>

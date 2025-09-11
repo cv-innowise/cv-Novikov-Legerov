@@ -1,32 +1,32 @@
-import { PaletteMode, PaletteOptions } from '@mui/material'
+import { PaletteMode, PaletteOptions } from "@mui/material"
 
 const commonPalette: PaletteOptions = {
-    primary: {
-      main: '#c63031'
-    },
-    secondary: {
-      main: '#767676'
-    }
+	primary: {
+		main: "#c63031",
+	},
+	secondary: {
+		main: "#767676",
+	},
 }
 
 export const lightPalette: PaletteOptions = {
 	...commonPalette,
-    background: {
-      default: '#f5f5f7',
-      paper: '#ffffff'
-    },
-    text: {
-      primary: '#2e2e2eff'
-    },
+	background: {
+		default: "#f5f5f7",
+		paper: "#ffffff",
+	},
+	text: {
+		primary: "#2e2e2eff",
+	},
 }
 
 export const darkPalette: PaletteOptions = {
 	...commonPalette,
-    background: {
-      default: '#353535',
-      paper: '#121212'
-    },
-    text: {
-      primary: '#ffffff'
-    },
+	background: {
+		default: "#353535",
+		paper: "#121212",
+	},
+	text: {
+		primary: "#ffffff",
+	},
 }
