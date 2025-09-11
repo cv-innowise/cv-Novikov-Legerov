@@ -1,5 +1,5 @@
 import { Theme } from "@mui/material"
-import { SxProps } from "@mui/system"
+import { padding, SxProps } from "@mui/system"
 
 export const sidebarStyles = {
 	container:
@@ -24,8 +24,16 @@ export const sidebarStyles = {
 				backgroundColor: theme.palette.background.default,
 			},
 		}),
+
 	footer: {
 		display: "flex",
-		padding: "0 10px 0 10px",
+		flexDirection: "column",
+		alignItems: "flex-start",
+		gap: "22px",
+	} satisfies SxProps<Theme>,
+
+	arrow: {
+		padding: "10px",
+		marginLeft: "13px",
 	} satisfies SxProps<Theme>,
 }

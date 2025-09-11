@@ -8,7 +8,7 @@ import { BasicTabs } from "@shared/ui/basicTabs"
 export const UserLayout: FC<PropsWithChildren> = ({ children }) => {
 	return (
 		<Box sx={{ display: "flex", flexDirection: "column" }}>
-			<BasicTabs tabs={userTabs(33)} />
+			<BasicTabs tabs={userTabs(20)} />
 			<Box>{children}</Box>
 		</Box>
 	)
