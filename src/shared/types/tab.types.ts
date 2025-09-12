@@ -8,7 +8,7 @@ export type TabItem = ReadonlyArray<{
 	readonly label: ParseKeys
 }>
 
-export const userTabs = (userId: number): TabItem => [
+export const userTabs = (userId: string): TabItem => [
 	{
 		id: "1",
 		to: `${RoutesPaths.USERS}/${userId}`,

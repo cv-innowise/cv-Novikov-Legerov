@@ -1,11 +1,20 @@
 "use client"
 
-import { FC, MouseEvent, useState } from "react"
+import { FC, MouseEvent, PropsWithChildren, ReactNode, useState } from "react"
+
+import { Box } from "@mui/material"
 
 import { UserMenu } from "./UserMenu/UserMenu"
-import { UserProfile } from "./UserProfile/UserProfile"
 
-export const UserProfileWrapper: FC = () => {
+interface UserProfileWrapperProps {
+	userId: string
+	children: ReactNode
+}
+
+export const UserProfileWrapper: FC<UserProfileWrapperProps> = ({
+	children,
+	userId,
+}) => {
 	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
 	const open = Boolean(anchorEl)
 
@@ -15,8 +24,15 @@ export const UserProfileWrapper: FC = () => {
 
 	return (
 		<>
-			<UserProfile onClick={handleClick} />
-			<UserMenu anchorEl={anchorEl} open={open} onClose={handleClose} />
+			<Box sx={{ width: "100%" }} onClick={handleClick}>
+				{children}
+			</Box>
+			<UserMenu
+				userId={userId}
+				anchorEl={anchorEl}
+				open={open}
+				onClose={handleClose}
+			/>
 		</>
 	)
 }
