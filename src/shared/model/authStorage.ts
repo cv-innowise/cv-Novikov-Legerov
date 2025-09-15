@@ -32,6 +32,7 @@ export function getAccessTokenClientSide() {
 
 export function setAccessTokenClientSide(access_token: string) {
   setCookie("access_token", access_token);
+  console.log("Я РАБОТАЮ НА КЛИЕНТЕ!!!!!")
 }
 
 export function getRefreshTokenClientSide() {
