@@ -13,7 +13,7 @@ import {
 import { useTranslations } from "next-intl"
 import Link from "next/link"
 
-import { RoutesPaths } from "@shared/config/routes"
+import { RoutesPaths } from "@shared/config"
 
 import { UserMenuProps } from "./UserMenu.props"
 import { userMenuStyles } from "./UserMenu.styles"

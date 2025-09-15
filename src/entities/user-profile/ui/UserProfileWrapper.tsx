@@ -1,6 +1,6 @@
 "use client"
 
-import { FC, MouseEvent, PropsWithChildren, ReactNode, useState } from "react"
+import { FC, MouseEvent, ReactNode, useState } from "react"
 
 import { Box } from "@mui/material"
 

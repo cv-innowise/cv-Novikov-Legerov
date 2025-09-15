@@ -3,8 +3,8 @@ import { FC } from "react"
 import { Avatar, Button, Typography } from "@mui/material"
 
 import { getClient } from "@app/providers/apollo/ApolloClient"
-import { PROFILE } from "@features/user-profile/api/profile"
-import { ProfileResult } from "@features/user-profile/api/profile.types"
+import { PROFILE } from "@entities/user-profile/api/profile"
+import { ProfileResult } from "@entities/user-profile/api/profile.types"
 
 import { userProfileStyles } from "./UserProfile.styles"
 

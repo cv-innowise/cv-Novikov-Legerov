@@ -1,4 +1,4 @@
-import { RoutesPaths } from "@shared/config/routes"
+import { RoutesPaths } from "@shared/config"
 import {
 	CVSIcon,
 	EmployessIcon,
@@ -6,7 +6,7 @@ import {
 	SkillsIcon,
 } from "@shared/ui/icons"
 
-import { NavItems } from "./nav.types"
+import { NavItems } from "../model/nav.types"
 
 export const navItems: NavItems = [
 	{

@@ -1,13 +1,13 @@
-import { FC, PropsWithChildren } from "react"
+import { PropsWithChildren } from "react"
 
 import { Box } from "@mui/material"
 
-import { UserProfile, UserProfileWrapper } from "@features/user-profile"
+import { UserProfile, UserProfileWrapper } from "@entities/user-profile"
 import { getUserID } from "@shared/lib/serverSideCookiesService"
-import { BasicBreadcrumbs } from "@shared/ui/basicBreadcrumbs"
+import { BasicBreadcrumbs } from "@shared/ui/BasicBreadcrumbs"
 import { Sidebar } from "@widgets/sidebar"
 
-export const MainLayout: FC<PropsWithChildren> = async ({ children }) => {
+export default async function MainLayout({ children }: PropsWithChildren) {
 	const userId = await getUserID()
 
 	return (

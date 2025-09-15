@@ -2,7 +2,7 @@ import { ReactNode } from "react"
 
 import { ParseKeys } from "i18next"
 
-import { RoutesPaths } from "@shared/config/routes"
+import { RoutesPaths } from "@shared/config"
 
 export type NavItems = ReadonlyArray<{
 	readonly id: string

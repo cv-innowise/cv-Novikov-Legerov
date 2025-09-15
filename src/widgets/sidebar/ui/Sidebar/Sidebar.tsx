@@ -4,9 +4,10 @@ import { FC, PropsWithChildren, useState } from "react"
 
 import { Box, Drawer, IconButton } from "@mui/material"
 
-import { navItems, NavList } from "@features/navigation"
 import { LeftArrowIcon, RightArrowIcon } from "@shared/ui/icons"
+import { navItems } from "@widgets/sidebar/const/navItems"
 
+import { NavList } from "../NavList/NavList"
 import { sidebarStyles } from "./Sidebar.styles"
 
 export const Sidebar: FC<PropsWithChildren> = ({ children }) => {
