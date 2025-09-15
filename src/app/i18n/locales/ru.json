@@ -49,5 +49,13 @@
 		"settings": "Settings",
         "logout": "Logout"
 	}
+  },
+ "departments": {
+	  "label": "Department",
+	  "nodepartment": "No department"
+  },
+   "positions": {
+	  "label": "Positions",
+	  "noposition": "No position"
   }
 }

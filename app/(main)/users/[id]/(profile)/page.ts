@@ -1,1 +1,1 @@
-export { UserProfilePage as default } from "@pages/userProfile"
+export { UserPage as default } from "@pages/UserPage"
