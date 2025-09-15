@@ -1,14 +1,7 @@
-import { ParseKeys } from "i18next"
+import { RoutesPaths } from "@shared/config"
+import { TabItem } from "@shared/types"
 
-import { RoutesPaths } from "@shared/config/routes"
-
-export type TabItem = ReadonlyArray<{
-	readonly id: string
-	readonly to: string
-	readonly label: ParseKeys
-}>
-
-export const userTabs = (userId: number): TabItem => [
+export const userTabs = (userId: string): TabItem => [
 	{
 		id: "1",
 		to: `${RoutesPaths.USERS}/${userId}`,

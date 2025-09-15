@@ -1,14 +1,24 @@
-import { FC, PropsWithChildren } from "react"
+import { ReactNode } from "react"
 
 import { Box } from "@mui/material"
 
-import { userTabs } from "@shared/types/tab.types"
-import { BasicTabs } from "@shared/ui/basicTabs"
+import { userTabs } from "@shared/const/tabs.const"
+import { BasicTabs } from "@shared/ui/BasicTabs"
 
-export const UserLayout: FC<PropsWithChildren> = ({ children }) => {
+interface UserLayoutProps {
+	params: Promise<{ id: string }>
+	children: ReactNode
+}
+
+export default async function UserLayout({
+	children,
+	params,
+}: UserLayoutProps) {
+	const { id } = await params
+
 	return (
 		<Box sx={{ display: "flex", flexDirection: "column" }}>
-			<BasicTabs tabs={userTabs(20)} />
+			<BasicTabs tabs={userTabs(id)} />
 			<Box>{children}</Box>
 		</Box>
 	)

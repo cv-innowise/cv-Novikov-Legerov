@@ -7,7 +7,6 @@ export const errorLink = new ErrorLink(({ error }) => {
 	if (CombinedGraphQLErrors.is(error)) {
 		error.errors.forEach((err) => {
 			if (err.message === "Unauthorized") {
-				logout();
 			} else {
 				console.error(`[GraphQL error]: Message: ${err.message}`)
 			}

@@ -13,12 +13,17 @@ import {
 import { useTranslations } from "next-intl"
 import Link from "next/link"
 
-import { RoutesPaths } from "@shared/config/routes"
+import { RoutesPaths } from "@shared/config"
 
 import { UserMenuProps } from "./UserMenu.props"
 import { userMenuStyles } from "./UserMenu.styles"
 
-export const UserMenu: FC<UserMenuProps> = ({ anchorEl, open, onClose }) => {
+export const UserMenu: FC<UserMenuProps> = ({
+	anchorEl,
+	open,
+	onClose,
+	userId,
+}) => {
 	const t = useTranslations()
 
 	return (
@@ -32,7 +37,7 @@ export const UserMenu: FC<UserMenuProps> = ({ anchorEl, open, onClose }) => {
 		>
 			<MenuItem
 				component={Link}
-				href={`${RoutesPaths.USERS}/${20}`}
+				href={`${RoutesPaths.USERS}/${userId}`}
 				onClick={onClose}
 			>
 				<ListItemIcon>
