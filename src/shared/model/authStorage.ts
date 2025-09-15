@@ -1,34 +1,41 @@
-function setCookie(name: string, value: string, days = 7) {
+'use client'
+
+function setCookie(name: string, value: string | object, days = 7) {
   const expires = new Date(Date.now() + days * 864e5).toUTCString();
-  document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/`;
+  const cookieValue = typeof value === 'object' ? JSON.stringify(value) : value;
+  document.cookie = `${name}=${encodeURIComponent(cookieValue)}; expires=${expires}; path=/`;
 }
 
-function getCookie(name: string) {
-  return document.cookie
+const getCookie = (name: string): object | string | undefined => {
+  const cookieRow = document.cookie
     .split('; ')
-    .find(row => row.startsWith(name + '='))
-    ?.split('=')[1]
-    ? decodeURIComponent(document.cookie
-        .split('; ')
-        .find(row => row.startsWith(name + '='))!
-        .split('=')[1])
-    : null;
+    .find(row => row.startsWith(name + '='));
+  
+  if (!cookieRow) return undefined;
+
+  const cookieValue = decodeURIComponent(cookieRow.split('=')[1]);
+  
+  try {
+    return JSON.parse(cookieValue);
+  } catch {
+    return cookieValue;
+  }
 }
 
 function deleteCookie(name: string) {
-  document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`;
+  document.cookie = `${name}=; max-age=0; path=/`;
 }
 
-export function getAccessToken() {
-  return getCookie("access_token") || undefined;
+export function getAccessTokenClientSide() {
+  return getCookie("access_token") as string | undefined;;
 }
 
-export function setAccessToken(access_token: string) {
+export function setAccessTokenClientSide(access_token: string) {
   setCookie("access_token", access_token);
 }
 
-export function getRefreshToken() {
-  return getCookie("refresh_token") || undefined;
+export function getRefreshTokenClientSide() {
+  return getCookie("refresh_token") as string | undefined;;
 }
 
 export function setTokens(access_token: string, refresh_token: string) {
@@ -41,14 +48,14 @@ export function clearTokens() {
   deleteCookie("refresh_token");
 }
 
-export function setUserID(id: string) {
-    setCookie("userID", id);
+export function setSession(id: string, email: string, role: string) {
+    setCookie("session", { id, email, role });
 }
 
-export function removeUserID() {
-    deleteCookie("userID");
+export function removeSession() {
+    deleteCookie("session");
 }
 
-export function getUserID() {
-    return getCookie("userID");
+export function getSession() {
+    return getCookie("session");
 }

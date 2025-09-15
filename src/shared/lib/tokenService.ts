@@ -5,8 +5,9 @@ interface JWTPayload {
   [key: string]: any
 }
 
-export function isTokenExpired(token: string): boolean {
+export function isTokenExpired(token: string | undefined): boolean {
   try {
+    if (!token) return true;
     const decoded = jwtDecode<JWTPayload>(token)
     if (!decoded.exp) return true
     return Date.now() >= decoded.exp * 1000

@@ -2,11 +2,11 @@
 
 import { useRouter } from "next/navigation"
 import { useEffect, ReactNode } from "react";
-import { getAccessToken } from "@shared/model/authStorage";
+import { getAccessTokenClientSide } from "@shared/model/authStorage";
 
 const AuthRoute = ({ children }: { children: ReactNode }) => {
   const router = useRouter();
-  const token = typeof window !== "undefined" ? getAccessToken() : null;
+  const token = typeof window !== "undefined" ? getAccessTokenClientSide() : null;
 
   useEffect(() => {
     if (token) {
