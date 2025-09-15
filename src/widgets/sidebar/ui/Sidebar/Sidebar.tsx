@@ -5,7 +5,7 @@ import { FC, PropsWithChildren, useState } from "react"
 import { Box, Drawer, IconButton } from "@mui/material"
 
 import { LeftArrowIcon, RightArrowIcon } from "@shared/ui/icons"
-import { navItems } from "@widgets/sidebar/const/navItems"
+import { navItems } from "@widgets/sidebar/const/navItems.const"
 
 import { NavList } from "../NavList/NavList"
 import { sidebarStyles } from "./Sidebar.styles"
