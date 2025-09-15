@@ -1,9 +1,9 @@
-import { getAccessToken } from "@shared/model/authStorage";
 import { SetContextLink } from "@apollo/client/link/context";
+import { getAccessToken } from "@features/auth/model/authService";
 
-export const authLink = new SetContextLink((prevContext, operation) => {
-  const token = getAccessToken();
-  
+export const authLink = new SetContextLink(async (prevContext, operation) => {
+  const token  = await getAccessToken();
+
   return {
     headers: {
       ...prevContext.headers,

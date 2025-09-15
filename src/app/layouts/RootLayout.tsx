@@ -1,9 +1,13 @@
 import type { Metadata } from "next"
 import type { ReactNode } from "react"
+
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter"
+
 import ApolloProvider from "@app/providers/apollo/ApolloProvider"
 import ThemeProvider from "@app/providers/theme/ThemeProvider"
+
 import "@app/styles/global.scss"
+
 import { NextIntlClientProvider } from "next-intl"
 
 import Notification from "@shared/ui/notification/Notification"

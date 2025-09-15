@@ -1,11 +1,26 @@
-'use client'
+"use client"
 
-import { ReactNode } from "react";
-import { ApolloProvider as OriginalApolloProvider } from "@apollo/client/react";
-import client from "./client";
+import {
+	ApolloClient,
+	ApolloNextAppProvider,
+	InMemoryCache,
+} from "@apollo/client-integration-nextjs"
+import { ApolloLink } from "@apollo/client"
+import { authLink, errorLink, httpLink } from "./links"
 
-const  ApolloProvider = ({ children }: { children: ReactNode }) => {
-  return <OriginalApolloProvider client={client}>{children}</OriginalApolloProvider>;
+function makeClient() {
+	return new ApolloClient({
+		cache: new InMemoryCache(),
+		link: ApolloLink.from([authLink, errorLink, httpLink]),
+	})
+}
+
+const ApolloProvider = ({ children }: React.PropsWithChildren) => {
+	return (
+		<ApolloNextAppProvider makeClient={makeClient}>
+			{children}
+		</ApolloNextAppProvider>
+	)
 }
 
 export default ApolloProvider;
