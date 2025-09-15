@@ -1,13 +1,12 @@
 import { AuthResult } from "cv-graphql"
-
 import { isTokenExpired } from "@shared/lib/tokenService"
 import {
 	getAccessTokenClientSide,
 	getRefreshTokenClientSide,
 	removeSession,
 	setAccessTokenClientSide,
-	setTokens,
 	setSession,
+	setTokens,
 } from "@shared/model/authStorage"
 
 export const successAuth = ({
@@ -24,9 +23,9 @@ export const logout = () => {
 	removeSession()
 }
 
-const updateTokenRequest = async (refresh_token: string | undefined) => {
+export const updateTokenRequest = async (refresh_token: string | undefined) => {
 	if (!refresh_token) return { access_token: "", refresh_token: "" }
-	const res = await fetch(process.env.NEXT_PUBLIC_GRAPHQL_URL!, {
+	const res = await fetch("https://cv-project-js.inno.ws/api/graphql", {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
@@ -45,38 +44,36 @@ const updateTokenRequest = async (refresh_token: string | undefined) => {
 	})
 
 	const data = await res.json()
-	return data.data.updateToken.access_token
+	const newAccessToken = data.data.updateToken.access_token
+
+	return newAccessToken
 }
 
 export const getAccessToken = async (): Promise<string | undefined> => {
-	const isServer = typeof window === "undefined";
-	let getAccessTokenFn: () => Promise<string | undefined> | string | undefined;
-	let getRefreshTokenFn: () => Promise<string | undefined> | string | undefined;
-	let setAccessTokenFn: (token: string) => Promise<void> | void;
+	const isServer = typeof window === "undefined"
+	let getAccessTokenFn: () => Promise<string | undefined> | string | undefined
+	let getRefreshTokenFn: () => Promise<string | undefined> | string | undefined
 
 	if (isServer) {
 		const {
 			getAccessTokenServerSide,
 			getRefreshTokenServerSide,
-			setAccessTokenServerSide,
 		} = await import("@shared/lib/serverSideCookiesService")
 		getAccessTokenFn = getAccessTokenServerSide
 		getRefreshTokenFn = getRefreshTokenServerSide
-		setAccessTokenFn = setAccessTokenServerSide
 	} else {
 		getAccessTokenFn = getAccessTokenClientSide
 		getRefreshTokenFn = getRefreshTokenClientSide
-		setAccessTokenFn = setAccessTokenClientSide
 	}
 
-	const access_token = await getAccessTokenFn();
-	const refresh_token = await getRefreshTokenFn();
+	const access_token = await getAccessTokenFn()
+	const refresh_token = await getRefreshTokenFn()
 
-	if (isTokenExpired(access_token) && !isTokenExpired(refresh_token)) {
-		const newAccessToken = await updateTokenRequest(refresh_token);
-		await setAccessTokenFn(newAccessToken);
-		return newAccessToken;
+	if (!isServer && isTokenExpired(access_token) && !isTokenExpired(refresh_token)) {
+		const newAccessToken = await updateTokenRequest(refresh_token)
+		setAccessTokenClientSide(newAccessToken)
+		return newAccessToken
 	}
 
-	return access_token;
+	return access_token
 }
