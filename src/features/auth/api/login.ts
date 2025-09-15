@@ -7,23 +7,8 @@ const LOGIN = gql`
       refresh_token
       user {
         id
-        created_at
         email
         role
-        profile {
-          first_name
-          last_name
-          full_name
-          avatar
-        }
-        department {
-          id
-          name
-        }
-        position {
-          id
-          name
-        }
       }
     }
   }
