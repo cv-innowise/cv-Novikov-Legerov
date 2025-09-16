@@ -19,8 +19,12 @@ export const UserProfile: FC<UserProfileProps> = async ({ session }) => {
 
 	return (
 		<Button sx={userProfileStyles.profile}>
-			<Avatar sx={userProfileStyles.avatar}>{email[0]}</Avatar>
-			<Typography sx={userProfileStyles.name}>{email}</Typography>
+			<Avatar sx={userProfileStyles.avatar}>
+				{data?.profile?.full_name?.[0] || email[0]}
+			</Avatar>
+			<Typography sx={userProfileStyles.name}>
+				{data?.profile?.full_name || email}
+			</Typography>
 		</Button>
 	)
 }

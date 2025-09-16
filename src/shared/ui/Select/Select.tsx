@@ -30,7 +30,7 @@ export const Select = <T extends FieldValues>({
 					{...field}
 					fullWidth
 				>
-					{emptyOptionLabel && <MenuItem>{emptyOptionLabel}</MenuItem>}
+					{emptyOptionLabel && <MenuItem value="">{emptyOptionLabel}</MenuItem>}
 					{items.map((item) => (
 						<MenuItem key={item.id} value={item.id}>
 							{item.name}
