@@ -1,6 +1,11 @@
 import { SxThemeProps } from "@shared/types/sx.types"
 
 export const userFormStyles = {
+	wrapper: {
+		width: "100%",
+		display: "flex",
+		justifyContent: "center",
+	},
 	form: {
 		maxWidth: "852px",
 		width: "100%",
