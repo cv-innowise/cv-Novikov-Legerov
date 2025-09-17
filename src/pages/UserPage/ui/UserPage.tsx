@@ -1,6 +1,6 @@
 import { Box } from "@mui/material"
 
-import { UserInfo } from "@entities/user"
+import { UserInfo } from "@entities/user/userInfo"
 import { UserForm } from "@features/user/updateUser"
 
 import { userPageStyles } from "./UserPage.styles"

@@ -47,6 +47,7 @@
    "user": {
     "profile": "Profile",
     "skills": "Skills",
+	"data": "A member since",
     "languages": "Languages",
 	"menu": {
         "profile": "Profile",
