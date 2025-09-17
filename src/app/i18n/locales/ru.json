@@ -53,5 +53,21 @@
 		"settings": "Settings",
         "logout": "Logout"
 	}
-  }
+  },
+ "departments": {
+	  "label": "Department",
+	  "nodepartment": "No department"
+  },
+   "positions": {
+	  "label": "Positions",
+	  "noposition": "No position"
+  },
+    "userForm": {
+	"firstName": "First name",
+    "lastName": "Last name",
+    "save": "Save",
+    "department": "Department",
+    "position": "Position",
+	"btn": "Update"
+   }
 }
