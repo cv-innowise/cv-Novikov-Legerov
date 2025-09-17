@@ -7,7 +7,6 @@ export const serverAuthLink = new SetContextLink(
 		let token
 
 		if (typeof window === "undefined") {
-			console.log("server")
 			let { cookies } = await import("next/headers")
 			const myCookies = await cookies()
 			token = myCookies.get("access_token")?.value
