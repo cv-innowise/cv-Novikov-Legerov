@@ -9,6 +9,7 @@ import { useTranslations } from "next-intl"
 import { DepartmentsSelect } from "@entities/departments"
 import { PositionsSelect } from "@entities/positions"
 import FormTextField from "@shared/ui/form/FormTextField"
+import FormWrapper from "@shared/ui/form/FormWrapper"
 
 import { useProfileUpdate } from "../hooks/useProfileUpdate"
 import { useUserUpdate } from "../hooks/useUserUpdate"
@@ -53,12 +54,12 @@ export const UserForm: FC<UserFormProps> = ({ userId }) => {
 	}
 
 	return (
-		<FormProvider {...methods}>
-			<Box
-				sx={userFormStyles.form}
-				component="form"
-				onSubmit={methods.handleSubmit(onSubmit)}
-			>
+		<FormWrapper
+			onSubmit={onSubmit}
+			// schema={schema}
+			width="100%"
+		>
+			<Box sx={userFormStyles.form}>
 				<FormTextField
 					name="firstName"
 					fullWidth
@@ -70,8 +71,8 @@ export const UserForm: FC<UserFormProps> = ({ userId }) => {
 					label={t("userForm.lastName")}
 				/>
 
-				<DepartmentsSelect name="department" control={methods.control} />
-				<PositionsSelect name="position" control={methods.control} />
+				<DepartmentsSelect name="department" />
+				<PositionsSelect name="position" />
 				<Button
 					type="submit"
 					variant="contained"
@@ -81,6 +82,6 @@ export const UserForm: FC<UserFormProps> = ({ userId }) => {
 					{t("userForm.btn")}
 				</Button>
 			</Box>
-		</FormProvider>
+		</FormWrapper>
 	)
 }

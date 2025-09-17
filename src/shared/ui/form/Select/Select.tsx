@@ -1,6 +1,6 @@
 "use client"
 
-import { Controller, FieldValues } from "react-hook-form"
+import { Controller, FieldValues, useFormContext } from "react-hook-form"
 
 import { MenuItem, TextField } from "@mui/material"
 
@@ -8,27 +8,25 @@ import { SelectProps } from "./Select.props"
 
 export const Select = <T extends FieldValues>({
 	name,
-	control,
-	label,
-	rules,
 	items,
 	emptyOptionLabel,
-	disabled,
+	...props
 }: SelectProps<T>) => {
+
+	const { control } = useFormContext<T>()
 	return (
 		<Controller
 			name={name}
-			rules={rules}
 			control={control}
 			render={({ field, fieldState: { error } }) => (
 				<TextField
-					select
-					label={label}
-					error={!!error}
-					disabled={disabled}
-					helperText={error?.message}
 					{...field}
+					select
+					error={!!error}
+					helperText={error?.message}
 					fullWidth
+					value={field.value || ""}
+					{...props}
 				>
 					{emptyOptionLabel && <MenuItem value="">{emptyOptionLabel}</MenuItem>}
 					{items.map((item) => (
