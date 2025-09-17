@@ -29,7 +29,7 @@ export const middleware = async (req: NextRequest) => {
 		const res = NextResponse.next();
 		res.cookies.set("access_token", newAccessToken);
 		return res
-	}
+	}	
 
 	return NextResponse.next()
 }

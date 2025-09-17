@@ -8,6 +8,15 @@ export const PROFILE = gql`
 			last_name
 			full_name
 			avatar
+			skills {
+				name
+				categoryId
+				mastery
+			}
+			languages {
+				name
+				proficiency
+			}
 		}
 	}
 `

@@ -51,23 +51,8 @@ export const updateTokenRequest = async (refresh_token: string | undefined) => {
 
 export const getAccessToken = async (): Promise<string | undefined> => {
 	const isServer = typeof window === "undefined"
-	let getAccessTokenFn: () => Promise<string | undefined> | string | undefined
-	let getRefreshTokenFn: () => Promise<string | undefined> | string | undefined
-
-	if (isServer) {
-		const {
-			getAccessTokenServerSide,
-			getRefreshTokenServerSide,
-		} = await import("@shared/lib/serverSideCookiesService")
-		getAccessTokenFn = getAccessTokenServerSide
-		getRefreshTokenFn = getRefreshTokenServerSide
-	} else {
-		getAccessTokenFn = getAccessTokenClientSide
-		getRefreshTokenFn = getRefreshTokenClientSide
-	}
-
-	const access_token = await getAccessTokenFn()
-	const refresh_token = await getRefreshTokenFn()
+	const access_token = getAccessTokenClientSide();
+	const refresh_token = getRefreshTokenClientSide();
 
 	if (!isServer && isTokenExpired(access_token) && !isTokenExpired(refresh_token)) {
 		const newAccessToken = await updateTokenRequest(refresh_token)

@@ -1,6 +1,13 @@
+'use client'
+
+import UserSkills from '@features/user-skills/ui/UserSkills';
+
 const SkillsPage = () => {
 
-	return <div>skilolllllllll</div>
+	return (
+		<>
+		</>
+	)
 }
 
 export default SkillsPage

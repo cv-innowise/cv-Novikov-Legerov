@@ -1,5 +1,7 @@
 'use client'
 
+import Session from "@shared/types/session";
+
 function setCookie(name: string, value: string | object, days = 7) {
   const expires = new Date(Date.now() + days * 864e5).toUTCString();
   const cookieValue = typeof value === 'object' ? JSON.stringify(value) : value;
@@ -27,12 +29,11 @@ function deleteCookie(name: string) {
 }
 
 export function getAccessTokenClientSide() {
-  return getCookie("access_token") as string | undefined;;
+  return getCookie("access_token") as string | undefined;
 }
 
 export function setAccessTokenClientSide(access_token: string) {
   setCookie("access_token", access_token);
-  console.log("Я РАБОТАЮ НА КЛИЕНТЕ!!!!!")
 }
 
 export function getRefreshTokenClientSide() {
@@ -57,6 +58,6 @@ export function removeSession() {
     deleteCookie("session");
 }
 
-export function getSession() {
-    return getCookie("session");
+export function getSession(): Session {
+    return getCookie("session") as Session;
 }

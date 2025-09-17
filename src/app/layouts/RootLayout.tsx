@@ -3,7 +3,7 @@ import type { ReactNode } from "react"
 
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter"
 
-import ApolloProvider from "@app/providers/apollo/ApolloProvider"
+import ApolloProvider from "../providers/apollo/ApolloProvider"
 import ThemeProvider from "@app/providers/theme/ThemeProvider"
 
 import "@app/styles/global.scss"
