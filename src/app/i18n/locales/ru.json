@@ -69,6 +69,7 @@
     "save": "Save",
     "department": "Department",
     "position": "Position",
-	"btn": "Update"
+	"btn": "Update",
+    "success": "Profile was updated"
    }
 }
