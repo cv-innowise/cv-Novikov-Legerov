@@ -1,48 +1,86 @@
 "use client"
 
 import { FC } from "react"
-import { SubmitHandler, useForm } from "react-hook-form"
+import { FormProvider, SubmitHandler, useForm } from "react-hook-form"
 
 import { Box, Button } from "@mui/material"
+import { useTranslations } from "next-intl"
 
 import { DepartmentsSelect } from "@entities/departments"
 import { PositionsSelect } from "@entities/positions"
+import FormTextField from "@shared/ui/form/FormTextField"
 
-interface UserFormValues {
-	departmentId: string
-	positionId: string
-}
+import { useProfileUpdate } from "../hooks/useProfileUpdate"
+import { useUserUpdate } from "../hooks/useUserUpdate"
+import { UserFormProps, UserFormValues } from "./UseForm.props"
+import { userFormStyles } from "./UseForm.styles"
 
-export const UserForm: FC = () => {
-	const { control, handleSubmit } = useForm<UserFormValues>({
+export const UserForm: FC<UserFormProps> = ({ userId }) => {
+	const t = useTranslations()
+
+	const [updateUser] = useUserUpdate()
+
+	const [updateProfile] = useProfileUpdate()
+
+	const methods = useForm<UserFormValues>({
 		defaultValues: {
-			departmentId: "",
-			positionId: "",
+			firstName: "",
+			lastName: "",
+			department: "",
+			position: "",
 		},
 	})
 
-	const onSubmit: SubmitHandler<UserFormValues> = (data) => {
-		console.log("Form submit:", data)
+	const onSubmit: SubmitHandler<UserFormValues> = async (data) => {
+		await updateUser({
+			variables: {
+				user: {
+					userId: userId,
+					departmentId: data.department,
+					positionId: data.position,
+				},
+			},
+		})
+		await updateProfile({
+			variables: {
+				profile: {
+					userId: userId,
+					first_name: data.firstName,
+					last_name: data.lastName,
+				},
+			},
+		})
 	}
 
 	return (
-		<Box
-			width={410}
-			component="form"
-			onSubmit={handleSubmit(onSubmit)}
-			sx={{
-				display: "flex",
-				flexDirection: "column",
-				gap: 2,
-				marginTop: "30px",
-			}}
-		>
-			<PositionsSelect name="positionId" control={control} />
-			<DepartmentsSelect name="departmentId" control={control} />
+		<FormProvider {...methods}>
+			<Box
+				sx={userFormStyles.form}
+				component="form"
+				onSubmit={methods.handleSubmit(onSubmit)}
+			>
+				<FormTextField
+					name="firstName"
+					fullWidth
+					label={t("userForm.firstName")}
+				/>
+				<FormTextField
+					fullWidth
+					name="lastName"
+					label={t("userForm.lastName")}
+				/>
 
-			<Button type="submit" variant="contained">
-				Save
-			</Button>
-		</Box>
+				<DepartmentsSelect name="department" control={methods.control} />
+				<PositionsSelect name="position" control={methods.control} />
+				<Button
+					type="submit"
+					variant="contained"
+					fullWidth
+					sx={userFormStyles.btn}
+				>
+					{t("userForm.btn")}
+				</Button>
+			</Box>
+		</FormProvider>
 	)
 }

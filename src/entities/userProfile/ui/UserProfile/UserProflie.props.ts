@@ -1,7 +1,4 @@
-interface Session {
-	id: string
-	email: string
-}
+import Session from "@shared/types/session"
 
 export interface UserProfileProps {
 	session: Session
