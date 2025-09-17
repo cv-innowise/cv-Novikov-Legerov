@@ -1,13 +1,12 @@
-const UserProfilePage = () => {
+import UserSkills from "@features/user-skills"
+import { getSession } from "@shared/lib/serverSideCookiesService"
+
+const UserProfilePage = async () => {
+	const session = await getSession();
+	console.log(session)
 	return (
 		<>
-			A member since Mon Sep 08 2025 asdasd asd asd asd asd asd asd asd asd asd
-			asd asd asd asd asd asd asd asd asd asd asd asdasd asd asd asd asd asd asd
-			asd asd asd asd asd asd asd asd asd asd asd asd asd asd asd asd asd asd
-			asd asd asd asd asd asd asd asd asd asd asd asd asd asd asd asd asd asd
-			asd asd asd asd asd asd asd asd asd asd asd asd asd asd asd asd asd asd
-			asd asd asd asd asd asd asd asd asd asd asd asd asd asd asd asd asd asd
-			asd asd asd asd asd asd asd asd asd asd asd
+			<UserSkills session={session} />
 		</>
 	)
 }
