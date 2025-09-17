@@ -39,35 +39,38 @@
 	"Remove skills": "Удалить навыки",
 	"Skills": "Навыки",
 	"navigation": {
-    "employees": "Employees",
-    "skills": "Skills",
-    "languages": "Languages",
-    "cvs": "CVs"
-  },
-   "user": {
-    "profile": "Profile",
-    "skills": "Skills",
-    "languages": "Languages",
-	"menu": {
-        "profile": "Profile",
-		"settings": "Settings",
-        "logout": "Logout"
+		"employees": "Employees",
+		"skills": "Skills",
+		"languages": "Languages",
+		"cvs": "CVs"
+	},
+	"user": {
+		"profile": "Profile",
+		"skills": "Skills",
+		"languages": "Languages",
+		"menu": {
+			"profile": "Profile",
+			"settings": "Settings",
+			"logout": "Logout"
+		}
+	},
+	"departments": {
+		"label": "Department",
+		"nodepartment": "No department"
+	},
+	"skills": {
+		"label": "Навык"
+	},
+	"positions": {
+		"label": "Positions",
+		"noposition": "No position"
+	},
+	"userForm": {
+		"firstName": "First name",
+		"lastName": "Last name",
+		"save": "Save",
+		"department": "Department",
+		"position": "Position",
+		"btn": "Update"
 	}
-  },
- "departments": {
-	  "label": "Department",
-	  "nodepartment": "No department"
-  },
-   "positions": {
-	  "label": "Positions",
-	  "noposition": "No position"
-  },
-    "userForm": {
-	"firstName": "First name",
-    "lastName": "Last name",
-    "save": "Save",
-    "department": "Department",
-    "position": "Position",
-	"btn": "Update"
-   }
 }
