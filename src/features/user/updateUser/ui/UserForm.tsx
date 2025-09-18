@@ -21,7 +21,7 @@ import { userFormStyles } from "./UseForm.styles"
 
 export const UserForm: FC<UserFormProps> = ({ userId }) => {
 	const t = useTranslations()
-	const [updateProfile] = useProfileUpdate()
+	const [updateProfile] = useProfileUpdate(userId)
 	const [updateUser] = useUserUpdate()
 
 	const { user } = useUserInfo(userId)

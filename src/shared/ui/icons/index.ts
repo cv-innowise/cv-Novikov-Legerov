@@ -5,6 +5,7 @@ import LeftArrowIcon from "./left-arrow-icon.svg"
 import NavigationNextIcon from "./navigation-next-icon.svg"
 import RightArrowIcon from "./rigth-arrow-icon.svg"
 import SkillsIcon from "./skills-icon.svg"
+import UploadIcon from "./upload-icon.svg"
 import UserIcon from "./user-icon.svg"
 
 export {
@@ -16,4 +17,5 @@ export {
 	SkillsIcon,
 	NavigationNextIcon,
 	UserIcon,
+	UploadIcon,
 }
