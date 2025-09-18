@@ -51,7 +51,6 @@
 		"settings": "Settings",
         "logout": "Logout"
 	}
-
   },
     "departments": {
 	  "label": "Department",
@@ -70,5 +69,13 @@
     "position": "Position",
 	"btn": "Update",
 	"success": "Profile was updated"
-   }
+   },
+
+   "avatar": {
+    "alt": "User avatar",
+    "uploadText": "Upload avatar image",
+    "fileRestrictions": "png, jpg or gif no more than 0.5MB",
+	"uploadSuccess": "Avatar was uploaded successfully",
+    "deleteSuccess": "Avatar was deleted successfully"
+  }
 }
