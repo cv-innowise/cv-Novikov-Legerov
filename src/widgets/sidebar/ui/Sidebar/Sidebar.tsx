@@ -4,7 +4,7 @@ import { FC, useState } from "react"
 
 import { Box, Drawer, IconButton } from "@mui/material"
 
-import { UserProfileWrapper } from "@entities/user/userProfile"
+import { UserProfileMenu } from "@entities/user/userProfileMenu"
 import { LeftArrowIcon, RightArrowIcon } from "@shared/ui/icons"
 import { navItems } from "@widgets/sidebar/const/navItems.const"
 
@@ -23,7 +23,7 @@ export const Sidebar: FC<SidebarProps> = ({ session }) => {
 		<Drawer variant="permanent" open={open} sx={sidebarStyles.container(open)}>
 			<NavList items={navItems} />
 			<Box sx={sidebarStyles.footer}>
-				<UserProfileWrapper session={session} />
+				<UserProfileMenu session={session} />
 				<IconButton sx={sidebarStyles.arrow} onClick={toggleDrawer}>
 					{open ? <LeftArrowIcon /> : <RightArrowIcon />}
 				</IconButton>

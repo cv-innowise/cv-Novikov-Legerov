@@ -12,7 +12,7 @@ import {
 } from "@mui/material"
 import { useTranslations } from "next-intl"
 
-import { useUserProfile } from "@entities/user/userProfile"
+import { useUserProfile } from "@entities/user/userProfileMenu"
 import { fileToBase64 } from "@shared/lib/file"
 import { UploadIcon } from "@shared/ui/icons"
 import { addNotification } from "@shared/ui/notification/notification.service"
@@ -38,7 +38,7 @@ export const Avatar: FC<AvatarProps> = ({ userId }) => {
 		try {
 			const avatar = await fileToBase64(file)
 			await uploadAvatar({ variables: { avatar: { userId, ...avatar } } })
-			addNotification(t("avatar.uploadSuccess"))
+			addNotification(t("avatar.uploadSuccess"), "success")
 		} catch (error) {
 			if (error instanceof Error) {
 				addNotification(error.message, "error")
@@ -49,7 +49,7 @@ export const Avatar: FC<AvatarProps> = ({ userId }) => {
 	const handleDelete = async () => {
 		try {
 			await deleteAvatar({ variables: { avatar: { userId } } })
-			addNotification(t("avatar.deleteSuccess"))
+			addNotification(t("avatar.deleteSuccess"), "success")
 		} catch (error) {
 			if (error instanceof Error) {
 				addNotification(error.message, "error")

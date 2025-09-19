@@ -4,11 +4,9 @@ import { FC, MouseEvent, useState } from "react"
 
 import { UserMenu } from "../UserMenu/UserMenu"
 import { UserProfile } from "../UserProfile/UserProfile"
-import { UserProfileWrapperProps } from "./UserProfilleWrapper.props"
+import { UserProfileMenuProps } from "./UserProfilleMenu.props"
 
-export const UserProfileWrapper: FC<UserProfileWrapperProps> = ({
-	session,
-}) => {
+export const UserProfileMenu: FC<UserProfileMenuProps> = ({ session }) => {
 	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
 	const open = Boolean(anchorEl)
 

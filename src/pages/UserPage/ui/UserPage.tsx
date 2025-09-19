@@ -4,11 +4,8 @@ import { UserInfo } from "@entities/user/userInfo"
 import { UserForm } from "@features/user/updateUser"
 import { Avatar } from "@features/user/uploadAvatar"
 
+import { UserPageProps } from "./UserPage.props"
 import { userPageStyles } from "./UserPage.styles"
-
-interface UserPageProps {
-	params: Promise<{ id: string }>
-}
 
 const UserPage = async ({ params }: UserPageProps) => {
 	const { id } = await params
