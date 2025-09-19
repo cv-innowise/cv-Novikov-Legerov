@@ -1,3 +1,0 @@
-interface UserInfoProps {
-	userId: string
-}

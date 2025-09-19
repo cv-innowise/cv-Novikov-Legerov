@@ -1,15 +1,15 @@
 "use client"
 
+import { FC } from "react"
+
 import { Box, Typography } from "@mui/material"
 import { useTranslations } from "next-intl"
 
-import { useUserInfo } from "../hooks/useUserInfo"
+import { UserInfoProps } from "./UserInfo.props"
 import { userInfoStyles } from "./UserInfo.styles"
 
-export const UserInfo = ({ userId }: UserInfoProps) => {
+export const UserInfo: FC<UserInfoProps> = ({ user }) => {
 	const t = useTranslations()
-
-	const { user } = useUserInfo(userId)
 
 	return (
 		<Box sx={userInfoStyles.details}>
