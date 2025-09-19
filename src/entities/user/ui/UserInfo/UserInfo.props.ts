@@ -1,5 +1,5 @@
 import { User } from "cv-graphql"
 
-export interface AvatarProps {
+export interface UserInfoProps {
 	user: User
 }

@@ -1,6 +1,6 @@
 "use client"
 
-import { ChangeEvent, FC } from "react"
+import { ChangeEvent, DragEvent, FC } from "react"
 
 import { Close } from "@mui/icons-material"
 import {
@@ -12,7 +12,6 @@ import {
 } from "@mui/material"
 import { useTranslations } from "next-intl"
 
-import { useUserProfile } from "@entities/user/userProfileMenu"
 import { fileToBase64 } from "@shared/lib/file"
 import { UploadIcon } from "@shared/ui/icons"
 import { addNotification } from "@shared/ui/notification/notification.service"
@@ -21,18 +20,18 @@ import { useAvatarDelete, useAvatarUpload } from "../hooks/useAvatar"
 import { AvatarProps } from "./Avatar.props"
 import { avatarStyles } from "./Avatar.styles"
 
-export const Avatar: FC<AvatarProps> = ({ userId }) => {
+export const Avatar: FC<AvatarProps> = ({ user }) => {
 	const t = useTranslations()
 
-	const { profile } = useUserProfile(userId)
+	const { id: userId, profile } = user
 
 	const avatarUrl = profile?.avatar || ""
 
 	const [uploadAvatar, { loading: uploading }] = useAvatarUpload(userId)
 	const [deleteAvatar, { loading: deleting }] = useAvatarDelete(userId)
 
-	const handleUpload = async (event: ChangeEvent<HTMLInputElement>) => {
-		const file = event.target.files?.[0]
+	const handleUpload = async (files: FileList | null) => {
+		const file = files?.[0]
 		if (!file) return
 
 		try {
@@ -57,6 +56,19 @@ export const Avatar: FC<AvatarProps> = ({ userId }) => {
 		}
 	}
 
+	const hadnleChange = (event: ChangeEvent<HTMLInputElement>) => {
+		handleUpload(event.target.files)
+	}
+
+	const handleDragOver = (event: DragEvent) => {
+		event.preventDefault()
+	}
+
+	const handleDrop = (event: DragEvent) => {
+		event.preventDefault()
+		handleUpload(event.dataTransfer.files)
+	}
+
 	return (
 		<Box sx={avatarStyles.container}>
 			<Badge
@@ -73,7 +85,7 @@ export const Avatar: FC<AvatarProps> = ({ userId }) => {
 					{!avatarUrl && profile.full_name?.at(0)}
 				</UserAvatar>
 			</Badge>
-			<label>
+			<label onDragOver={handleDragOver} onDrop={handleDrop}>
 				<Box sx={avatarStyles.infoBox}>
 					<Box sx={avatarStyles.uploadText}>
 						<UploadIcon />
@@ -83,7 +95,8 @@ export const Avatar: FC<AvatarProps> = ({ userId }) => {
 						{t("avatar.fileRestrictions")}
 					</Typography>
 					<input
-						onChange={handleUpload}
+						size={500}
+						onChange={hadnleChange}
 						type="file"
 						accept=".png, .jpg, .jpeg, .gif"
 						hidden

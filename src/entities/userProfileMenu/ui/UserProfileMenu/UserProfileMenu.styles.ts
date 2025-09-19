@@ -1,6 +1,6 @@
 import { SxThemeProps } from "@shared/types/sx.types"
 
-export const userProfileStyles = {
+export const userProfileMenuStyles = {
 	profile: {
 		minWidth: "56px",
 		width: "100%",

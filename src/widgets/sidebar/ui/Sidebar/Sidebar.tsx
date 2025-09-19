@@ -4,7 +4,7 @@ import { FC, useState } from "react"
 
 import { Box, Drawer, IconButton } from "@mui/material"
 
-import { UserProfileMenu } from "@entities/user/userProfileMenu"
+import { UserProfileMenu } from "@entities/userProfileMenu"
 import { LeftArrowIcon, RightArrowIcon } from "@shared/ui/icons"
 import { navItems } from "@widgets/sidebar/const/navItems.const"
 

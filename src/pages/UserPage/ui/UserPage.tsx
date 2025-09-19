@@ -1,8 +1,6 @@
 import { Box } from "@mui/material"
 
-import { UserInfo } from "@entities/user/userInfo"
-import { UserForm } from "@features/user/updateUser"
-import { Avatar } from "@features/user/uploadAvatar"
+import { UserProfile } from "@widgets/userProfile"
 
 import { UserPageProps } from "./UserPage.props"
 import { userPageStyles } from "./UserPage.styles"
@@ -12,9 +10,7 @@ const UserPage = async ({ params }: UserPageProps) => {
 
 	return (
 		<Box sx={userPageStyles.container}>
-			<Avatar userId={id} />
-			<UserInfo userId={id} />
-			<UserForm userId={id} />
+			<UserProfile userId={id} />
 		</Box>
 	)
 }

@@ -2,7 +2,7 @@ import { useMutation } from "@apollo/client/react"
 
 import { UpdateProfileInput } from "cv-graphql"
 
-import { USER } from "@entities/user/userInfo"
+import { USER } from "@entities/user"
 
 import { UPDATE_PROFILE } from "../api/updateUser"
 import { UpdateProfileResult } from "../api/updateUser.types"

@@ -8,7 +8,6 @@ import { useTranslations } from "next-intl"
 
 import { DepartmentsSelect } from "@entities/departments"
 import { PositionsSelect } from "@entities/positions"
-import { useUserInfo } from "@entities/user/userInfo"
 import { FormButton } from "@shared/ui/form/FormButton"
 import FormTextField from "@shared/ui/form/FormTextField"
 import FormWrapper from "@shared/ui/form/FormWrapper"
@@ -19,12 +18,12 @@ import { useUserUpdate } from "../hooks/useUserUpdate"
 import { UserFormProps, UserFormValues } from "./UseForm.props"
 import { userFormStyles } from "./UseForm.styles"
 
-export const UserForm: FC<UserFormProps> = ({ userId }) => {
+export const UserForm: FC<UserFormProps> = ({ user }) => {
+	const { id: userId } = user
+
 	const t = useTranslations()
 	const [updateProfile] = useProfileUpdate(userId)
 	const [updateUser] = useUserUpdate()
-
-	const { user } = useUserInfo(userId)
 
 	const defaultValues = {
 		firstName: user.profile.first_name || "",

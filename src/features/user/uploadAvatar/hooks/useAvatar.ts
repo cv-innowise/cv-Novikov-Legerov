@@ -2,7 +2,7 @@ import { useMutation } from "@apollo/client/react"
 
 import { DeleteAvatarInput, UploadAvatarInput } from "cv-graphql"
 
-import { USER } from "@entities/user/userInfo"
+import { USER } from "@entities/user"
 
 import { DELETE_AVATAR, UPLOAD_AVATAR } from "../api/avatar"
 import { UploadAvatarResult } from "../api/avatar.types"
