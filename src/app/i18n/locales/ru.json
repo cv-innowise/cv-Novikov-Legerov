@@ -78,5 +78,13 @@
     "fileRestrictions": "png, jpg or gif no more than 0.5MB",
 	"uploadSuccess": "Avatar was uploaded successfully",
     "deleteSuccess": "Avatar was deleted successfully"
+  },
+
+    "table": {
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email",
+    "department": "Department",
+    "position": "Position"
   }
 }

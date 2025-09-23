@@ -1,11 +1,13 @@
+"use client"
+
 import { FC } from "react"
 
-import { ArrowBack, KeyboardArrowRight } from "@mui/icons-material"
+import { KeyboardArrowRight } from "@mui/icons-material"
 import { Avatar, IconButton, TableCell, TableRow } from "@mui/material"
 
 import { UserItemProps } from "./UserItem.props"
 
-export const UserItem: FC<UserItemProps> = ({ user }) => {
+export const UserItem: FC<UserItemProps> = ({ row: user }) => {
 	return (
 		<TableRow>
 			<TableCell>
@@ -20,7 +22,7 @@ export const UserItem: FC<UserItemProps> = ({ user }) => {
 			<TableCell>{user.position?.name}</TableCell>
 			<TableCell>
 				<IconButton>
-					<KeyboardArrowRight color="secondary" />
+					<KeyboardArrowRight />
 				</IconButton>
 			</TableCell>
 		</TableRow>

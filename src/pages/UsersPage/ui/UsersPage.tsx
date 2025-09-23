@@ -16,9 +16,9 @@ const UsersPage = async () => {
 
 	return (
 		<BasicTable
-			headCells={userHeadCells}
+			RowComponent={UserItem}
 			data={data?.users || []}
-			renderRow={(user) => <UserItem key={user.id} user={user} />}
+			headCells={userHeadCells}
 		/>
 	)
 }
