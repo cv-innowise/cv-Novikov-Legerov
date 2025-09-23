@@ -1,5 +1,5 @@
 import Session from "@shared/types/session"
 
-export interface UserProfileProps {
+export interface UserProfileMenuProps {
 	session: Session
 }

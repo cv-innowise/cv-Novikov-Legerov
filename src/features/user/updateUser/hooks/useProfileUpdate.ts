@@ -2,16 +2,16 @@ import { useMutation } from "@apollo/client/react"
 
 import { UpdateProfileInput } from "cv-graphql"
 
-import { USER } from "@entities/user/api/user"
+import { USER } from "@entities/user"
 
 import { UPDATE_PROFILE } from "../api/updateUser"
 import { UpdateProfileResult } from "../api/updateUser.types"
 
-export const useProfileUpdate = () => {
+export const useProfileUpdate = (userId: string) => {
 	return useMutation<UpdateProfileResult, { profile: UpdateProfileInput }>(
 		UPDATE_PROFILE,
 		{
-			refetchQueries: [USER],
+			refetchQueries: [{ query: USER, variables: { userId } }],
 		},
 	)
 }

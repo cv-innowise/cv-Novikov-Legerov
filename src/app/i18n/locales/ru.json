@@ -51,39 +51,44 @@
 	"add skill notification": "Навык успешно добавлен!",
 
 	"navigation": {
-		"employees": "Employees",
-		"skills": "Skills",
-		"languages": "Languages",
-		"cvs": "CVs"
-	},
-	"user": {
-		"profile": "Profile",
-		"skills": "Skills",
-		"languages": "Languages",
-		"menu": {
-			"profile": "Profile",
-			"settings": "Settings",
-			"logout": "Logout"
-		}
-	},
-	"departments": {
-		"label": "Department",
-		"nodepartment": "No department"
-	},
-	"skills": {
-		"label": "Навык",
-		"others": "Другое"
-	},
-	"positions": {
-		"label": "Positions",
-		"noposition": "No position"
-	},
-	"userForm": {
-		"firstName": "First name",
-		"lastName": "Last name",
-		"save": "Save",
-		"department": "Department",
-		"position": "Position",
-		"btn": "Update"
+    "employees": "Employees",
+    "skills": "Skills",
+    "languages": "Languages",
+    "cvs": "CVs"
+  },
+   "user": {
+    "profile": "Profile",
+    "skills": "Skills",
+	"data": "A member since",
+    "languages": "Languages",
+	"menu": {
+        "profile": "Profile",
+		"settings": "Settings",
+        "logout": "Logout"
 	}
+  },
+ "departments": {
+	  "label": "Department",
+	  "nodepartment": "No department"
+  },
+   "positions": {
+	  "label": "Positions",
+	  "noposition": "No position"
+  },
+    "userForm": {
+	"firstName": "First name",
+    "lastName": "Last name",
+    "save": "Save",
+    "department": "Department",
+    "position": "Position",
+	"btn": "Update",
+    "success": "Profile was updated"
+   },
+      "avatar": {
+    "alt": "User avatar",
+    "uploadText": "Upload avatar image",
+    "fileRestrictions": "png, jpg or gif no more than 0.5MB",
+	"uploadSuccess": "Avatar was uploaded successfully",
+    "deleteSuccess": "Avatar was deleted successfully"
+  }
 }

@@ -1,21 +1,16 @@
 import { Box } from "@mui/material"
 
-import { UserInfo } from "@entities/user"
-import { UserForm } from "@features/user/updateUser"
+import { UserProfile } from "@widgets/userProfile"
 
+import { UserPageProps } from "./UserPage.props"
 import { userPageStyles } from "./UserPage.styles"
-
-interface UserPageProps {
-	params: Promise<{ id: string }>
-}
 
 const UserPage = async ({ params }: UserPageProps) => {
 	const { id } = await params
 
 	return (
 		<Box sx={userPageStyles.container}>
-			<UserInfo userId={id} />
-			<UserForm userId={id} />
+			<UserProfile userId={id} />
 		</Box>
 	)
 }

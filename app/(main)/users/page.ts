@@ -1,1 +1,1 @@
-export { UsersPage as default, metadata } from "@/pages/users"
+export { UsersPage as default, metadata } from "@pages/UsersPage"

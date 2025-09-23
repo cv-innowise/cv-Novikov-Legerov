@@ -9,6 +9,7 @@ export const basicBreadcrumbsStyles = {
 	},
 	text: {
 		color: "primary.main",
+		paddingLeft: "20px",
 	},
 	link: {
 		color: "secondary.main",

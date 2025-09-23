@@ -1,3 +1,5 @@
+import { User } from "cv-graphql"
+
 export interface UserFormValues {
 	firstName: string
 	lastName: string
@@ -5,5 +7,5 @@ export interface UserFormValues {
 	position: string
 }
 export interface UserFormProps {
-	userId: string
+	user: User
 }

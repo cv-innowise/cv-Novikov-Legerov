@@ -2,7 +2,6 @@ import { SxThemeProps } from "@shared/types/sx.types"
 
 export const userInfoStyles = {
 	details: {
-		marginTop: "30px",
 		display: "flex",
 		flexDirection: "column",
 		alignItems: "center",
