@@ -6,6 +6,7 @@ const SkillsPage = () => {
 
 	return (
 		<>
+			<UserSkills />
 		</>
 	)
 }

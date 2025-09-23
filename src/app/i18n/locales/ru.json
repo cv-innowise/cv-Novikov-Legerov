@@ -35,9 +35,21 @@
 	"Invalid credentials": "Неверный логин или пароль",
 	"Delete": "Удалить",
 	"Cancel": "Отмена",
+	"Confirm": "Подтвердить",
+
 	"Add skill": "Добавить навык",
+	"Update skill": "Добавить навык",
 	"Remove skills": "Удалить навыки",
 	"Skills": "Навыки",
+	"Skill": "Навык",
+	"Skill mastery": "Уровень владения",
+	"Novice": "Новичок",
+	"Advanced": "Продвинутый",
+	"Competent": "Компетентный",
+	"Proficient": "Опытный",
+	"Expert": "Эксперт",
+	"add skill notification": "Навык успешно добавлен!",
+
 	"navigation": {
     "employees": "Employees",
     "skills": "Skills",

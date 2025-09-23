@@ -24,7 +24,7 @@ export const logout = () => {
 }
 
 export const updateTokenRequest = async (refresh_token: string | undefined) => {
-	if (!refresh_token) return { access_token: "", refresh_token: "" }
+	if (!refresh_token) return { access_token: "" }
 	const res = await fetch("https://cv-project-js.inno.ws/api/graphql", {
 		method: "POST",
 		headers: {
@@ -50,11 +50,10 @@ export const updateTokenRequest = async (refresh_token: string | undefined) => {
 }
 
 export const getAccessToken = async (): Promise<string | undefined> => {
-	const isServer = typeof window === "undefined"
 	const access_token = getAccessTokenClientSide();
 	const refresh_token = getRefreshTokenClientSide();
 
-	if (!isServer && isTokenExpired(access_token) && !isTokenExpired(refresh_token)) {
+	if (isTokenExpired(access_token) && !isTokenExpired(refresh_token)) {
 		const newAccessToken = await updateTokenRequest(refresh_token)
 		setAccessTokenClientSide(newAccessToken)
 		return newAccessToken

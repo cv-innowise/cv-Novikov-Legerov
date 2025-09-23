@@ -5,5 +5,5 @@ export type BulkDeletionProps = {
     onDelete: (ids: string[]) => Promise<void>;
     onAdd: () => void;
     loading?: boolean;
-    disabled: boolean;
+    disabled?: boolean;
 }

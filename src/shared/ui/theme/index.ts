@@ -67,5 +67,13 @@ export const getTheme = () =>
 					},
 				},
 			},
+			MuiAutocomplete: {
+				styleOverrides: {
+					groupLabel: ({ theme }) => ({
+						color: theme.vars.palette.primary.main,
+						backgroundColor: theme.vars.palette.background.default
+					}),	
+				},
+			},
 		},
 	})

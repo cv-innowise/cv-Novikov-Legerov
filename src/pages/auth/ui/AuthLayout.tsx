@@ -15,7 +15,7 @@ export const AuthLayout = ({ children }: { children: React.ReactNode }) => {
 	const t = useTranslations()
 
 	return (
-		<AuthRoute>
+		<>
 			<Tabs
 				sx={{ paddingTop: "6px" }}
 				value={pathname}
@@ -39,6 +39,6 @@ export const AuthLayout = ({ children }: { children: React.ReactNode }) => {
 			<Box component="main" sx={authFormStyles.main}>
 				{children}
 			</Box>
-		</AuthRoute>
+		</>
 	)
 }

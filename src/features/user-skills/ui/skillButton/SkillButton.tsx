@@ -1,28 +1,31 @@
-'use client'
+"use client"
 
-import { useState, useContext } from "react"
+import { useContext, useState } from "react"
+
 import { SkillButtonProps } from "./SkillButton.props"
+
 import "./SkillButton.styles"
+
 import { LinearProgress, Typography } from "@mui/material"
-import ContextualActionButton from "@shared/ui/contextualActionButton/ContextualActionButton"
 import { Mastery } from "cv-graphql"
-import { BulkDeletionContext } from "@shared/ui/bulk-deletion/BulkDeletion"
+
+import { useSkillMasteryDialog } from "@features/skillsMasteryForm/hooks/useSkillMasteryDialog"
 import { getMasteryColor } from "@features/user-skills/lib/getMasteryColor"
+import { BulkDeletionContext } from "@shared/ui/bulk-deletion/BulkDeletion"
+import ContextualActionButton from "@shared/ui/contextualActionButton/ContextualActionButton"
 
-const SkillButton = ({
-    skill,
-}: SkillButtonProps) => {
+const SkillButton = ({ skill }: SkillButtonProps) => {
+	const { selectedItems, disabled } = useContext(BulkDeletionContext)
+	const isSelected = selectedItems.includes(skill.name)
+	const color = getMasteryColor(skill.mastery)
+	const level = Object.values(Mastery).indexOf(skill.mastery) * 20 + 20;
+	const openDialog = useSkillMasteryDialog({ type: "user", mode: "update" });
 
-    const { selectedItems, disabled } = useContext(BulkDeletionContext)
-    const isSelected = selectedItems.includes(skill.name);
-    const color = getMasteryColor(skill.mastery);
-    const level = Object.values(Mastery).indexOf(skill.mastery) * 20 + 20;
-    
 	return (
 		<ContextualActionButton
 			item={skill}
 			disabled={disabled}
-			openDialog={() => {}}
+			openDialog={openDialog}
 		>
 			<LinearProgress
 				variant="determinate"
