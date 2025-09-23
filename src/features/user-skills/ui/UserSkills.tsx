@@ -1,53 +1,41 @@
 "use client"
 
-import { useSuspenseQuery, useQuery } from "@apollo/client/react"
-import { Suspense } from "react"
+import { Box, Stack } from "@mui/material"
 
-import { Stack, Typography } from "@mui/material"
-
-import { PROFILE } from "@entities/user-profile/api/profile"
+import { useSkillMasteryDialog } from "@features/skillsMasteryForm/hooks/useSkillMasteryDialog"
 import { getSession } from "@shared/model/authStorage"
 import BulkDeletion from "@shared/ui/bulk-deletion"
 
 import { UserSkillsProps } from "./User.Skills.props"
 import { userSkillsStyles as styles } from "./UserSkills.styles"
-import { getClient } from "@app/providers/apollo/ApolloClient"
-import { Profile } from "cv-graphql"
 
-const UserSkills = ({ disabled = true, session }: UserSkillsProps) => {
-	// const session = getSession();
-	// if (session.role === "Admin") disabled = false
+const UserSkills = ({ disabled = true }: UserSkillsProps) => {
+	let session;
 
-	// const { data } = useSuspenseQuery(PROFILE, { variables: { userId: session.id } });
-	// console.log(data);
-	// const onDelete = (ids: string[]): Promise<void> => {
-	// 	return new Promise((resolve) => {
-	// 		setTimeout(() => {
-	// 			resolve()
-	// 		}, 1000)
-	// 	})
-	// }
+	if (typeof window !== "undefined") {
+		session = getSession();
+		if (session.role === "Admin") disabled = false
+	}
 
-	const { data } = useQuery<{ profile: Profile }>(PROFILE, {
-		variables: { userId: session.id },
+	const onDelete = (ids: string[]): Promise<void> => {
+		return new Promise((resolve) => {
+			setTimeout(() => {
+				resolve()
+			}, 1000)
+		})
+	}
+
+	const openAddDialog = useSkillMasteryDialog({
+		type: "user",
+		mode: "add",
 	})
 
-	// const { data } = await getClient().query({
-	// 	query: PROFILE,
-	// 	variables: { userId: session.id },
-	// });
-	console.log(data)
-
 	return (
-		
-				<Stack sx={styles.container}>
-					<Typography>
-					
-					</Typography>
-				</Stack>
-		
-		
-	
+		<Stack sx={styles.container}>
+			<BulkDeletion disabled={false} onDelete={onDelete} onAdd={openAddDialog} loading={false}>
+				<Box></Box>
+			</BulkDeletion>
+		</Stack>
 	)
 }
 

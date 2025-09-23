@@ -11,6 +11,7 @@ import "@app/styles/global.scss"
 import { NextIntlClientProvider } from "next-intl"
 
 import Notification from "@shared/ui/notification/Notification"
+import Dialog from "@shared/ui/dialog/ui/Dialog"
 
 export const metadata: Metadata = {
 	title: "CV manager",
@@ -28,6 +29,7 @@ export function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
 							<ThemeProvider>
 								{children}
 								<Notification />
+								<Dialog />
 							</ThemeProvider>
 						</AppRouterCacheProvider>
 					</ApolloProvider>

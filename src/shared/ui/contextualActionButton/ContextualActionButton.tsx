@@ -21,7 +21,7 @@ const ContextualActionButton = <T extends { name: string }>({
 				return [...prev, item.name]
 			})
 		} else {
-			openDialog(item)
+			openDialog()
 		}
 	}
 	return (

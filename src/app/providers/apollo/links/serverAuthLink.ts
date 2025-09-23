@@ -1,7 +1,5 @@
 import { SetContextLink } from "@apollo/client/link/context"
 
-import { getAccessToken } from "@features/auth/model/authService"
-
 export const serverAuthLink = new SetContextLink(
 	async (prevContext, operation) => {
 		let token
