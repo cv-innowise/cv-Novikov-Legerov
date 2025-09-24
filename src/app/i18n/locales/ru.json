@@ -97,6 +97,9 @@
     "lastName": "Last Name",
     "email": "Email",
     "department": "Department",
-    "position": "Position"
+    "position": "Position",
+	"noResultsFound": "No results found",
+    "tryAnotherSearch": "Try another search, check the spelling or use a broader term",
+    "resetSearch": "Reset search"
   }
 }

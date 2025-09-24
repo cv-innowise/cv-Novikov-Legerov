@@ -1,9 +1,12 @@
 "use client"
 
 import { useMemo, useState } from "react"
+import { useForm } from "react-hook-form"
 
 import { Table, TableContainer } from "@mui/material"
 
+import { useDebounce } from "@shared/hooks"
+import { SearchInput } from "@shared/ui/SearchInput"
 import { SortOrder } from "@widgets/table/const/sort.const"
 
 import { TableBody } from "../TableBody/TableBody"
@@ -24,27 +27,43 @@ export function BasicTable<T extends { id: string }>({
 		setOrderBy(property)
 	}
 
+	const { control, watch, reset } = useForm({ defaultValues: { search: "" } })
+
+	const search = watch("search")
+
+	const debouncedSearch = useDebounce(search, 300)
+
+	const filteredData = useMemo(() => {
+		if (!debouncedSearch) return data
+		const lowerSearch = debouncedSearch.toLowerCase()
+
+		return data.filter((item) =>
+			headCells.some((headCell) => {
+				const value = headCell.getValue(item)
+				return value?.toString().toLowerCase().includes(lowerSearch)
+			}),
+		)
+	}, [debouncedSearch, data, headCells])
+
 	const sortedData = useMemo(() => {
-		if (!orderBy) return data
-
+		if (!orderBy) return filteredData
 		const headCell = headCells.find((h) => h.id === orderBy)
-		if (!headCell) return data
+		if (!headCell) return filteredData
 
-		return [...data].sort((a, b) => {
+		return [...filteredData].sort((a, b) => {
 			const aValue = headCell.getValue(a)
 			const bValue = headCell.getValue(b)
-
 			if (aValue == null) return 1
 			if (bValue == null) return -1
-
 			if (aValue < bValue) return order === SortOrder.Asc ? -1 : 1
 			if (aValue > bValue) return order === SortOrder.Asc ? 1 : -1
 			return 0
 		})
-	}, [data, order, orderBy])
+	}, [filteredData, order, orderBy, headCells])
 
 	return (
 		<TableContainer>
+			<SearchInput control={control} name="search" placeholder="Search" />
 			<Table stickyHeader>
 				<TableHeader
 					headCells={headCells}
@@ -52,7 +71,12 @@ export function BasicTable<T extends { id: string }>({
 					orderBy={orderBy}
 					onRequestSort={handleSort}
 				/>
-				<TableBody data={sortedData} RowComponent={RowComponent} />
+
+				<TableBody
+					onResetSearch={reset}
+					data={sortedData}
+					RowComponent={RowComponent}
+				/>
 			</Table>
 		</TableContainer>
 	)
