@@ -4,12 +4,14 @@ export const basicBreadcrumbsStyles = {
 	breadcrumbs: {
 		marginBottom: "8px",
 		"& .MuiBreadcrumbs-ol": {
-			gap: "7px",
+			gap: "8px",
+			"& > li:first-of-type": {
+				paddingLeft: "20px",
+			},
 		},
 	},
 	text: {
 		color: "primary.main",
-		paddingLeft: "20px",
 	},
 	link: {
 		color: "secondary.main",
