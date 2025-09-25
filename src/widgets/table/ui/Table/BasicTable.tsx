@@ -62,22 +62,23 @@ export function BasicTable<T extends { id: string }>({
 	}, [filteredData, order, orderBy, headCells])
 
 	return (
-		<TableContainer>
+		<>
 			<SearchInput control={control} name="search" placeholder="Search" />
-			<Table stickyHeader>
-				<TableHeader
-					headCells={headCells}
-					order={order}
-					orderBy={orderBy}
-					onRequestSort={handleSort}
-				/>
-
-				<TableBody
-					onResetSearch={reset}
-					data={sortedData}
-					RowComponent={RowComponent}
-				/>
-			</Table>
-		</TableContainer>
+			<TableContainer sx={{ overflow: "visible" }}>
+				<Table stickyHeader>
+					<TableHeader
+						headCells={headCells}
+						order={order}
+						orderBy={orderBy}
+						onRequestSort={handleSort}
+					/>
+					<TableBody
+						onResetSearch={reset}
+						data={sortedData}
+						RowComponent={RowComponent}
+					/>
+				</Table>
+			</TableContainer>
+		</>
 	)
 }
