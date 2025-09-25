@@ -3,7 +3,7 @@ import UPDATE_PROFILE_SKILL from "../api/updateProfileSkill";
 import { UpdateProfileSkillInput, Profile } from "cv-graphql";
 
 type updateProfileSkillArgs = {
-    profileSkillInput: UpdateProfileSkillInput
+    skill: UpdateProfileSkillInput
 }
 
 type updateProfileSkillResult = {

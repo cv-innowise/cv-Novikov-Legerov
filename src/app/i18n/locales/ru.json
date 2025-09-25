@@ -38,7 +38,7 @@
 	"Confirm": "Подтвердить",
 
 	"Add skill": "Добавить навык",
-	"Update skill": "Добавить навык",
+	"Update skill": "Обновить навык",
 	"Remove skills": "Удалить навыки",
 	"Skills": "Навыки",
 	"Skill": "Навык",
@@ -49,6 +49,8 @@
 	"Proficient": "Опытный",
 	"Expert": "Эксперт",
 	"add skill notification": "Навык успешно добавлен!",
+	"update skill notification": "Навык успешно обновлен!",
+	"delete skill notification": "Навыки успешно удалены!",
 
 	"navigation": {
     "employees": "Employees",

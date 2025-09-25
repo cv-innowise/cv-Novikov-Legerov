@@ -1,6 +1,4 @@
-'use client'
-
-import UserSkills from '@features/user-skills/ui/UserSkills';
+import UserSkills from '@features/userSkills/ui/UserSkills';
 
 const SkillsPage = () => {
 

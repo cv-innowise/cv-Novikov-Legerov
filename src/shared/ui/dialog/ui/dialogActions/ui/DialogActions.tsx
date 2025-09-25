@@ -14,7 +14,7 @@ const DialogActions = ({ loaders, confirmButtonText }: DialogActionsProps) => {
 			<Button onClick={hideDialog} color="secondary" variant="outlined">
 				{t("Cancel")}
 			</Button>
-			<Button type="submit" variant="contained">
+			<Button disabled={isLoading} type="submit" variant="contained">
 				{isLoading ? <Loader /> : t(confirmButtonText)}
 			</Button>
 		</MuiDialogActions>

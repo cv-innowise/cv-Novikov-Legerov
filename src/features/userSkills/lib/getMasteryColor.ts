@@ -1,4 +1,4 @@
-import { Mastery } from "cv-graphql";
+import { Mastery } from "../model/mastery"
 
 export const getMasteryColor = (mastery: Mastery) => {
   switch (mastery) {

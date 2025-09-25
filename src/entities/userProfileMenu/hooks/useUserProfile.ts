@@ -1,4 +1,4 @@
-import { useSuspenseQuery } from "@apollo/client/react"
+import { useSuspenseQuery, useQuery } from "@apollo/client/react"
 
 import { PROFILE } from "../api/profile"
 import { ProfileResult } from "../api/profile.types"
@@ -11,4 +11,10 @@ export const useUserProfile = (userId: string) => {
 	return {
 		profile: data.profile,
 	}
+}
+
+export const useProfile = (userId: string) => {
+	return useQuery<ProfileResult>(PROFILE, {
+		variables: { userId },
+	})
 }

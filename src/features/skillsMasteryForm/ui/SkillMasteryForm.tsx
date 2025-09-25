@@ -4,9 +4,8 @@ import { useEffect } from "react"
 
 import { DialogContent } from "@mui/material"
 import { useTranslations } from "next-intl"
-import { useParams } from "next/navigation"
 
-import { getSession } from "@shared/model/authStorage"
+import { useUserId } from "@shared/hooks/useUserId"
 import { hideDialog } from "@shared/ui/dialog/model/dialogService"
 import DialogActions from "@shared/ui/dialog/ui/dialogActions/ui/DialogActions"
 import FormWrapper from "@shared/ui/form/FormWrapper"
@@ -20,40 +19,31 @@ import { styles } from "./SkillMasteryForm.styles"
 import { SkillsSelect } from "./skillsSelect/ui/SkillsSelect"
 
 const SkillMasteryForm = ({
-	defaultValues,
+	skill,
 	mode,
 	userSkills,
+	skills,
 	type,
-}: SkillMasteryFormProps<SkillMasteryFormInput>) => {
-	const {
-		data: skillsData,
-		loading: skillsLoading,
-		error: skillsError,
-	} = useSkills()
+}: SkillMasteryFormProps) => {
 	const [
 		addProfileSkillQuery,
 		{ error: addSkillError, loading: addSkillLoading },
 	] = useAddProfileSkill()
+
 	const [
 		updateProfileSkillQuery,
 		{ error: updateSkillError, loading: updateSkillLoading },
 	] = useUpdateProfileSkill()
 
 	const t = useTranslations()
-	const session = getSession()
-	const params = useParams<{ id: string }>()
+	const userId = useUserId()
 	let transformedSkillsData
-	let userId
-	if (params?.id) {
-		userId = params.id
-	} else {
-		userId = session.id
-	}
+	let defaultValues: SkillMasteryFormInput | undefined = undefined
 
-	if (skillsData) {
-		transformedSkillsData = [...skillsData.skills].sort((a, b) => {
+	if (skills) {
+		transformedSkillsData = [...skills].sort((a, b) => {
 			if (!a.category?.order || !b.category?.order) {
-				return 0;
+				return 0
 			}
 
 			if (a.category.order > b.category.order) {
@@ -62,11 +52,18 @@ const SkillMasteryForm = ({
 
 			return -1
 		})
+
+		if (skill) {
+			const foundSkill = skills.find((s) => s.name === skill.name)
+			foundSkill
+				? (defaultValues = { skill: foundSkill, mastery: skill.mastery })
+				: (defaultValues = undefined)
+		}
 	}
 
-	if (skillsData && userSkills) {
-		transformedSkillsData = skillsData.skills.filter((skill) => {
-			userSkills.find((userSkill) => !(skill.id === userSkill.id))
+	if (transformedSkillsData && userSkills) {
+		transformedSkillsData = transformedSkillsData.filter((skill) => {
+			return !userSkills.find((userSkill) => skill.name === userSkill.name)
 		})
 	}
 
@@ -89,17 +86,20 @@ const SkillMasteryForm = ({
 	const updateProfileSkill = (data: SkillMasteryFormInput) => {
 		updateProfileSkillQuery({
 			variables: {
-				profileSkillInput: {
+				skill: {
 					userId: userId,
 					name: data.skill.name,
 					categoryId: data.skill.category?.id,
 					mastery: data.mastery,
 				},
 			},
+		}).then(() => {
+			addNotification(t("update skill notification"), "success")
+			hideDialog()
 		})
 	}
 
-	const error = addSkillError ?? updateSkillError ?? skillsError
+	const error = addSkillError ?? updateSkillError
 
 	useEffect(() => {
 		if (error) {
@@ -116,7 +116,7 @@ const SkillMasteryForm = ({
 			<DialogContent sx={styles.content}>
 				<SkillsSelect
 					skills={transformedSkillsData ? transformedSkillsData : []}
-					disabled={mode === "update" ? true : false || skillsLoading}
+					disabled={mode === "update" ? true : false}
 				/>
 				<MasterySelect />
 			</DialogContent>
