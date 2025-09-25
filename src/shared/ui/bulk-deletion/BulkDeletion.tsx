@@ -3,33 +3,33 @@
 import { createContext, memo, useState } from "react"
 
 import { Add, DeleteForever } from "@mui/icons-material"
-import { Button, Stack } from "@mui/material"
+import { Button, Stack, Typography } from "@mui/material"
 import { useTranslations } from "next-intl"
 
 import { BulkDeletionProps } from "./BulkDeletion.props"
 import { styles } from "./BulkDeletion.styles"
-import { getSession } from "@shared/model/authStorage"
+import Loader from "../loader"
 
 type BulkDeletionContextType = {
-	isDeletion: boolean;
-	selectedItems: string[];
-	setSelectedItems: React.Dispatch<React.SetStateAction<string[]>>;
-	disabled: boolean;
-};
+	isDeletion: boolean
+	selectedItems: string[]
+	setSelectedItems: React.Dispatch<React.SetStateAction<string[]>>
+	disabled: boolean | undefined
+}
 
 export const BulkDeletionContext = createContext<BulkDeletionContextType>({
 	isDeletion: false,
 	selectedItems: [],
 	setSelectedItems: () => {},
-	disabled: true
-});
+	disabled: true,
+})
 
 const BulkDeletion = ({
 	children,
 	onDelete,
-	loading,
-	disabled = true,
-	onAdd,
+	disabled,
+	isLoading,
+	onAdd
 }: BulkDeletionProps) => {
 	const t = useTranslations()
 	const [isDeletion, setIsDeletion] = useState(false)
@@ -40,10 +40,9 @@ const BulkDeletion = ({
 		setSelectedItems([])
 	}
 
-	const handleDelete = () => {
-		onDelete(selectedItems).then(() => {
-			handleCancel();
-		})
+	const handleDelete = async () => {
+		await onDelete(selectedItems);
+		handleCancel();
 	}
 
 	const handleAdd = () => {
@@ -55,11 +54,18 @@ const BulkDeletion = ({
 	}
 
 	return (
-		<BulkDeletionContext.Provider value={{isDeletion, selectedItems, setSelectedItems, disabled}}>
+		<BulkDeletionContext.Provider
+			value={{ isDeletion, selectedItems, setSelectedItems, disabled }}
+		>
 			<Stack spacing="32px">
 				{children}
 				{isDeletion && (
-					<Stack direction="row" spacing={2} justifyContent="flex-end">
+					<Stack
+						direction="row"
+						spacing={2}
+						justifyContent="flex-end"
+						sx={styles.buttonsContainer}
+					>
 						<Button
 							sx={styles.button}
 							color="secondary"
@@ -69,18 +75,33 @@ const BulkDeletion = ({
 							{t("Cancel")}
 						</Button>
 						<Button
-							sx={styles.button}
+							sx={styles.deleteButton}
 							variant="contained"
-							disabled={!selectedItems.length || loading}
+							disabled={!selectedItems.length || isLoading}
 							onClick={handleDelete}
 						>
-							{t("Delete")}
-							{!!selectedItems.length && selectedItems.length}
+							{isLoading ? (
+								<Loader />
+							) : (
+								<>
+									{t("Delete")}
+									{!!selectedItems.length && (
+										<Typography sx={styles.deleteAmount}>
+											{selectedItems.length}
+										</Typography>
+									)}
+								</>
+							)}
 						</Button>
 					</Stack>
 				)}
 				{!isDeletion && !disabled && (
-					<Stack direction="row" spacing={2} justifyContent="flex-end">
+					<Stack
+						direction="row"
+						spacing={2}
+						justifyContent="flex-end"
+						sx={styles.buttonsContainer}
+					>
 						<Button sx={styles.button} color="secondary" onClick={handleAdd}>
 							<Add /> {t("Add skill")}
 						</Button>

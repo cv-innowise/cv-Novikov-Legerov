@@ -71,8 +71,17 @@ export const getTheme = () =>
 				styleOverrides: {
 					groupLabel: ({ theme }) => ({
 						color: theme.vars.palette.primary.main,
-						backgroundColor: theme.vars.palette.background.default
-					}),	
+						backgroundColor: theme.vars.palette.background.default,
+					}),
+				},
+			},
+			MuiDialogActions: {
+				styleOverrides: {
+					root: {
+						"& > :not(style) ~ :not(style)": {
+							marginLeft: 0,
+						},
+					},
 				},
 			},
 		},

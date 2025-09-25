@@ -1,8 +1,9 @@
-import { Skill } from "cv-graphql";
+import { Skill, SkillMastery } from "cv-graphql";
 
-export type SkillMasteryFormProps<T> = {
-    defaultValues?: T;
-    type: "user" | "cv"
+export type SkillMasteryFormProps = {
+    skill?: SkillMastery;
+    type: "user" | "cv";
     mode: "add" | "update";
-    userSkills?: Skill[];
+    skills: Skill[] | undefined;
+    userSkills?: SkillMastery[];
 }

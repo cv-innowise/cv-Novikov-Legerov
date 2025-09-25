@@ -1,4 +1,4 @@
-import { ReactNode } from "react"
+import { useEffect } from "react"
 import { FieldValues, FormProvider, useForm } from "react-hook-form"
 
 import { yupResolver } from "@hookform/resolvers/yup"
@@ -17,6 +17,10 @@ const FormWrapper = <T extends FieldValues>({
 		resolver: schema ? yupResolver(schema) : undefined,
 		defaultValues: defaultValues,
 	})
+
+	useEffect(() => {
+		methods.reset(defaultValues)
+	}, [defaultValues])
 
 	return (
 		<FormProvider {...methods}>

@@ -1,4 +1,4 @@
-import { PaletteMode, PaletteOptions } from "@mui/material"
+import { PaletteOptions } from "@mui/material"
 
 const commonPalette: PaletteOptions = {
 	primary: {

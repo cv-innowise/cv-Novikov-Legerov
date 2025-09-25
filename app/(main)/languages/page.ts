@@ -1,0 +1,1 @@
+export { UserLanguagesPage as default } from "@/pages/userLanguages"
