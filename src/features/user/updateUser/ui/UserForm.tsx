@@ -18,7 +18,7 @@ import { useUserUpdate } from "../hooks/useUserUpdate"
 import { UserFormProps, UserFormValues } from "./UseForm.props"
 import { userFormStyles } from "./UseForm.styles"
 
-export const UserForm: FC<UserFormProps> = ({ user }) => {
+export const UserForm: FC<UserFormProps> = ({ user, isCurrentUser }) => {
 	const { id: userId } = user
 
 	const t = useTranslations()
@@ -72,18 +72,44 @@ export const UserForm: FC<UserFormProps> = ({ user }) => {
 			<Box sx={userFormStyles.form}>
 				<FormTextField
 					name="firstName"
+					slotProps={{
+						input: {
+							readOnly: !isCurrentUser,
+						},
+					}}
 					fullWidth
 					label={t("userForm.firstName")}
 				/>
 				<FormTextField
+					slotProps={{
+						input: {
+							readOnly: !isCurrentUser,
+						},
+					}}
 					fullWidth
 					name="lastName"
 					label={t("userForm.lastName")}
 				/>
 
-				<DepartmentsSelect name="department" />
-				<PositionsSelect name="position" />
-				<FormButton sx={userFormStyles.btn}>{t("userForm.btn")}</FormButton>
+				<DepartmentsSelect
+					name="department"
+					slotProps={{
+						input: {
+							readOnly: !isCurrentUser,
+						},
+					}}
+				/>
+				<PositionsSelect
+					name="position"
+					slotProps={{
+						input: {
+							readOnly: !isCurrentUser,
+						},
+					}}
+				/>
+				{isCurrentUser && (
+					<FormButton sx={userFormStyles.btn}>{t("userForm.btn")}</FormButton>
+				)}
 			</Box>
 		</FormWrapper>
 	)

@@ -67,7 +67,9 @@
         "profile": "Profile",
 		"settings": "Settings",
         "logout": "Logout"
-	}
+	},
+	"update": "Update user",
+    "delete": "Delete user"
   },
  "departments": {
 	  "label": "Department",
@@ -104,4 +106,6 @@
     "tryAnotherSearch": "Try another search, check the spelling or use a broader term",
     "resetSearch": "Reset search"
   }
+
+ 
 }
