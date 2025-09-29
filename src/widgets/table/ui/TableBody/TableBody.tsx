@@ -10,16 +10,20 @@ export function TableBody<T extends { id: string }>({
 	RowComponent,
 	onResetSearch,
 }: TableBodyProps<T>) {
-	const currentUserId = useAppSelector((state) => state.user.id)
-
-	console.log(currentUserId)
+	const currentUserId = useAppSelector((state) => state.user.id) || ""
 
 	return (
 		<MuiTableBody>
 			{data.length === 0 ? (
 				<EmptyTableMessage onResetSearch={onResetSearch} />
 			) : (
-				data.map((item) => <RowComponent key={item.id} row={item} />)
+				data.map((item) => (
+					<RowComponent
+						currentUserId={currentUserId}
+						key={item.id}
+						row={item}
+					/>
+				))
 			)}
 		</MuiTableBody>
 	)

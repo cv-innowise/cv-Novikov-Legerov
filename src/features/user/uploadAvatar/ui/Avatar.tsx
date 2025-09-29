@@ -20,7 +20,7 @@ import { useAvatarDelete, useAvatarUpload } from "../hooks/useAvatar"
 import { AvatarProps } from "./Avatar.props"
 import { avatarStyles } from "./Avatar.styles"
 
-export const Avatar: FC<AvatarProps> = ({ user }) => {
+export const Avatar: FC<AvatarProps> = ({ user, isCurrentUser }) => {
 	const t = useTranslations()
 
 	const { id: userId, profile } = user
@@ -74,7 +74,8 @@ export const Avatar: FC<AvatarProps> = ({ user }) => {
 			<Badge
 				anchorOrigin={{ vertical: "top", horizontal: "right" }}
 				badgeContent={
-					avatarUrl && (
+					avatarUrl &&
+					isCurrentUser && (
 						<IconButton disabled={uploading || deleting} onClick={handleDelete}>
 							<Close />
 						</IconButton>
@@ -85,24 +86,27 @@ export const Avatar: FC<AvatarProps> = ({ user }) => {
 					{!avatarUrl && profile.full_name?.at(0)}
 				</UserAvatar>
 			</Badge>
-			<label onDragOver={handleDragOver} onDrop={handleDrop}>
-				<Box sx={avatarStyles.infoBox}>
-					<Box sx={avatarStyles.uploadText}>
-						<UploadIcon />
-						<Typography>{t("avatar.uploadText")}</Typography>
+			{isCurrentUser && (
+				<label onDragOver={handleDragOver} onDrop={handleDrop}>
+					<Box sx={avatarStyles.infoBox}>
+						<Box sx={avatarStyles.uploadText}>
+							<UploadIcon />
+							<Typography>{t("avatar.uploadText")}</Typography>
+						</Box>
+						<Typography sx={avatarStyles.fileRestrictions}>
+							{t("avatar.fileRestrictions")}
+						</Typography>
+						<input
+							size={500}
+							onChange={hadnleChange}
+							disabled={!isCurrentUser}
+							type="file"
+							accept=".png, .jpg, .jpeg, .gif"
+							hidden
+						/>
 					</Box>
-					<Typography sx={avatarStyles.fileRestrictions}>
-						{t("avatar.fileRestrictions")}
-					</Typography>
-					<input
-						size={500}
-						onChange={hadnleChange}
-						type="file"
-						accept=".png, .jpg, .jpeg, .gif"
-						hidden
-					/>
-				</Box>
-			</label>
+				</label>
+			)}
 		</Box>
 	)
 }

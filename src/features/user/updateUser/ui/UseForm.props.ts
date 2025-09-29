@@ -8,4 +8,5 @@ export interface UserFormValues {
 }
 export interface UserFormProps {
 	user: User
+	isCurrentUser: boolean
 }

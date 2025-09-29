@@ -50,7 +50,9 @@
         "profile": "Profile",
 		"settings": "Settings",
         "logout": "Logout"
-	}
+	},
+	"update": "Update user",
+    "delete": "Delete user"
 
   },
     "departments": {
