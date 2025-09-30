@@ -1,12 +1,11 @@
 "use client"
 
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 
 import { DialogContent } from "@mui/material"
 import { Skill } from "cv-graphql"
 import { useTranslations } from "next-intl"
 
-import { useUserId } from "@shared/hooks/useUserId"
 import { hideDialog } from "@shared/ui/dialog/model/dialogService"
 import DialogActions from "@shared/ui/dialog/ui/dialogActions/ui/DialogActions"
 import FormWrapper from "@shared/ui/form/FormWrapper"
@@ -19,6 +18,7 @@ import { SkillMasteryFormProps } from "./SkillMasteryForm.props"
 import { styles } from "./SkillMasteryForm.styles"
 import { SkillsSelect } from "./skillsSelect/ui/SkillsSelect"
 import { Mastery } from "@shared/model/mastery"
+import { useAuthUserId } from "@entities/user"
 
 const SkillMasteryForm = ({
 	skill,
@@ -38,7 +38,7 @@ const SkillMasteryForm = ({
 	] = useUpdateProfileSkill()
 
 	const t = useTranslations()
-	const userId = useUserId()
+	const userId = useAuthUserId()
 	let transformedSkillsData: Skill[] = []
 	let defaultValues: SkillMasteryFormInput | undefined = undefined
 

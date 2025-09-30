@@ -3,3 +3,8 @@ export { USER } from "./api/user"
 export { useUser } from "./hooks/useUser"
 export { userReducer, userAction } from "./model/userSlice"
 export type { UserState } from "./model/userSlice"
+export {
+	useAuthUserId,
+	useIsAuthUserDisabled,
+	useAuthUser 
+} from "./hooks/authUserHooks"

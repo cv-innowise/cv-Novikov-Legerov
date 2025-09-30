@@ -3,24 +3,28 @@ import { isTokenExpired } from "@shared/lib/tokenService"
 import {
 	getAccessTokenClientSide,
 	getRefreshTokenClientSide,
-	removeSession,
 	setAccessTokenClientSide,
-	setSession,
 	setTokens,
 } from "@shared/model/authStorage"
+import { AppDispatch } from "@app/providers/store/store"
+import { userAction } from "@entities/user"
 
 export const successAuth = ({
 	access_token,
 	refresh_token,
 	user,
-}: AuthResult) => {
+}: AuthResult, dispatch: AppDispatch) => {
 	setTokens(access_token, refresh_token)
-	setSession(user.id, user.email, user.role)
+	dispatch(userAction.setUser(user))
 }
 
-export const logout = () => {
+export const logout = (dispatch: AppDispatch) => {
 	setTokens("", "")
-	removeSession()
+	dispatch(userAction.setUser({
+		id: null,
+		role: null,
+		email: null
+	}))
 }
 
 export const updateTokenRequest = async (refresh_token: string | undefined) => {

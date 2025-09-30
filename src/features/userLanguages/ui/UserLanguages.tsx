@@ -5,6 +5,7 @@ import { Suspense, useEffect, useState } from "react"
 import { Box, Stack } from "@mui/material"
 import { useTranslations } from "next-intl"
 
+import { useAuthUserId, useIsAuthUserDisabled } from "@entities/user"
 import { useUserProfile } from "@entities/userProfileMenu/hooks/useUserProfile"
 import { useLanguageProficiencyDialog } from "@features/languageProficiencyForm/hooks"
 import BulkDeletion from "@shared/ui/bulk-deletion"
@@ -14,11 +15,11 @@ import { addNotification } from "@shared/ui/notification/notification.service"
 import { useDeleteProfileLanguage } from "../hooks/useDeleteProfileLanguage"
 import { useLanguages } from "../hooks/useLanguages"
 import LanguageButton from "./languageButton/LanguageButton"
-import { UserLanguagesProps } from "./UserLanguages.props"
 import { styles } from "./UserLanguages.styles"
 
-const UserLanguages = ({ userId, isDisabled }: UserLanguagesProps) => {
+const UserLanguages = () => {
 	const t = useTranslations()
+	const userId = useAuthUserId()
 
 	const { languages, error: languagesError } = useLanguages()
 
@@ -64,7 +65,6 @@ const UserLanguages = ({ userId, isDisabled }: UserLanguagesProps) => {
 				onDelete={deleteLanguages}
 				onAdd={openAddDialog}
 				isLoading={deleteLanguagesLoading}
-				isDisabled={isDisabled}
 				mode="languages"
 			>
 				<Box sx={styles.languagesContainer}>
@@ -83,13 +83,10 @@ const UserLanguages = ({ userId, isDisabled }: UserLanguagesProps) => {
 	)
 }
 
-export const UserLanguagesSuspense = ({
-	userId,
-	isDisabled,
-}: UserLanguagesProps) => {
+export const UserLanguagesSuspense = () => {
 	return (
 		<Suspense fallback={<Loader />}>
-			<UserLanguages userId={userId} isDisabled={isDisabled} />
+			<UserLanguages />
 		</Suspense>
 	)
 }

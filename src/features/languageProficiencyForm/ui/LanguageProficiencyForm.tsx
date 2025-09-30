@@ -1,11 +1,10 @@
 "use client"
 
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 
 import { DialogContent } from "@mui/material"
 import { useTranslations } from "next-intl"
 
-import { useUserId } from "@shared/hooks/useUserId"
 import { hideDialog } from "@shared/ui/dialog/model/dialogService"
 import DialogActions from "@shared/ui/dialog/ui/dialogActions/ui/DialogActions"
 import FormWrapper from "@shared/ui/form/FormWrapper"
@@ -19,6 +18,7 @@ import { LanguageSelect } from "./languageSelect/ui/LanguageSelect"
 import { ProficiencySelect } from "./proficiencySelect/ui/ProficiencySelect"
 import { Language } from "cv-graphql"
 import { Proficiency } from "@shared/model/proficiency"
+import { useAuthUserId } from "@entities/user"
 
 const LanguageProficiencyForm = ({
 	language,
@@ -37,7 +37,7 @@ const LanguageProficiencyForm = ({
 	] = useUpdateProfileLanguage()
 
 	const t = useTranslations()
-	const userId = useUserId()
+	const userId = useAuthUserId()
 	let defaultValues: LanguageProficiency | undefined = undefined
 	let transformedLanguagesData: Language[] = languages
 

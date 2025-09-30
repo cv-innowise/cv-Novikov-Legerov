@@ -1,28 +1,27 @@
 "use client"
 
-import { Suspense, useEffect } from "react"
+import { Suspense, useEffect, useState } from "react"
 
 import { Stack } from "@mui/material"
 import { SkillMastery } from "cv-graphql"
 import { useTranslations } from "next-intl"
 
+import { useAuthUserId, useIsAuthUserDisabled } from "@entities/user"
 import { useUserProfile } from "@entities/userProfileMenu/hooks/useUserProfile"
 import { useSkillMasteryDialog } from "@features/skillsMasteryForm/hooks/useSkillMasteryDialog"
 import BulkDeletion from "@shared/ui/bulk-deletion"
+import Loader from "@shared/ui/loader"
 import { addNotification } from "@shared/ui/notification/notification.service"
-import { UserSkillsProps } from "./UserSkills.props"
+
 import { useDeleteProfileSkill } from "../hooks/useDeleteProfileSkill"
 import { useSkillCategories } from "../hooks/useSkillCategories"
 import { useSkills } from "../hooks/useSkills"
 import SkillsCategory from "./skillsCategory/SkillsCategory"
 import { userSkillsStyles as styles } from "./UserSkills.styles"
-import Loader from "@shared/ui/loader"
 
-const UserSkills = ({
-	userId,
-	isDisabled,
-}: UserSkillsProps) => {
+const UserSkills = () => {
 	const t = useTranslations()
+	const userId = useAuthUserId()
 
 	const { profile, error: profileError } = useUserProfile(userId)
 	const { skillCategories, error: skillsCategoriesError } = useSkillCategories()
@@ -95,7 +94,6 @@ const UserSkills = ({
 				onDelete={deleteSkills}
 				onAdd={openAddDialog}
 				isLoading={deleteSkillLoading}
-				isDisabled={isDisabled}
 				mode="skills"
 			>
 				{Object.entries(skillsCategoryMap).map(
@@ -115,10 +113,10 @@ const UserSkills = ({
 	)
 }
 
-export const UserSkillsSuspense = ({userId, isDisabled}: UserSkillsProps) => {
+export const UserSkillsSuspense = () => {
 	return (
 		<Suspense fallback={<Loader />}>
-			<UserSkills userId={userId} isDisabled={isDisabled} />
+			<UserSkills />
 		</Suspense>
 	)
 }
