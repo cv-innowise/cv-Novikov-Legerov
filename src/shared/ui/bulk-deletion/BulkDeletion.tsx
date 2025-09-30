@@ -1,37 +1,42 @@
 "use client"
 
-import { createContext, memo, useState } from "react"
+import { createContext, memo, useEffect, useState } from "react"
 
 import { Add, DeleteForever } from "@mui/icons-material"
 import { Button, Stack, Typography } from "@mui/material"
 import { useTranslations } from "next-intl"
 
+import { useUserId } from "@shared/hooks/useUserId"
+import { getSession } from "@shared/model/authStorage"
+
+import Loader from "../loader"
 import { BulkDeletionProps } from "./BulkDeletion.props"
 import { styles } from "./BulkDeletion.styles"
-import Loader from "../loader"
 
 type BulkDeletionContextType = {
 	isDeletion: boolean
 	selectedItems: string[]
 	setSelectedItems: React.Dispatch<React.SetStateAction<string[]>>
-	disabled: boolean | undefined
+	isDisabled: boolean
 }
 
 export const BulkDeletionContext = createContext<BulkDeletionContextType>({
 	isDeletion: false,
 	selectedItems: [],
 	setSelectedItems: () => {},
-	disabled: true,
+	isDisabled: true,
 })
 
 const BulkDeletion = ({
 	children,
 	onDelete,
-	disabled,
 	isLoading,
-	onAdd
+	onAdd,
+	isDisabled,
+	mode,
 }: BulkDeletionProps) => {
 	const t = useTranslations()
+
 	const [isDeletion, setIsDeletion] = useState(false)
 	const [selectedItems, setSelectedItems] = useState<string[]>([])
 
@@ -41,8 +46,8 @@ const BulkDeletion = ({
 	}
 
 	const handleDelete = async () => {
-		await onDelete(selectedItems);
-		handleCancel();
+		await onDelete(selectedItems)
+		handleCancel()
 	}
 
 	const handleAdd = () => {
@@ -55,7 +60,7 @@ const BulkDeletion = ({
 
 	return (
 		<BulkDeletionContext.Provider
-			value={{ isDeletion, selectedItems, setSelectedItems, disabled }}
+			value={{ isDeletion, selectedItems, setSelectedItems, isDisabled }}
 		>
 			<Stack spacing="32px">
 				{children}
@@ -95,7 +100,7 @@ const BulkDeletion = ({
 						</Button>
 					</Stack>
 				)}
-				{!isDeletion && !disabled && (
+				{!isDeletion && !isDisabled && (
 					<Stack
 						direction="row"
 						spacing={2}
@@ -103,10 +108,11 @@ const BulkDeletion = ({
 						sx={styles.buttonsContainer}
 					>
 						<Button sx={styles.button} color="secondary" onClick={handleAdd}>
-							<Add /> {t("Add skill")}
+							<Add /> {mode === "skills" ? t("Add skill") : t("Add language")}
 						</Button>
 						<Button sx={styles.button} onClick={handleStartSelection}>
-							<DeleteForever /> {t("Remove skills")}
+							<DeleteForever />
+							{mode === "skills" ? t("Remove skills") : t("Remove languages")}
 						</Button>
 					</Stack>
 				)}

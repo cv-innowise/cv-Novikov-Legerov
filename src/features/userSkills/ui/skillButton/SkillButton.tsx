@@ -6,7 +6,7 @@ import { LinearProgress, Typography } from "@mui/material"
 
 import { useSkillMasteryDialog } from "@features/skillsMasteryForm/hooks/useSkillMasteryDialog"
 import { getMasteryColor } from "@features/userSkills/lib/getMasteryColor"
-import { Mastery } from "@features/userSkills/model/mastery"
+import { Mastery } from "@shared/model/mastery"
 import { BulkDeletionContext } from "@shared/ui/bulk-deletion/BulkDeletion"
 import ContextualActionButton from "@shared/ui/contextualActionButton/ContextualActionButton"
 

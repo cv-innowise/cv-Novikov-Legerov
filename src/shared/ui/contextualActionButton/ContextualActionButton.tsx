@@ -11,7 +11,7 @@ const ContextualActionButton = <T extends { name: string }>({
 	sx,
 	...props
 }: ContextualActionButtonProps<T>) => {
-	const { isDeletion, setSelectedItems, disabled } = useContext(BulkDeletionContext)
+	const { isDeletion, setSelectedItems, isDisabled } = useContext(BulkDeletionContext)
 
 	const handleClick = () => {
 		if (isDeletion) {
@@ -26,7 +26,7 @@ const ContextualActionButton = <T extends { name: string }>({
 		}
 	}
 	return (
-		<Button onClick={handleClick} disabled={disabled} sx={{...styles.button, ...sx}} {...props}>
+		<Button onClick={handleClick} disabled={isDisabled} sx={{...styles.button, ...sx}} {...props}>
 			{children}
 		</Button>
 	)

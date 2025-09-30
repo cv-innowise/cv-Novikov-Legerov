@@ -52,53 +52,62 @@
 	"update skill notification": "Навык успешно обновлен!",
 	"delete skill notification": "Навыки успешно удалены!",
 
-	"navigation": {
-    "employees": "Employees",
-    "skills": "Skills",
-    "languages": "Languages",
-    "cvs": "CVs"
-  },
-   "user": {
-    "profile": "Profile",
-    "skills": "Skills",
-	"data": "A member since",
-    "languages": "Languages",
-	"menu": {
-        "profile": "Profile",
-		"settings": "Settings",
-        "logout": "Logout"
-	}
-  },
- "departments": {
-	  "label": "Department",
-	  "nodepartment": "No department"
-  },
-   "positions": {
-	  "label": "Positions",
-	  "noposition": "No position"
-  },
-    "userForm": {
-	"firstName": "First name",
-    "lastName": "Last name",
-    "save": "Save",
-    "department": "Department",
-    "position": "Position",
-	"btn": "Update",
-    "success": "Profile was updated"
-   },
-      "avatar": {
-    "alt": "User avatar",
-    "uploadText": "Upload avatar image",
-    "fileRestrictions": "png, jpg or gif no more than 0.5MB",
-	"uploadSuccess": "Avatar was uploaded successfully",
-    "deleteSuccess": "Avatar was deleted successfully"
-  },
+	"Add language": "Добавить язык",
+	"Update language": "Обновить язык",
+	"Remove languages": "Удалить языки",
+	"Language": "Язык",
+	"Language proficiency": "Уровень знания языка",
+	"add language notification": "Языки успешно добавлен!",
+	"update language notification": "Язык успешно обновлен!",
+	"delete language notification": "Языки успешно удалены!",
 
-    "table": {
-    "firstName": "First Name",
-    "lastName": "Last Name",
-    "email": "Email",
-    "department": "Department",
-    "position": "Position"
-  }
+	"navigation": {
+		"employees": "Employees",
+		"skills": "Skills",
+		"languages": "Languages",
+		"cvs": "CVs"
+	},
+	"user": {
+		"profile": "Profile",
+		"skills": "Skills",
+		"data": "A member since",
+		"languages": "Languages",
+		"menu": {
+			"profile": "Profile",
+			"settings": "Settings",
+			"logout": "Logout"
+		}
+	},
+	"departments": {
+		"label": "Department",
+		"nodepartment": "No department"
+	},
+	"positions": {
+		"label": "Positions",
+		"noposition": "No position"
+	},
+	"userForm": {
+		"firstName": "First name",
+		"lastName": "Last name",
+		"save": "Save",
+		"department": "Department",
+		"position": "Position",
+		"btn": "Update",
+		"success": "Profile was updated"
+	},
+	"avatar": {
+		"alt": "User avatar",
+		"uploadText": "Upload avatar image",
+		"fileRestrictions": "png, jpg or gif no more than 0.5MB",
+		"uploadSuccess": "Avatar was uploaded successfully",
+		"deleteSuccess": "Avatar was deleted successfully"
+	},
+
+	"table": {
+		"firstName": "First Name",
+		"lastName": "Last Name",
+		"email": "Email",
+		"department": "Department",
+		"position": "Position"
+	}
 }
