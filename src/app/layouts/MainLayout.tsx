@@ -2,24 +2,14 @@ import { PropsWithChildren } from "react"
 
 import { Box } from "@mui/material"
 
-import StoreProvider from "@app/providers/store/provider/StoreProvider"
-import { getSession } from "@shared/lib/serverSideCookiesService"
 import { BasicBreadcrumbs } from "@shared/ui/BasicBreadcrumbs"
 import { Sidebar } from "@widgets/sidebar"
 
 export default async function MainLayout({ children }: PropsWithChildren) {
-	const session = await getSession()
-
-	const user = {
-		id: session.id,
-		email: session.email,
-		role: session.role,
-	}
 
 	return (
-		<StoreProvider user={user}>
 			<Box sx={{ display: "flex", width: "100%", height: "100%" }}>
-				<Sidebar session={session} />
+				<Sidebar />
 				<Box
 					sx={{
 						padding: {
@@ -33,6 +23,5 @@ export default async function MainLayout({ children }: PropsWithChildren) {
 					{children}
 				</Box>
 			</Box>
-		</StoreProvider>
 	)
 }

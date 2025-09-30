@@ -1,5 +1,5 @@
-import Session from "@shared/types/session"
+import { UserState } from "@entities/user/model/userSlice"
 
 export interface UserProfileMenuProps {
-	session: Session
+	user: UserState
 }

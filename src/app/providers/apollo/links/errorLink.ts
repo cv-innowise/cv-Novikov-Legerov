@@ -1,8 +1,6 @@
 import { CombinedGraphQLErrors } from "@apollo/client/errors"
 import { ErrorLink } from "@apollo/client/link/error"
 
-import { logout } from "@features/auth/model/authService"
-
 export const errorLink = new ErrorLink(({ error }) => {
 	if (CombinedGraphQLErrors.is(error)) {
 		error.errors.forEach((err) => {
