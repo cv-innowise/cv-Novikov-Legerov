@@ -1,8 +1,7 @@
-import { ReactNode } from "react"
-import { DefaultValues, FieldValues, SubmitHandler } from "react-hook-form"
-
-import { BoxProps } from "@mui/material"
-import * as yup from "yup"
+import { BoxProps } from "@mui/material";
+import { ReactNode } from "react";
+import { SubmitHandler, FieldValues, DefaultValues } from "react-hook-form";
+import * as yup from "yup";
 
 type FormWrapperProps<T extends FieldValues> = {
 	onSubmit: SubmitHandler<T>

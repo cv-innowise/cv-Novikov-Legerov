@@ -6,6 +6,7 @@ import Loader from "@shared/ui/loader"
 
 import { DialogActionsProps } from "./DialogActions.props"
 import { styles } from "./DialogActions.styles"
+import { FormButton } from "@shared/ui/form/FormButton"
 
 const DialogActions = ({ loaders, confirmButtonText }: DialogActionsProps) => {
 	const isLoading = loaders?.some(Boolean)
@@ -16,9 +17,9 @@ const DialogActions = ({ loaders, confirmButtonText }: DialogActionsProps) => {
 			<Button onClick={hideDialog} color="secondary" variant="outlined">
 				{t("Cancel")}
 			</Button>
-			<Button disabled={isLoading} type="submit" variant="contained">
+			<FormButton disabled={isLoading} type="submit" variant="contained">
 				{isLoading ? <Loader /> : t(confirmButtonText)}
-			</Button>
+			</FormButton>
 		</MuiDialogActions>
 	)
 }

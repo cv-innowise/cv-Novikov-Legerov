@@ -18,10 +18,6 @@ const FormWrapper = <T extends FieldValues>({
 		defaultValues: defaultValues,
 	})
 
-	useEffect(() => {
-		methods.reset(defaultValues)
-	}, [defaultValues])
-
 	return (
 		<FormProvider {...methods}>
 			<Box
