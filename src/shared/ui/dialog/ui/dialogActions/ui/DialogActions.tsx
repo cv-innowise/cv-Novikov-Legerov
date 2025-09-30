@@ -1,13 +1,15 @@
-import { DialogActions as MuiDialogActions, Button } from "@mui/material"
-import { hideDialog } from "@shared/ui/dialog/model/dialogService"
-import { DialogActionsProps } from "./DialogActions.props"
-import Loader from "@shared/ui/loader"
+import { Button, DialogActions as MuiDialogActions } from "@mui/material"
 import { useTranslations } from "next-intl"
+
+import { hideDialog } from "@shared/ui/dialog/model/dialogService"
+import Loader from "@shared/ui/loader"
+
+import { DialogActionsProps } from "./DialogActions.props"
 import { styles } from "./DialogActions.styles"
 
 const DialogActions = ({ loaders, confirmButtonText }: DialogActionsProps) => {
-    const isLoading = loaders.some(Boolean);
-    const t = useTranslations();
+	const isLoading = loaders?.some(Boolean)
+	const t = useTranslations()
 
 	return (
 		<MuiDialogActions sx={styles.container}>
