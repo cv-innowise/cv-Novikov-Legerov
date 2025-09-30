@@ -65,6 +65,7 @@
 	  "noposition": "No position"
   },
   "userForm": {
+	"title": "Update user",
 	"firstName": "First name",
     "lastName": "Last name",
     "save": "Save",

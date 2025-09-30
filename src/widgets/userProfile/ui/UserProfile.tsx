@@ -4,7 +4,7 @@ import { FC } from "react"
 
 import { useAppSelector } from "@app/providers/store/hooks/hooks"
 import { UserInfo, useUser } from "@entities/user"
-import { UserForm } from "@features/user/updateUser"
+import { UserForm } from "@features/user/updateUser/ui/UserForm"
 import { Avatar } from "@features/user/uploadAvatar"
 
 import { UserProfileProps } from "./UserProfile.props"
