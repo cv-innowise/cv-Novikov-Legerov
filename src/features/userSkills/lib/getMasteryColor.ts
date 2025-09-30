@@ -1,4 +1,4 @@
-import { Mastery } from "../model/mastery"
+import { Mastery } from "@shared/model/mastery"
 
 export const getMasteryColor = (mastery: Mastery) => {
   switch (mastery) {

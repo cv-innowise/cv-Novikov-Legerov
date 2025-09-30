@@ -4,6 +4,6 @@ export type SkillMasteryFormProps = {
     skill?: SkillMastery;
     type: "user" | "cv";
     mode: "add" | "update";
-    skills: Skill[] | undefined;
+    skills: Skill[];
     userSkills?: SkillMastery[];
 }

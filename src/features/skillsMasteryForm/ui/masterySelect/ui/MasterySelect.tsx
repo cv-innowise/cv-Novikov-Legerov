@@ -17,7 +17,6 @@ export const MasterySelect = () => {
 	return (
 		<Controller
 			name={"mastery"}
-            defaultValue={Mastery.Novice}
 			control={control}
 			render={({ field, fieldState: { error } }) => (
 				<TextField

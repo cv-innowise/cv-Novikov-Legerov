@@ -5,5 +5,6 @@ export type BulkDeletionProps = {
     onDelete: (names: string[]) => Promise<void>;
     isLoading: boolean;
     onAdd: () => void;
-    disabled?: boolean;
+    isDisabled: boolean;
+    mode: "skills" | "languages";
 }
