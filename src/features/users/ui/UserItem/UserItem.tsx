@@ -13,6 +13,7 @@ import {
 import { useTranslations } from "next-intl"
 import { useRouter } from "next/navigation"
 
+import { useUserDialog } from "@features/user/updateUser/hooks/useUserDialog"
 import { RoutesPaths } from "@shared/config"
 import { ActionsMenu } from "@shared/ui/ActionsMenu"
 
@@ -23,11 +24,15 @@ export const UserItem: FC<UserItemProps> = ({ row: user, currentUserId }) => {
 	const router = useRouter()
 	const isCurrentUser = user.id === currentUserId
 
+	const openUserDialog = useUserDialog({ user })
+
 	const handleProfile = () => {
 		router.push(`${RoutesPaths.USERS}/${user.id}`)
 	}
 	const handleDelete = () => {}
-	const handleUpdate = () => {}
+	const handleUpdate = () => {
+		openUserDialog()
+	}
 
 	return (
 		<TableRow>
