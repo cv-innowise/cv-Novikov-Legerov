@@ -19,6 +19,7 @@ import { ProficiencySelect } from "./proficiencySelect/ui/ProficiencySelect"
 import { Language } from "cv-graphql"
 import { Proficiency } from "@shared/model/proficiency"
 import { useAuthUserId } from "@entities/user"
+import { languageFormValidation } from "@shared/model/validation/validation"
 
 const LanguageProficiencyForm = ({
 	language,
@@ -26,6 +27,9 @@ const LanguageProficiencyForm = ({
 	userLanguages,
 	languages,
 }: LanguageProficiencyFormProps) => {
+	const t = useTranslations()
+	const schema = languageFormValidation(t)
+	
 	const [
 		addProfileLanguageQuery,
 		{ error: addLanguageError, loading: addLanguageLoading },
@@ -36,7 +40,6 @@ const LanguageProficiencyForm = ({
 		{ error: updateLanguageError, loading: updateLanguageLoading },
 	] = useUpdateProfileLanguage()
 
-	const t = useTranslations()
 	const userId = useAuthUserId()
 	let defaultValues: LanguageProficiency | undefined = undefined
 	let transformedLanguagesData: Language[] = languages
@@ -44,7 +47,7 @@ const LanguageProficiencyForm = ({
 	if (language) {
 		defaultValues = language
 	}
-	console.log(transformedLanguagesData)
+
 	const addProfileLanguage = (data: LanguageProficiency) => {
 		addProfileLanguageQuery({
 			variables: {
@@ -92,7 +95,7 @@ const LanguageProficiencyForm = ({
 	return (
 		<FormWrapper<LanguageProficiency>
 			onSubmit={mode === "add" ? addProfileLanguage : updateProfileLanguage}
-			// schema={schema}
+			schema={schema}
 			defaultValues={defaultValues || { name: undefined, proficiency: Proficiency.Native }}
 		>
 			<DialogContent sx={styles.content}>
