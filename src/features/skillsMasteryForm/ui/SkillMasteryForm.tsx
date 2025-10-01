@@ -19,6 +19,7 @@ import { styles } from "./SkillMasteryForm.styles"
 import { SkillsSelect } from "./skillsSelect/ui/SkillsSelect"
 import { Mastery } from "@shared/model/mastery"
 import { useAuthUserId } from "@entities/user"
+import { skillFormValidation } from "@shared/model/validation/validation"
 
 const SkillMasteryForm = ({
 	skill,
@@ -38,6 +39,7 @@ const SkillMasteryForm = ({
 	] = useUpdateProfileSkill()
 
 	const t = useTranslations()
+	const schema = skillFormValidation(t)
 	const userId = useAuthUserId()
 	let transformedSkillsData: Skill[] = []
 	let defaultValues: SkillMasteryFormInput | undefined = undefined
@@ -110,7 +112,7 @@ const SkillMasteryForm = ({
 	return (
 		<FormWrapper<SkillMasteryFormInput>
 			onSubmit={mode === "add" ? addProfileSkill : updateProfileSkill}
-			// schema={schema}
+			schema={schema}
 			defaultValues={defaultValues || { skill: undefined, mastery: Mastery.Novice }}
 		>
 			<DialogContent sx={styles.content}>
