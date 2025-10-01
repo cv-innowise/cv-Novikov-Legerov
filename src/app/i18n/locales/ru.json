@@ -67,6 +67,35 @@
 		"languages": "Languages",
 		"cvs": "CVs"
 	},
+
+
+ "departments": {
+	  "label": "Department",
+	  "nodepartment": "No department"
+  },
+   "positions": {
+	  "label": "Positions",
+	  "noposition": "No position"
+  },
+    "userForm": {
+	  "title": "Update user",
+	  "firstName": "First name",
+    "lastName": "Last name",
+    "save": "Save",
+    "department": "Department",
+    "position": "Position",
+	  "btn": "Update",
+    "success": "Profile was updated"
+   },
+      "avatar": {
+    "alt": "User avatar",
+    "uploadText": "Upload avatar image",
+    "fileRestrictions": "png, jpg or gif no more than 0.5MB",
+	  "uploadSuccess": "Avatar was uploaded successfully",
+    "deleteSuccess": "Avatar was deleted successfully"
+  },
+
+
 	"user": {
 		"profile": "Profile",
 		"skills": "Skills",
@@ -76,38 +105,19 @@
 			"profile": "Profile",
 			"settings": "Settings",
 			"logout": "Logout"
-		}
+		},
+		"update": "Update user",
+		"delete": "Delete user"
 	},
-	"departments": {
-		"label": "Department",
-		"nodepartment": "No department"
-	},
-	"positions": {
-		"label": "Positions",
-		"noposition": "No position"
-	},
-	"userForm": {
-		"firstName": "First name",
-		"lastName": "Last name",
-		"save": "Save",
-		"department": "Department",
-		"position": "Position",
-		"btn": "Update",
-		"success": "Profile was updated"
-	},
-	"avatar": {
-		"alt": "User avatar",
-		"uploadText": "Upload avatar image",
-		"fileRestrictions": "png, jpg or gif no more than 0.5MB",
-		"uploadSuccess": "Avatar was uploaded successfully",
-		"deleteSuccess": "Avatar was deleted successfully"
-	},
-
+	
 	"table": {
 		"firstName": "First Name",
 		"lastName": "Last Name",
 		"email": "Email",
 		"department": "Department",
-		"position": "Position"
+		"position": "Position",
+		"noResultsFound": "No results found",
+		"tryAnotherSearch": "Try another search, check the spelling or use a broader term",
+		"resetSearch": "Reset search"
 	}
 }

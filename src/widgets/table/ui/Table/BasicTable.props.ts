@@ -5,5 +5,5 @@ import { HeadCell } from "@shared/types"
 export interface BasicTableProps<T extends { id: string }> {
 	data: T[]
 	headCells: HeadCell<T>[]
-	RowComponent: FC<{ row: T }>
+	RowComponent: FC<{ row: T; currentUserId: string }>
 }

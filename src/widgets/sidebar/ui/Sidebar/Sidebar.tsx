@@ -11,9 +11,12 @@ import { navItems } from "@widgets/sidebar/const/navItems.const"
 import { NavList } from "../NavList/NavList"
 import { SidebarProps } from "./Sidebar.props"
 import { sidebarStyles } from "./Sidebar.styles"
+import { useSelector } from "react-redux"
+import { RootState } from "@app/providers/store/store"
 
-export const Sidebar: FC<SidebarProps> = ({ session }) => {
+export const Sidebar: FC<SidebarProps> = () => {
 	const [open, setOpen] = useState(true)
+	const user = useSelector((state: RootState) => state.user)
 
 	const toggleDrawer = () => {
 		setOpen(!open)
@@ -23,7 +26,7 @@ export const Sidebar: FC<SidebarProps> = ({ session }) => {
 		<Drawer variant="permanent" open={open} sx={sidebarStyles.container(open)}>
 			<NavList items={navItems} />
 			<Box sx={sidebarStyles.footer}>
-				<UserProfileMenu session={session} />
+				<UserProfileMenu user={user} />
 				<IconButton sx={sidebarStyles.arrow} onClick={toggleDrawer}>
 					{open ? <LeftArrowIcon /> : <RightArrowIcon />}
 				</IconButton>

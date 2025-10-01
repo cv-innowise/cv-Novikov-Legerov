@@ -21,7 +21,7 @@ export const sidebarStyles = {
 				}),
 				overflowX: "hidden",
 				border: "none",
-				backgroundColor: theme.palette.background.default,
+				backgroundColor: theme.vars?.palette.background.default,
 			},
 		}),
 

@@ -5,21 +5,21 @@ export const showDialog = <T>({
 	title,
 	Form,
 	formProps,
-	maxWidth
+	maxWidth,
 }: ShowDialogParamsType<T>) => {
 	dialogVar({
 		open: true,
 		title: title,
 		Form: Form,
 		formProps: formProps,
-		maxWidth: maxWidth
+		maxWidth: maxWidth,
 	})
 }
 
 export const hideDialog = () => {
-  const prev = dialogVar();
-  dialogVar({
-    ...prev,
-    open: false,
-  })
+	const prev = dialogVar()
+	dialogVar({
+		...prev,
+		open: false,
+	})
 }

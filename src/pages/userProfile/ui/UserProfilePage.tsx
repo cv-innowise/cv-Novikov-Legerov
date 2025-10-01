@@ -1,14 +1,14 @@
-import UserSkills from "@features/user-skills"
-import { getSession } from "@shared/lib/serverSideCookiesService"
+// import UserSkills from "@features/user-skills"
+// import { getSession } from "@shared/lib/serverSideCookiesService"
 
-const UserProfilePage = async () => {
-	const session = await getSession();
+// const UserProfilePage = async () => {
+// 	const session = await getSession()
+// 	console.log(session)
+// 	return (
+// 		<>
+// 			<UserSkills session={session} />
+// 		</>
+// 	)
+// }
 
-	return (
-		<>
-			<UserSkills session={session} />
-		</>
-	)
-}
-
-export default UserProfilePage
+// export default UserProfilePage

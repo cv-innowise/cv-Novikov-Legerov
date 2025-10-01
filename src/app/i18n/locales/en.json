@@ -50,7 +50,9 @@
         "profile": "Profile",
 		"settings": "Settings",
         "logout": "Logout"
-	}
+	},
+	"update": "Update user",
+    "delete": "Delete user"
 
   },
     "departments": {
@@ -63,6 +65,7 @@
 	  "noposition": "No position"
   },
   "userForm": {
+	"title": "Update user",
 	"firstName": "First name",
     "lastName": "Last name",
     "save": "Save",
@@ -85,6 +88,10 @@
     "lastName": "Last Name",
     "email": "Email",
     "department": "Department",
-    "position": "Position"
+    "position": "Position",
+    "noResultsFound": "No results found",
+    "tryAnotherSearch": "Try another search, check the spelling or use a broader term",
+    "resetSearch": "Reset search"
+
   }
 }

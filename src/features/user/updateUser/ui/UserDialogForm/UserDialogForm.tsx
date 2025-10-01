@@ -1,38 +1,42 @@
-"use client"
-
-import { FC } from "react"
 import { SubmitHandler } from "react-hook-form"
 
-import { Box } from "@mui/material"
+import { Box, DialogContent } from "@mui/material"
 import { useTranslations } from "next-intl"
 
 import { DepartmentsSelect } from "@entities/departments"
 import { PositionsSelect } from "@entities/positions"
-import { FormButton } from "@shared/ui/form/FormButton"
+import DialogActions from "@shared/ui/dialog/ui/dialogActions/ui/DialogActions"
 import FormTextField from "@shared/ui/form/FormTextField"
 import FormWrapper from "@shared/ui/form/FormWrapper"
 import { addNotification } from "@shared/ui/notification/notification.service"
 
-import { useProfileUpdate } from "../hooks/useProfileUpdate"
-import { useUserUpdate } from "../hooks/useUserUpdate"
-import { UserFormProps, UserFormValues } from "./UseForm.props"
-import { userFormStyles } from "./UseForm.styles"
+import { useProfileUpdate } from "../../hooks/useProfileUpdate"
+import { useUserUpdate } from "../../hooks/useUserUpdate"
+import {
+	UserDialogFormProps,
+	UserDialogFormValues,
+} from "./UserDialogForm.props"
+import { UserDialogFormStyles } from "./UserDialogForm.styles"
 
-export const UserForm: FC<UserFormProps> = ({ user }) => {
+export const UserDialogForm = ({ user }: UserDialogFormProps) => {
 	const { id: userId } = user
 
-	const t = useTranslations()
 	const [updateProfile] = useProfileUpdate(userId)
 	const [updateUser] = useUserUpdate()
 
+	const t = useTranslations()
+
 	const defaultValues = {
+		email: user.email,
+		password: user && "**********",
+		role: user.role,
 		firstName: user.profile.first_name || "",
 		lastName: user.profile.last_name || "",
 		department: user.department?.id || "",
 		position: user.position?.id || "",
 	}
 
-	const onSubmit: SubmitHandler<UserFormValues> = async (data) => {
+	const onSubmit: SubmitHandler<UserDialogFormValues> = async (data) => {
 		updateProfile({
 			variables: {
 				profile: {
@@ -64,12 +68,15 @@ export const UserForm: FC<UserFormProps> = ({ user }) => {
 	}
 
 	return (
-		<FormWrapper
-			onSubmit={onSubmit}
-			defaultValues={defaultValues}
-			sx={userFormStyles.wrapper}
-		>
-			<Box sx={userFormStyles.form}>
+		<FormWrapper defaultValues={defaultValues} onSubmit={onSubmit}>
+			<DialogContent sx={UserDialogFormStyles.wrapper}>
+				<FormTextField disabled name="email" label={t("email")} fullWidth />
+				<FormTextField
+					disabled
+					name="password"
+					label={t("password")}
+					fullWidth
+				/>
 				<FormTextField
 					name="firstName"
 					fullWidth
@@ -80,11 +87,11 @@ export const UserForm: FC<UserFormProps> = ({ user }) => {
 					name="lastName"
 					label={t("userForm.lastName")}
 				/>
-
 				<DepartmentsSelect name="department" />
 				<PositionsSelect name="position" />
-				<FormButton sx={userFormStyles.btn}>{t("userForm.btn")}</FormButton>
-			</Box>
+				<FormTextField name="role" disabled fullWidth />
+			</DialogContent>
+			<DialogActions confirmButtonText="userForm.update" />
 		</FormWrapper>
 	)
 }
