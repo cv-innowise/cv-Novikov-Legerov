@@ -21,7 +21,7 @@ import { UserDialogFormStyles } from "./UserDialogForm.styles"
 export const UserDialogForm = ({ user }: UserDialogFormProps) => {
 	const { id: userId } = user
 
-	const [updateProfile] = useProfileUpdate(userId)
+	const [updateProfile] = useProfileUpdate()
 	const [updateUser] = useUserUpdate()
 
 	const t = useTranslations()
@@ -91,7 +91,7 @@ export const UserDialogForm = ({ user }: UserDialogFormProps) => {
 				<PositionsSelect name="position" />
 				<FormTextField name="role" disabled fullWidth />
 			</DialogContent>
-			<DialogActions confirmButtonText="userForm.update" />
+			<DialogActions confirmButtonText="userForm.btn" />
 		</FormWrapper>
 	)
 }

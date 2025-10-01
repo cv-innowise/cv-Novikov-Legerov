@@ -22,7 +22,7 @@ export const UserForm: FC<UserFormProps> = ({ user, isCurrentUser }) => {
 	const { id: userId } = user
 
 	const t = useTranslations()
-	const [updateProfile] = useProfileUpdate(userId)
+	const [updateProfile] = useProfileUpdate()
 	const [updateUser] = useUserUpdate()
 
 	const defaultValues = {

@@ -14,7 +14,7 @@ export const UserProfile: FC<UserProfileProps> = ({ userId }) => {
 
 	const currentUserId = useAppSelector((state) => state.user.id)
 
-	const isCurrentUser = userId === currentUserId
+	const isCurrentUser = userId == currentUserId
 
 	return (
 		<>

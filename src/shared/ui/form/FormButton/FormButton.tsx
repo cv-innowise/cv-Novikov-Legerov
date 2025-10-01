@@ -10,7 +10,12 @@ export const FormButton: FC<FormButtonProps> = ({ children, ...props }) => {
 		formState: { isDirty },
 	} = useFormContext()
 	return (
-		<Button type="submit" variant="contained" {...props} disabled={!isDirty || props.disabled}>
+		<Button
+			type="submit"
+			variant="contained"
+			{...props}
+			disabled={!isDirty || props.disabled}
+		>
 			{children}
 		</Button>
 	)
