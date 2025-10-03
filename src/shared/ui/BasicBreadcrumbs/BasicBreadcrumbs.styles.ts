@@ -11,6 +11,10 @@ export const styles = {
 		},
 	},
 	text: {
+		display: "flex",
+		alignItems: "center",
+		justifyContent: "center",
+		gap: "4px",
 		color: "primary.main",
 	},
 	link: {
