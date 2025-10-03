@@ -1,24 +1,22 @@
-'use client'
-
-import { useSelector } from "react-redux"
+"use client"
 
 import { useParams } from "next/navigation"
 
-import { RootState } from "@app/providers/store/store"
+import { useAppSelector } from "@app/providers/store/hooks/hooks"
 
 export const useAuthUserId = () => {
-	const id = useSelector((state: RootState) => state.user.id)
+	const id = useAppSelector((state) => state.user.id)
 	return String(id)
 }
 
 export const useIsAuthUserHasAccess = () => {
-	const user = useSelector((state: RootState) => state.user)
+	const user = useAppSelector((state) => state.user)
 	const params = useParams<{ id: string }>()
 	let id = params?.id || user.id
-	
+
 	return user.role === "Admin" || id == user.id
 }
 
 export const useAuthUser = () => {
-	return useSelector((state: RootState) => state.user)
+	return useAppSelector((state) => state.user)
 }
