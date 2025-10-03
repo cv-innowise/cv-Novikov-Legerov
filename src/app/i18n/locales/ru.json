@@ -36,6 +36,7 @@
 	"Delete": "Удалить",
 	"Cancel": "Отмена",
 	"Confirm": "Подтвердить",
+	"Update": "Обновить",
 
 	"Add skill": "Добавить навык",
 	"Update skill": "Обновить навык",
@@ -117,5 +118,23 @@
 		"noResultsFound": "No results found",
 		"tryAnotherSearch": "Try another search, check the spelling or use a broader term",
 		"resetSearch": "Reset search"
-	}
+	},
+	
+	"cvTable": {
+		"name": "Название",
+		"education": "Образование",
+		"employee": "Сотрудник"
+	},
+	"CVForm": {
+		"name": "Название",
+		"education": "Образование",
+		"description": "Описание"
+	},
+	"Add CV": "Добавить резюме",
+	"Update CV": "Обновить резюме",
+	"Details": "Детали",
+	"Delete CV": "Удалить резюме",
+	"create cv notification": "Резюме успешно добавлено!",
+	"update cv notification": "Резюме успешно обновлено!",
+	"delete cv notification": "Резюме успешно удалено!"
 }

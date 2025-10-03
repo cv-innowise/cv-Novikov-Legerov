@@ -13,7 +13,7 @@ export const SkillsSelect = ({ skills, disabled }: SkillsSelectProps) => {
 	const t = useTranslations()
 	const { control } = useFormContext<SkillMasteryFormInput>()
 
-	let skillOptions = skills;
+	let skillOptions = skills
 
 	return (
 		<Controller
@@ -21,6 +21,9 @@ export const SkillsSelect = ({ skills, disabled }: SkillsSelectProps) => {
 			control={control}
 			render={({ field, fieldState: { error } }) => (
 				<Autocomplete
+					sx={{
+						"& .MuiInputBase-root": { height: "47px" },
+					}}
 					disabled={disabled}
 					{...field}
 					value={field.value || null}

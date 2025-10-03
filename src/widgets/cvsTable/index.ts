@@ -1,0 +1,1 @@
+export { CVsTable } from "./ui/CVsTable/CVcTable"

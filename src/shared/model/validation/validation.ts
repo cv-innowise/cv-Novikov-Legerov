@@ -10,6 +10,7 @@ import { Skill } from "cv-graphql"
 import { Mastery } from "../mastery"
 import { LanguageProficiencyFormInput } from "@features/languageProficiencyForm/model/LanguageProficiencyForm.types"
 import { Proficiency } from "../proficiency"
+import { CVFormInput } from "@features/cvForm/model/CVForm.types"
 
 type TFunction = ReturnType<typeof useTranslations>
 
@@ -75,5 +76,15 @@ export function languageFormValidation(
 			.mixed<Proficiency>()
 			.oneOf(Object.values(Proficiency))
 			.required(t("errors.required")),
+	})
+}
+
+export function CVFormValidation(
+	t: TFunction,
+): yup.ObjectSchema<CVFormInput> {
+	return yup.object({
+		name: yup.string().required(t("errors.required")),
+		education: yup.string().required(t("errors.required")),
+		description: yup.string().required(t("errors.required"))
 	})
 }

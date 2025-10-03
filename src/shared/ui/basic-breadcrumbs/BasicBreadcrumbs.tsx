@@ -7,7 +7,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 
 import { NavigationNextIcon } from "../icons"
-import { basicBreadcrumbsStyles } from "./BasicBreadcrumbs.styles"
+import { styles } from "./BasicBreadcrumbs.styles"
 
 export const BasicBreadcrumbs: FC = () => {
 	const pathname = usePathname()
@@ -31,13 +31,13 @@ export const BasicBreadcrumbs: FC = () => {
 	return (
 		<Breadcrumbs
 			separator={<NavigationNextIcon />}
-			sx={basicBreadcrumbsStyles.breadcrumbs}
+			sx={styles.breadcrumbs}
 		>
 			{links.map((link) =>
 				link.isLast || link.onlyOne ? (
 					<Typography
 						sx={{
-							...basicBreadcrumbsStyles.text,
+							...styles.text,
 							color: link.onlyOne ? "text.secondary" : "primary.main",
 						}}
 						key={link.to}
@@ -46,7 +46,7 @@ export const BasicBreadcrumbs: FC = () => {
 					</Typography>
 				) : (
 					<MuiLink
-						sx={basicBreadcrumbsStyles.link}
+						sx={styles.link}
 						key={link.to}
 						component={Link}
 						href={link.to}
