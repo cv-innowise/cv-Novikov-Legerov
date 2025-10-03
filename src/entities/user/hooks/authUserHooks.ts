@@ -8,20 +8,15 @@ import { RootState } from "@app/providers/store/store"
 
 export const useAuthUserId = () => {
 	const id = useSelector((state: RootState) => state.user.id)
-	return id as string
+	return String(id)
 }
 
-export const useIsAuthUserDisabled = () => {
+export const useIsAuthUserHasAccess = () => {
 	const user = useSelector((state: RootState) => state.user)
 	const params = useParams<{ id: string }>()
-	let id = user.id
-	id = params?.id ? params.id : id
-
-	if (user.role === "Admin" || id === user.id) {
-		return false
-	} else {
-		return true
-	}
+	let id = params?.id || user.id
+	
+	return user.role === "Admin" || id == user.id
 }
 
 export const useAuthUser = () => {

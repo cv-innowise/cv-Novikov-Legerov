@@ -5,6 +5,6 @@ export { userReducer, userAction } from "./model/userSlice"
 export type { UserState } from "./model/userSlice"
 export {
 	useAuthUserId,
-	useIsAuthUserDisabled,
+	useIsAuthUserHasAccess,
 	useAuthUser 
 } from "./hooks/authUserHooks"

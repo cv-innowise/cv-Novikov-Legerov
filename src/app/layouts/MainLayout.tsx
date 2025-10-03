@@ -2,7 +2,7 @@ import { PropsWithChildren } from "react"
 
 import { Box } from "@mui/material"
 
-import { BasicBreadcrumbs } from "@shared/ui/BasicBreadcrumbs"
+import { BasicBreadcrumbs } from "@shared/ui/basic-breadcrumbs"
 import { Sidebar } from "@widgets/sidebar"
 
 export default async function MainLayout({ children }: PropsWithChildren) {

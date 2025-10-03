@@ -6,7 +6,7 @@ import { Stack } from "@mui/material"
 import { SkillMastery } from "cv-graphql"
 import { useTranslations } from "next-intl"
 
-import { useAuthUserId, useIsAuthUserDisabled } from "@entities/user"
+import { useAuthUserId } from "@entities/user"
 import { useUserProfile } from "@entities/userProfileMenu/hooks/useUserProfile"
 import { useSkillMasteryDialog } from "@features/skillsMasteryForm/hooks/useSkillMasteryDialog"
 import BulkDeletion from "@shared/ui/bulk-deletion"

@@ -17,6 +17,12 @@ export const USER = gql`
 				id
 				name
 			}
+			cvs {
+				id
+				name
+				education
+				description
+			}
 			position {
 				id
 				name

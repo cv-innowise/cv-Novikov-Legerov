@@ -5,7 +5,7 @@ import { Suspense, useEffect, useState } from "react"
 import { Box, Stack } from "@mui/material"
 import { useTranslations } from "next-intl"
 
-import { useAuthUserId, useIsAuthUserDisabled } from "@entities/user"
+import { useAuthUserId } from "@entities/user"
 import { useUserProfile } from "@entities/userProfileMenu/hooks/useUserProfile"
 import { useLanguageProficiencyDialog } from "@features/languageProficiencyForm/hooks"
 import BulkDeletion from "@shared/ui/bulk-deletion"

@@ -1,6 +1,6 @@
 import { SxThemeProps } from "@shared/types/sx.types"
 
-export const basicBreadcrumbsStyles = {
+export const styles = {
 	breadcrumbs: {
 		marginBottom: "8px",
 		"& .MuiBreadcrumbs-ol": {
