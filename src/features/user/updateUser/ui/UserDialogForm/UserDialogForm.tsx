@@ -1,7 +1,8 @@
 import { SubmitHandler } from "react-hook-form"
 
-import { Box, DialogContent } from "@mui/material"
+import { DialogContent } from "@mui/material"
 import { useTranslations } from "next-intl"
+import { useRouter } from "next/navigation"
 
 import { DepartmentsSelect } from "@entities/departments"
 import { PositionsSelect } from "@entities/positions"
@@ -21,7 +22,9 @@ import { UserDialogFormStyles } from "./UserDialogForm.styles"
 export const UserDialogForm = ({ user }: UserDialogFormProps) => {
 	const { id: userId } = user
 
-	const [updateProfile] = useProfileUpdate(userId)
+	const router = useRouter()
+
+	const [updateProfile] = useProfileUpdate()
 	const [updateUser] = useUserUpdate()
 
 	const t = useTranslations()
@@ -59,6 +62,7 @@ export const UserDialogForm = ({ user }: UserDialogFormProps) => {
 				}),
 			)
 			.then(() => {
+				router.refresh()
 				addNotification(t("userForm.success"), "success")
 			})
 
@@ -91,7 +95,7 @@ export const UserDialogForm = ({ user }: UserDialogFormProps) => {
 				<PositionsSelect name="position" />
 				<FormTextField name="role" disabled fullWidth />
 			</DialogContent>
-			<DialogActions confirmButtonText="userForm.update" />
+			<DialogActions confirmButtonText="userForm.btn" />
 		</FormWrapper>
 	)
 }
