@@ -1,22 +1,25 @@
 "use client"
 
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 
 import { DialogContent } from "@mui/material"
+import { Skill } from "cv-graphql"
 import { useTranslations } from "next-intl"
 
-import { useUserId } from "@shared/hooks/useUserId"
 import { hideDialog } from "@shared/ui/dialog/model/dialogService"
 import DialogActions from "@shared/ui/dialog/ui/dialogActions/ui/DialogActions"
 import FormWrapper from "@shared/ui/form/FormWrapper"
 import { addNotification } from "@shared/ui/notification/notification.service"
 
-import { useAddProfileSkill, useSkills, useUpdateProfileSkill } from "../hooks"
+import { useAddProfileSkill, useUpdateProfileSkill } from "../hooks"
 import { SkillMasteryFormInput } from "../model/SkillMasteryForm.types"
 import { MasterySelect } from "./masterySelect/ui/MasterySelect"
 import { SkillMasteryFormProps } from "./SkillMasteryForm.props"
 import { styles } from "./SkillMasteryForm.styles"
 import { SkillsSelect } from "./skillsSelect/ui/SkillsSelect"
+import { Mastery } from "@shared/model/mastery"
+import { useAuthUserId } from "@entities/user"
+import { skillFormValidation } from "@shared/model/validation/validation"
 
 const SkillMasteryForm = ({
 	skill,
@@ -36,32 +39,31 @@ const SkillMasteryForm = ({
 	] = useUpdateProfileSkill()
 
 	const t = useTranslations()
-	const userId = useUserId()
-	let transformedSkillsData
+	const schema = skillFormValidation(t)
+	const userId = useAuthUserId()
+	let transformedSkillsData: Skill[] = []
 	let defaultValues: SkillMasteryFormInput | undefined = undefined
 
-	if (skills) {
-		transformedSkillsData = [...skills].sort((a, b) => {
-			if (!a.category?.order || !b.category?.order) {
-				return 0
-			}
-
-			if (a.category.order > b.category.order) {
-				return 1
-			}
-
-			return -1
-		})
-
-		if (skill) {
-			const foundSkill = skills.find((s) => s.name === skill.name)
-			foundSkill
-				? (defaultValues = { skill: foundSkill, mastery: skill.mastery })
-				: (defaultValues = undefined)
+	transformedSkillsData = [...skills].sort((a, b) => {
+		if (!a.category?.order || !b.category?.order) {
+			return 0
 		}
+
+		if (a.category.order > b.category.order) {
+			return 1
+		}
+
+		return -1
+	})
+
+	if (skill) {
+		const foundSkill = skills.find((s) => s.name === skill.name)
+		foundSkill
+			? (defaultValues = { skill: foundSkill, mastery: skill.mastery })
+			: (defaultValues = undefined)
 	}
 
-	if (transformedSkillsData && userSkills) {
+	if (userSkills) {
 		transformedSkillsData = transformedSkillsData.filter((skill) => {
 			return !userSkills.find((userSkill) => skill.name === userSkill.name)
 		})
@@ -110,8 +112,8 @@ const SkillMasteryForm = ({
 	return (
 		<FormWrapper<SkillMasteryFormInput>
 			onSubmit={mode === "add" ? addProfileSkill : updateProfileSkill}
-			// schema={schema}
-			defaultValues={defaultValues}
+			schema={schema}
+			defaultValues={defaultValues || { skill: undefined, mastery: Mastery.Novice }}
 		>
 			<DialogContent sx={styles.content}>
 				<SkillsSelect

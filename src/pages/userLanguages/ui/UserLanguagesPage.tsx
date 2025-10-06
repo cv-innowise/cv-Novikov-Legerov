@@ -1,7 +1,12 @@
-import { Box } from "@mui/material"
+import { UserLanguagesSuspense } from "@features/userLanguages/ui/UserLanguages"
 
 const UserLanguagesPage = () => {
-	return <Box>LOX</Box>
+
+	return (
+		<>
+			<UserLanguagesSuspense />
+		</>
+	)
 }
 
 export default UserLanguagesPage

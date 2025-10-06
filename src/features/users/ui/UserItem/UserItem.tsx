@@ -1,11 +1,39 @@
+"use client"
+
 import { FC } from "react"
 
-import { ArrowBack, KeyboardArrowRight } from "@mui/icons-material"
-import { Avatar, IconButton, TableCell, TableRow } from "@mui/material"
+import { KeyboardArrowRight } from "@mui/icons-material"
+import {
+	Avatar,
+	IconButton,
+	MenuItem,
+	TableCell,
+	TableRow,
+} from "@mui/material"
+import { useTranslations } from "next-intl"
+import { useRouter } from "next/navigation"
+
+import { useUserDialog } from "@features/user/updateUser/hooks/useUserDialog"
+import { RoutesPaths } from "@shared/config"
+import { ActionsMenu } from "@shared/ui/ActionsMenu"
 
 import { UserItemProps } from "./UserItem.props"
 
-export const UserItem: FC<UserItemProps> = ({ user }) => {
+export const UserItem: FC<UserItemProps> = ({ row: user, currentUserId }) => {
+	const t = useTranslations()
+	const router = useRouter()
+	const isCurrentUser = user.id == currentUserId
+
+	const openUserDialog = useUserDialog({ user })
+
+	const handleProfile = () => {
+		router.push(`${RoutesPaths.USERS}/${user.id}`)
+	}
+	const handleDelete = () => {}
+	const handleUpdate = () => {
+		openUserDialog()
+	}
+
 	return (
 		<TableRow>
 			<TableCell>
@@ -19,9 +47,17 @@ export const UserItem: FC<UserItemProps> = ({ user }) => {
 			<TableCell>{user.department?.name}</TableCell>
 			<TableCell>{user.position?.name}</TableCell>
 			<TableCell>
-				<IconButton>
-					<KeyboardArrowRight color="secondary" />
-				</IconButton>
+				{isCurrentUser ? (
+					<ActionsMenu>
+						<MenuItem onClick={handleProfile}>{t("user.profile")}</MenuItem>
+						<MenuItem onClick={handleUpdate}>{t("user.update")}</MenuItem>
+						<MenuItem onClick={handleDelete}>{t("user.delete")}</MenuItem>
+					</ActionsMenu>
+				) : (
+					<IconButton onClick={handleProfile}>
+						<KeyboardArrowRight />
+					</IconButton>
+				)}
 			</TableCell>
 		</TableRow>
 	)

@@ -1,52 +1,32 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { Suspense, useEffect, useState } from "react"
 
 import { Stack } from "@mui/material"
 import { SkillMastery } from "cv-graphql"
 import { useTranslations } from "next-intl"
 
-import { useProfile } from "@entities/userProfileMenu/hooks/useUserProfile"
-import { useSkills } from "@features/skillsMasteryForm/hooks"
+import { useAuthUserId } from "@entities/user"
+import { useUserProfile } from "@entities/userProfileMenu/hooks/useUserProfile"
 import { useSkillMasteryDialog } from "@features/skillsMasteryForm/hooks/useSkillMasteryDialog"
-import { useUserId } from "@shared/hooks/useUserId"
-import { getSession } from "@shared/model/authStorage"
 import BulkDeletion from "@shared/ui/bulk-deletion"
 import Loader from "@shared/ui/loader"
 import { addNotification } from "@shared/ui/notification/notification.service"
 
 import { useDeleteProfileSkill } from "../hooks/useDeleteProfileSkill"
 import { useSkillCategories } from "../hooks/useSkillCategories"
+import { useSkills } from "../hooks/useSkills"
 import SkillsCategory from "./skillsCategory/SkillsCategory"
 import { userSkillsStyles as styles } from "./UserSkills.styles"
 
 const UserSkills = () => {
-	const [isDisabled, setIsDisabled] = useState<boolean>(true)
 	const t = useTranslations()
-	const userId = useUserId()
+	const userId = useAuthUserId()
 
-	useEffect(() => {
-		const session = getSession()
-		if (session.role === "Admin" || userId === session.id) {
-			setIsDisabled(false)
-		}
-	}, [])
+	const { profile, error: profileError } = useUserProfile(userId)
+	const { skillCategories, error: skillsCategoriesError } = useSkillCategories()
+	const { skills, error: skillsError } = useSkills()
 
-	const {
-		data: profileData,
-		loading: profileLoading,
-		error: profileError,
-	} = useProfile(userId)
-	const {
-		data: skillCategoriesData,
-		loading: skillsCategoriesLoading,
-		error: skillsCategoriesError,
-	} = useSkillCategories()
-	const {
-		data: skillsData,
-		loading: skillsLoading,
-		error: skillsError,
-	} = useSkills()
 	const [
 		deleteProfileSkillQuery,
 		{ error: deleteSkillError, loading: deleteSkillLoading },
@@ -64,18 +44,29 @@ const UserSkills = () => {
 		addNotification(t("delete skill notification"), "success")
 	}
 
-	const openAddDialog = useSkillMasteryDialog({
-		type: "user",
-		mode: "add",
-		userSkills: profileData?.profile?.skills,
-		skills: skillsData?.skills,
-	})
+	const error =
+		profileError || skillsCategoriesError || skillsError || deleteSkillError
+
+	useEffect(() => {
+		if (error) {
+			addNotification(t(error.message), "error")
+		}
+	}, [error])
+
+	const openAddDialog =
+		profile && skills
+			? useSkillMasteryDialog({
+					type: "user",
+					mode: "add",
+					userSkills: profile.skills,
+					skills,
+				})
+			: () => {}
 
 	let skillsCategoryMap: { [key: string]: SkillMastery[] } = {}
 
-	if (profileData && skillCategoriesData) {
-		const skillCategories = skillCategoriesData.skillCategories
-		const skills = profileData.profile.skills
+	if (profile && skillCategories) {
+		const skills = profile.skills
 
 		skills.forEach((skill) => {
 			let category = skillCategories.find(
@@ -97,16 +88,13 @@ const UserSkills = () => {
 		})
 	}
 
-	if (profileLoading || skillsCategoriesLoading || skillsLoading)
-		return <Loader />
-
 	return (
 		<Stack sx={styles.container}>
 			<BulkDeletion
-				disabled={isDisabled}
 				onDelete={deleteSkills}
 				onAdd={openAddDialog}
 				isLoading={deleteSkillLoading}
+				mode="skills"
 			>
 				{Object.entries(skillsCategoryMap).map(
 					([categoryName, categorySkills]) => {
@@ -114,7 +102,7 @@ const UserSkills = () => {
 							<SkillsCategory
 								key={categoryName}
 								categoryName={categoryName}
-								skills={skillsData?.skills}
+								skills={skills}
 								categorySkills={categorySkills}
 							/>
 						)
@@ -125,4 +113,10 @@ const UserSkills = () => {
 	)
 }
 
-export default UserSkills
+export const UserSkillsSuspense = () => {
+	return (
+		<Suspense fallback={<Loader />}>
+			<UserSkills />
+		</Suspense>
+	)
+}

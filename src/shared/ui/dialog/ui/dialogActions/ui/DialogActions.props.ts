@@ -1,4 +1,4 @@
 export type DialogActionsProps = {
-    loaders: boolean[];
-    confirmButtonText: string;
+	loaders?: boolean[]
+	confirmButtonText: string
 }

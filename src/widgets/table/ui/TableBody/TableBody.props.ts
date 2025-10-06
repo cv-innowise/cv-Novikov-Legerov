@@ -1,6 +1,7 @@
-import { ReactNode } from "react"
+import { FC } from "react"
 
-export interface TableBodyProps<T> {
+export interface TableBodyProps<T extends { id: string }> {
 	data: T[]
-	renderRow: (item: T) => ReactNode
+	RowComponent: FC<{ row: T; currentUserId: string }>
+	onResetSearch: () => void
 }

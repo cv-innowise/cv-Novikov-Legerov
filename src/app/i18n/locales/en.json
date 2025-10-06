@@ -50,7 +50,10 @@
         "profile": "Profile",
 		"settings": "Settings",
         "logout": "Logout"
-	}
+	},
+	"update": "Update user",
+    "delete": "Delete user"
+
   },
     "departments": {
 	  "label": "Department",
@@ -62,6 +65,7 @@
 	  "noposition": "No position"
   },
   "userForm": {
+	"title": "Update user",
 	"firstName": "First name",
     "lastName": "Last name",
     "save": "Save",
@@ -77,5 +81,17 @@
     "fileRestrictions": "png, jpg or gif no more than 0.5MB",
 	"uploadSuccess": "Avatar was uploaded successfully",
     "deleteSuccess": "Avatar was deleted successfully"
+  },
+
+  "table": {
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email",
+    "department": "Department",
+    "position": "Position",
+    "noResultsFound": "No results found",
+    "tryAnotherSearch": "Try another search, check the spelling or use a broader term",
+    "resetSearch": "Reset search"
+
   }
 }

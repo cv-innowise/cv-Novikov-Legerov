@@ -1,7 +1,30 @@
 import { TableBody as MuiTableBody } from "@mui/material"
 
+import { useAppSelector } from "@app/providers/store/hooks/hooks"
+
+import { EmptyTableMessage } from "../EmptyTableMessage/EmptyTableMessage"
 import { TableBodyProps } from "./TableBody.props"
 
-export function TableBody<T>({ data, renderRow }: TableBodyProps<T>) {
-	return <MuiTableBody>{data.map((item) => renderRow(item))}</MuiTableBody>
+export function TableBody<T extends { id: string }>({
+	data,
+	RowComponent,
+	onResetSearch,
+}: TableBodyProps<T>) {
+	const currentUserId = useAppSelector((state) => state.user.id) || ""
+
+	return (
+		<MuiTableBody>
+			{data.length === 0 ? (
+				<EmptyTableMessage onResetSearch={onResetSearch} />
+			) : (
+				data.map((item) => (
+					<RowComponent
+						currentUserId={currentUserId}
+						key={item.id}
+						row={item}
+					/>
+				))
+			)}
+		</MuiTableBody>
+	)
 }

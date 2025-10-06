@@ -13,14 +13,14 @@
 			"subtitle": "Добро пожаловать! Создайте аккаунт, чтобы продолжить",
 			"button": "СОЗДАТЬ АККАУНТ",
 			"link": "У МЕНЯ ЕСТЬ АККАУНТ"
-		},
-		"errors": {
-			"required": "Обязательное поле",
-			"minLength": "Должно быть как минимум {count} символов",
-			"maxLength": "Должно быть не более {count} символов",
-			"emailInvalid": "Неверный формат email адреса",
-			"passwordInvalid": "Пароль должен содержать как минимум одну большую букву, одну маленькую букву, одну цифру и один специальный символ"
 		}
+	},
+	"errors": {
+		"required": "Обязательное поле",
+		"minLength": "Должно быть как минимум {count} символов",
+		"maxLength": "Должно быть не более {count} символов",
+		"emailInvalid": "Неверный формат email адреса",
+		"passwordInvalid": "Пароль должен содержать как минимум одну большую букву, одну маленькую букву, одну цифру и один специальный символ"
 	},
 	"forgot-password": {
 		"title": "Забыли пароль",
@@ -36,6 +36,7 @@
 	"Delete": "Удалить",
 	"Cancel": "Отмена",
 	"Confirm": "Подтвердить",
+	"Update": "Обновить",
 
 	"Add skill": "Добавить навык",
 	"Update skill": "Обновить навык",
@@ -52,45 +53,88 @@
 	"update skill notification": "Навык успешно обновлен!",
 	"delete skill notification": "Навыки успешно удалены!",
 
+	"Add language": "Добавить язык",
+	"Update language": "Обновить язык",
+	"Remove languages": "Удалить языки",
+	"Language": "Язык",
+	"Language proficiency": "Уровень знания языка",
+	"add language notification": "Языки успешно добавлен!",
+	"update language notification": "Язык успешно обновлен!",
+	"delete language notification": "Языки успешно удалены!",
+
 	"navigation": {
-    "employees": "Employees",
-    "skills": "Skills",
-    "languages": "Languages",
-    "cvs": "CVs"
-  },
-   "user": {
-    "profile": "Profile",
-    "skills": "Skills",
-	"data": "A member since",
-    "languages": "Languages",
-	"menu": {
-        "profile": "Profile",
-		"settings": "Settings",
-        "logout": "Logout"
-	}
-  },
- "departments": {
-	  "label": "Department",
-	  "nodepartment": "No department"
-  },
-   "positions": {
-	  "label": "Positions",
-	  "noposition": "No position"
-  },
-    "userForm": {
-	"firstName": "First name",
-    "lastName": "Last name",
-    "save": "Save",
-    "department": "Department",
-    "position": "Position",
-	"btn": "Update",
-    "success": "Profile was updated"
-   },
-      "avatar": {
-    "alt": "User avatar",
-    "uploadText": "Upload avatar image",
-    "fileRestrictions": "png, jpg or gif no more than 0.5MB",
-	"uploadSuccess": "Avatar was uploaded successfully",
-    "deleteSuccess": "Avatar was deleted successfully"
-  }
+		"employees": "Employees",
+		"skills": "Skills",
+		"languages": "Languages",
+		"cvs": "CVs"
+	},
+
+	"departments": {
+		"label": "Department",
+		"nodepartment": "No department"
+	},
+	"positions": {
+		"label": "Positions",
+		"noposition": "No position"
+	},
+	"userForm": {
+		"title": "Update user",
+		"firstName": "First name",
+		"lastName": "Last name",
+		"save": "Save",
+		"department": "Department",
+		"position": "Position",
+		"btn": "Update",
+		"success": "Profile was updated"
+	},
+	"avatar": {
+		"alt": "User avatar",
+		"uploadText": "Upload avatar image",
+		"fileRestrictions": "png, jpg or gif no more than 0.5MB",
+		"uploadSuccess": "Avatar was uploaded successfully",
+		"deleteSuccess": "Avatar was deleted successfully"
+	},
+
+	"user": {
+		"profile": "Profile",
+		"skills": "Skills",
+		"data": "A member since",
+		"languages": "Languages",
+		"menu": {
+			"profile": "Profile",
+			"settings": "Settings",
+			"logout": "Logout"
+		},
+		"update": "Update user",
+		"delete": "Delete user"
+	},
+
+	"table": {
+		"firstName": "First Name",
+		"lastName": "Last Name",
+		"email": "Email",
+		"department": "Department",
+		"position": "Position",
+		"noResultsFound": "No results found",
+		"tryAnotherSearch": "Try another search, check the spelling or use a broader term",
+		"resetSearch": "Reset search"
+	},
+	
+	"cvTable": {
+		"name": "Название",
+		"education": "Образование",
+		"employee": "Сотрудник"
+	},
+	"CVForm": {
+		"name": "Название",
+		"education": "Образование",
+		"description": "Описание"
+	},
+	"Add CV": "Добавить резюме",
+	"Update CV": "Обновить резюме",
+	"Details": "Детали",
+	"Delete CV": "Удалить резюме",
+	"create cv notification": "Резюме успешно добавлено!",
+	"update cv notification": "Резюме успешно обновлено!",
+	"delete cv notification": "Резюме успешно удалено!"
 }

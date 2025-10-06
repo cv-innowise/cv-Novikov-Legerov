@@ -1,6 +1,11 @@
-import { TableBodyProps } from "../TableBody/TableBody.props"
-import { TableHeaderProps } from "../TableHeader/TableHeader.props"
+import { FC } from "react"
 
-export interface BasicTableProps<T>
-	extends TableHeaderProps,
-		TableBodyProps<T> {}
+import { HeadCell } from "@shared/types"
+
+export interface BasicTableProps<T extends { id: string }> {
+	data: T[]
+	headCells: HeadCell<T>[]
+	RowComponent: FC<{ row: T; currentUserId: string }>
+	addItemHandle?: () => void
+	addButtonText?: string
+}

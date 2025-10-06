@@ -44,7 +44,6 @@ export const getTheme = () =>
 			MuiOutlinedInput: {
 				styleOverrides: {
 					root: {
-						height: 48,
 						padding: "12px",
 						borderRadius: 0,
 					},

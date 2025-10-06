@@ -12,7 +12,7 @@ export const styles = {
 		minWidth: "0px",
 
 		"&.Mui-disabled": {
-			color: "secondary.main"
+			color: "secondary.main",
 		},
 
 		"@media (max-width: 900px)": {

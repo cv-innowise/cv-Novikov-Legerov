@@ -17,6 +17,7 @@ import { authValidation } from "../../../shared/model/validation/validation"
 import { useLogin } from "../hooks/useLogin"
 import { useSignup } from "../hooks/useSignup"
 import { successAuth } from "../model/authService"
+import { useDispatch } from "react-redux"
 
 const AuthForm = ({ mode }: { mode: "login" | "signup" }) => {
 	const [login, { error: loginError, loading: loginLoading }] = useLogin()
@@ -28,6 +29,7 @@ const AuthForm = ({ mode }: { mode: "login" | "signup" }) => {
 	const t = useTranslations()
 	const schema = authValidation(t)
 	const router = useRouter()
+	const dispatch = useDispatch()
 
 	const handleLink = (): void => {
 		router.push(link)
@@ -40,7 +42,7 @@ const AuthForm = ({ mode }: { mode: "login" | "signup" }) => {
 					auth: data,
 				},
 			}).then((result) => {
-				successAuth(result.data!.login)
+				successAuth(result.data!.login, dispatch)
 				// router.push(routes.usersRoutes.users + `/${result.data!.login.user.id}`)
 				router.push(routes.usersRoutes.users)
 			})

@@ -1,12 +1,12 @@
-'use server';
+import 'server-only'
 
 import { cookies } from 'next/headers';
-import Session from '@shared/types/session';
+import { UserState } from '@entities/user';
+import { getAuthUserFromToken } from './tokenService';
 
-export const getSession = async (): Promise<Session> => {
-  const cookieStore = await cookies();
-  const myCookie = cookieStore.get('session')?.value;
-  return JSON.parse(myCookie || '{}');
+export const getAuthUserServerSide = async (): Promise<UserState> => {
+    const access_token = await getAccessTokenServerSide();
+    return getAuthUserFromToken(access_token)
 }
 
 export const getAccessTokenServerSide = async (): Promise<string | undefined> => {

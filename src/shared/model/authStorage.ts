@@ -1,7 +1,5 @@
 "use client"
 
-import Session from "@shared/types/session"
-
 function setCookie(name: string, value: string | object, days = 7) {
 	const expires = new Date(Date.now() + days * 864e5).toUTCString()
 	const cookieValue = typeof value === "object" ? JSON.stringify(value) : value
@@ -51,16 +49,4 @@ export function setTokens(access_token: string, refresh_token: string) {
 export function clearTokens() {
 	deleteCookie("access_token")
 	deleteCookie("refresh_token")
-}
-
-export function setSession(id: string, email: string, role: string) {
-	setCookie("session", { id, email, role })
-}
-
-export function removeSession() {
-	deleteCookie("session")
-}
-
-export function getSession(): Session {
-	return getCookie("session") as Session
 }
