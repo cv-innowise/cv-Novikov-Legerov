@@ -2,12 +2,14 @@
 
 import { FC, useMemo } from "react"
 
-import { Box, Breadcrumbs, Link as MuiLink, Typography } from "@mui/material"
+import { Breadcrumbs, Link as MuiLink, Typography } from "@mui/material"
+import { useTranslations } from "next-intl"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 
 import { useAppSelector } from "@app/providers/store/hooks/hooks"
-import { BREADCRUMB_ICONS } from "@shared/const"
+import { BREADCRUMB_ICONS, BreadcrumbIconType } from "@shared/const"
+import { navItems } from "@widgets/sidebar/const/navItems.const"
 
 import { NavigationNextIcon } from "../icons"
 import { styles } from "./BasicBreadcrumbs.styles"
@@ -15,13 +17,24 @@ import { styles } from "./BasicBreadcrumbs.styles"
 export const BasicBreadcrumbs: FC = () => {
 	const pathname = usePathname()
 	const config = useAppSelector((state) => state.breadcrumbs.config)
+	const t = useTranslations()
 
 	const links = useMemo(() => {
 		const segments = (pathname ?? "").split("/").filter(Boolean)
 
 		return segments.map((segment, index, array) => {
 			const path = "/" + array.slice(0, index + 1).join("/")
-			const replacement = config.find((item) => item.path === path)
+			let replacement = config.find((item) => item.path === path)
+
+			if (!replacement && index === 0) {
+				const navItem = navItems.find((item) => item.to === path)
+				if (navItem) {
+					replacement = {
+						path,
+						text: t(navItem.label),
+					}
+				}
+			}
 
 			return {
 				to: path,
@@ -29,38 +42,24 @@ export const BasicBreadcrumbs: FC = () => {
 					replacement?.text ||
 					segment.charAt(0).toUpperCase() + segment.slice(1),
 				icon: replacement?.icon,
-				isLast: index === array.length - 1,
-				onlyOne: array.length === 1,
 			}
 		})
 	}, [pathname, config])
 
 	return (
 		<Breadcrumbs separator={<NavigationNextIcon />} sx={styles.breadcrumbs}>
-			{links.map((link) =>
-				link.isLast || link.onlyOne ? (
-					<Typography
-						sx={{
-							...styles.text,
-							color: link.onlyOne ? "text.secondary" : "primary.main",
-						}}
-						key={link.to}
-					>
-						{link.icon && BREADCRUMB_ICONS[link.icon]}
-						{link.text}
-					</Typography>
-				) : (
-					<MuiLink
-						sx={styles.link}
-						key={link.to}
-						component={Link}
-						href={link.to}
-						underline="hover"
-					>
-						{link.text}
-					</MuiLink>
-				),
-			)}
+			{links.map((link) => (
+				<MuiLink
+					sx={styles.link}
+					key={link.to}
+					component={Link}
+					href={link.to}
+					underline="hover"
+				>
+					{BREADCRUMB_ICONS[link.icon as BreadcrumbIconType]}
+					{link.text}
+				</MuiLink>
+			))}
 		</Breadcrumbs>
 	)
 }
