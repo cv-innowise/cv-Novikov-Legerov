@@ -1,5 +1,5 @@
 export interface BreadcrumbItem {
 	path: string
-	text?: string
+	text: string
 	icon?: string
 }

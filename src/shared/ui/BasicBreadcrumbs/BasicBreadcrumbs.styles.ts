@@ -8,16 +8,23 @@ export const styles = {
 			"& > li:first-of-type": {
 				paddingLeft: "20px",
 			},
+			"& > li:last-child:not(:only-child) > *": {
+				color: "primary.main",
+				pointerEvents: "none",
+				opacity: 0.6,
+			},
+			"& > li:only-child > *": {
+				color: "text.secondary",
+				pointerEvents: "none",
+				opacity: 0.6,
+			},
 		},
 	},
-	text: {
+	link: {
+		color: "text.secondary",
 		display: "flex",
 		alignItems: "center",
 		justifyContent: "center",
 		gap: "4px",
-		color: "primary.main",
-	},
-	link: {
-		color: "secondary.main",
 	},
 } satisfies SxThemeProps

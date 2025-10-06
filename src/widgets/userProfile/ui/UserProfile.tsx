@@ -6,6 +6,7 @@ import { useAuthUserId, UserInfo, useUser } from "@entities/user"
 import { UserForm } from "@features/user/updateUser/ui/UserForm"
 import { Avatar } from "@features/user/uploadAvatar"
 import { RoutesPaths } from "@shared/config"
+import { BreadcrumbIconType } from "@shared/const"
 import { useBreadcrumbs } from "@shared/hooks"
 
 import { UserProfileProps } from "./UserProfile.props"
@@ -15,9 +16,10 @@ export const UserProfile: FC<UserProfileProps> = ({ userId }) => {
 
 	const currentUserId = useAuthUserId()
 
-	useBreadcrumbs(`${RoutesPaths.USERS}/${user.id}`, {
+	useBreadcrumbs({
+		path: `${RoutesPaths.USERS}/${user.id}`,
 		text: user.profile.full_name ?? user.email,
-		icon: "PersonOutline",
+		icon: BreadcrumbIconType.Person,
 	})
 
 	const isCurrentUser = userId === currentUserId
