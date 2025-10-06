@@ -9,7 +9,7 @@ export const useUserProfile = (userId: string) => {
 	})
 
 	return {
-		profile: data.profile,
+		profile: data?.profile,
 		error: error,
 	}
 }

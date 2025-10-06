@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 
-import routes from "@shared/model/routes"
+import { RoutesPaths } from "@shared/config"
 
 import { authFormStyles } from "../styles/AuthPage.styles"
 
@@ -22,16 +22,16 @@ export const AuthLayout = ({ children }: { children: React.ReactNode }) => {
 				component="header"
 			>
 				<Tab
-					value={routes.authRoutes.login}
+					value={RoutesPaths.LOGIN}
 					label={t("auth.loginTab")}
 					component={Link}
-					href={routes.authRoutes.login}
+					href={RoutesPaths.LOGIN}
 				/>
 				<Tab
-					value={routes.authRoutes.signup}
+					value={RoutesPaths.SIGNUP}
 					label={t("auth.signupTab")}
 					component={Link}
-					href={routes.authRoutes.signup}
+					href={RoutesPaths.SIGNUP}
 				/>
 			</Tabs>
 
