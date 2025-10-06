@@ -6,7 +6,6 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 
 import routes from "@shared/model/routes"
-import AuthRoute from "@shared/ui/AuthRoute"
 
 import { authFormStyles } from "../styles/AuthPage.styles"
 
