@@ -7,7 +7,7 @@ import { ForgotPasswordInput } from "cv-graphql"
 import { useTranslations } from "next-intl"
 import { useRouter } from "next/navigation"
 import { useForgotPassword } from "@features/forgotPassword/hooks/useForgotPassword"
-import routes from "@shared/model/routes"
+import { RoutesPaths } from "@shared/config"
 import { emailValidationForm } from "@shared/model/validation/validation"
 import FormTextField from "@shared/ui/form/FormTextField"
 import FormWrapper from "@shared/ui/form/FormWrapper/FormWrapper"
@@ -15,7 +15,7 @@ import Loader from "@shared/ui/loader"
 import { addNotification } from "@shared/ui/notification/notification.service"
 
 const ForgotPasswordForm = () => {
-	const link = routes.authRoutes.login
+	const link = RoutesPaths.LOGIN
 	const t = useTranslations()
 	const schema = emailValidationForm(t)
 	const router = useRouter()

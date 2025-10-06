@@ -1,42 +1,50 @@
 "use client"
 
-import { Suspense, useEffect, useState } from "react"
+import { Suspense, useEffect } from "react"
 
 import { Stack } from "@mui/material"
 import { SkillMastery } from "cv-graphql"
 import { useTranslations } from "next-intl"
+import { useParams } from "next/navigation"
 
-import { useAuthUserId } from "@entities/user"
+import { useCv } from "@entities/cv/hooks/useCv"
+import { useAuthUser, useAuthUserId } from "@entities/user"
 import { useUserProfile } from "@entities/userProfileMenu/hooks/useUserProfile"
 import { useSkillMasteryDialog } from "@features/skillsMasteryForm/hooks/useSkillMasteryDialog"
+import { useErrorNotification } from "@shared/hooks/useErrorNotification"
 import BulkDeletion from "@shared/ui/bulk-deletion"
 import Loader from "@shared/ui/loader"
 import { addNotification } from "@shared/ui/notification/notification.service"
 
+import { useDeleteCvSkill } from "../hooks/useDeleteCvSkill"
 import { useDeleteProfileSkill } from "../hooks/useDeleteProfileSkill"
 import { useSkillCategories } from "../hooks/useSkillCategories"
 import { useSkills } from "../hooks/useSkills"
+import { SkillsProps } from "./Skills.props"
+import { userSkillsStyles as styles } from "./Skills.styles"
 import SkillsCategory from "./skillsCategory/SkillsCategory"
-import { userSkillsStyles as styles } from "./UserSkills.styles"
 
-const UserSkills = () => {
+const Skills = ({ sourceSkills, type, id }: SkillsProps) => {
 	const t = useTranslations()
-	const userId = useAuthUserId()
 
-	const { profile, error: profileError } = useUserProfile(userId)
 	const { skillCategories, error: skillsCategoriesError } = useSkillCategories()
 	const { skills, error: skillsError } = useSkills()
 
 	const [
 		deleteProfileSkillQuery,
-		{ error: deleteSkillError, loading: deleteSkillLoading },
+		{ error: deleteProfileSkillError, loading: deleteProfileSkillLoading },
 	] = useDeleteProfileSkill()
 
-	const deleteSkills = async (names: string[]) => {
+	const [
+		deleteCvSkillQuery,
+		{ error: deleteCvSkillError, loading: deleteCvSkillLoading },
+	] = useDeleteCvSkill()
+
+	const deleteProfileSkills = async (names: string[]) => {
 		await deleteProfileSkillQuery({
 			variables: {
 				skill: {
-					userId: userId,
+					userId: id,
 					name: names,
 				},
 			},
@@ -44,8 +52,19 @@ const UserSkills = () => {
 		addNotification(t("delete skill notification"), "success")
 	}
 
-	const error =
-		profileError || skillsCategoriesError || skillsError || deleteSkillError
+	const deleteCvSkills = async (names: string[]) => {
+		await deleteCvSkillQuery({
+			variables: {
+				cv: {
+					cvId: id,
+					name: names,
+				},
+			},
+		})
+		addNotification(t("delete skill notification"), "success")
+	}
+
+	const error = skillsCategoriesError || skillsError || deleteProfileSkillError || deleteCvSkillError
 
 	useEffect(() => {
 		if (error) {
@@ -53,20 +72,17 @@ const UserSkills = () => {
 		}
 	}, [error])
 
-	const openAddDialog =
-		profile && skills
-			? useSkillMasteryDialog({
-					type: "user",
-					mode: "add",
-					userSkills: profile.skills,
-					skills,
-				})
-			: () => {}
+	const openAddDialog = useSkillMasteryDialog({
+		type: type,
+		mode: "add",
+		sourceSkills: sourceSkills,
+		skills,
+	})
 
 	let skillsCategoryMap: { [key: string]: SkillMastery[] } = {}
 
-	if (profile && skillCategories) {
-		const skills = profile.skills
+	if (skillCategories) {
+		const skills = sourceSkills
 
 		skills.forEach((skill) => {
 			let category = skillCategories.find(
@@ -91,9 +107,9 @@ const UserSkills = () => {
 	return (
 		<Stack sx={styles.container}>
 			<BulkDeletion
-				onDelete={deleteSkills}
+				onDelete={type === "user" ? deleteProfileSkills : deleteCvSkills}
 				onAdd={openAddDialog}
-				isLoading={deleteSkillLoading}
+				isLoading={deleteProfileSkillLoading || deleteCvSkillLoading}
 				mode="skills"
 			>
 				{Object.entries(skillsCategoryMap).map(
@@ -113,10 +129,40 @@ const UserSkills = () => {
 	)
 }
 
+const UserSkills = () => {
+	const params = useParams<{ id: string }>()
+	const id = params?.id || useAuthUserId()
+
+	const { profile, error } = useUserProfile(id)
+
+	useErrorNotification([error])
+
+	return <Skills sourceSkills={profile.skills} type="user" id={id} />
+}
+
 export const UserSkillsSuspense = () => {
 	return (
 		<Suspense fallback={<Loader />}>
 			<UserSkills />
+		</Suspense>
+	)
+}
+
+export const CvSkills = () => {
+	const params = useParams<{ id: string }>()
+	const id = params?.id as string
+
+	const { cv, error } = useCv(id)
+
+	useErrorNotification([error])
+
+	return <Skills sourceSkills={cv.skills} type="cv" id={id} />
+}
+
+export const CvSkillsSuspense = () => {
+	return (
+		<Suspense fallback={<Loader />}>
+			<CvSkills />
 		</Suspense>
 	)
 }

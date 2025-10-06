@@ -6,7 +6,7 @@ import { Button, Stack } from "@mui/material"
 import { useTranslations } from "next-intl"
 import { useRouter } from "next/navigation"
 
-import routes from "@shared/model/routes"
+import { RoutesPaths } from "@shared/config/routes"
 import FormPasswordField from "@shared/ui/form/FormPasswordField"
 import FormTextField from "@shared/ui/form/FormTextField"
 import FormWrapper from "@shared/ui/form/FormWrapper/FormWrapper"
@@ -25,7 +25,7 @@ const AuthForm = ({ mode }: { mode: "login" | "signup" }) => {
 	const error = mode === "login" ? loginError : signupError
 	const loading = mode === "login" ? loginLoading : signupLoading
 	const link =
-		mode === "login" ? routes.forgotPassword : routes.authRoutes.login
+		mode === "login" ? RoutesPaths.FORGOT_PASSWORD : RoutesPaths.LOGIN
 	const t = useTranslations()
 	const schema = authValidation(t)
 	const router = useRouter()
@@ -43,8 +43,7 @@ const AuthForm = ({ mode }: { mode: "login" | "signup" }) => {
 				},
 			}).then((result) => {
 				successAuth(result.data!.login, dispatch)
-				// router.push(routes.usersRoutes.users + `/${result.data!.login.user.id}`)
-				router.push(routes.usersRoutes.users)
+				router.push(RoutesPaths.USERS + `/${result.data!.login.user.id}`)
 			})
 		} else {
 			signup({
