@@ -72,7 +72,12 @@ export function BasicTable<T extends { id: string }>({
 				<SearchInput control={control} name="search" placeholder="Search" />
 				{addItemHandle && addButtonText && (
 					<Button sx={styles.button} onClick={addItemHandle}>
-						<Stack direction="row" justifyContent="center" alignItems="center" gap="8px">
+						<Stack
+							direction="row"
+							justifyContent="center"
+							alignItems="center"
+							gap="8px"
+						>
 							<Add />
 							<Typography sx={styles.buttonText}>{t(addButtonText)}</Typography>
 						</Stack>

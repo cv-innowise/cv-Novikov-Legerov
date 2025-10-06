@@ -1,1 +1,1 @@
-export { SkillsPage as default } from "@/pages/skills"
+export { UserSkillsPage as default } from "@/pages/userSkills"
