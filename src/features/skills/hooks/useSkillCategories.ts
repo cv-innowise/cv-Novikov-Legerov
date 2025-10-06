@@ -8,10 +8,6 @@ type SkillCategoriesResult = {
     skillCategories: SkillCategory[]
 }
 
-// export const useSkillCategories = () => {
-//     return useQuery<SkillCategoriesResult>(SKILL_CATEGORIES)
-// }
-
 export const useSkillCategories = () => {
     const {data, error} = useSuspenseQuery<SkillCategoriesResult>(SKILL_CATEGORIES)
 
