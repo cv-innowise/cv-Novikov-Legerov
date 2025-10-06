@@ -52,6 +52,7 @@
 	"add skill notification": "Навык успешно добавлен!",
 	"update skill notification": "Навык успешно обновлен!",
 	"delete skill notification": "Навыки успешно удалены!",
+	"Are you sure you want to delete": "Вы уверены, что хотите удалить ",
 
 	"Add language": "Добавить язык",
 	"Update language": "Обновить язык",
@@ -120,6 +121,7 @@
 		"resetSearch": "Reset search"
 	},
 	
+	"cv": "резюме",
 	"cvTable": {
 		"name": "Название",
 		"education": "Образование",

@@ -8,7 +8,8 @@ import { DialogActionsProps } from "./DialogActions.props"
 import { styles } from "./DialogActions.styles"
 import { FormButton } from "@shared/ui/form/FormButton"
 
-const DialogActions = ({ loaders, confirmButtonText }: DialogActionsProps) => {
+const DialogActions = ({ loaders, confirmButtonText, onConfirmButtonClick }: DialogActionsProps) => {
+	console.log(loaders)
 	const isLoading = loaders?.some(Boolean)
 	const t = useTranslations()
 
@@ -17,7 +18,7 @@ const DialogActions = ({ loaders, confirmButtonText }: DialogActionsProps) => {
 			<Button onClick={hideDialog} color="secondary" variant="outlined">
 				{t("Cancel")}
 			</Button>
-			<FormButton disabled={isLoading} type="submit" variant="contained">
+			<FormButton onClick={onConfirmButtonClick} disabled={isLoading} type="submit" variant="contained">
 				{isLoading ? <Loader /> : t(confirmButtonText)}
 			</FormButton>
 		</MuiDialogActions>
