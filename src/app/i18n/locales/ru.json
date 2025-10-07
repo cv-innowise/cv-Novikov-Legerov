@@ -120,8 +120,13 @@
 		"tryAnotherSearch": "Try another search, check the spelling or use a broader term",
 		"resetSearch": "Reset search"
 	},
-	
-	"cv": "резюме",
+	"Cv": "резюме",
+	"cv": {
+		"details": "Детали",
+		"skills": "Навыки",
+		"projects": "Проекты",
+		"preview": "Предпросмотр"
+	},
 	"cvTable": {
 		"name": "Название",
 		"education": "Образование",

@@ -19,13 +19,13 @@ export const CVRow = ({ row: cv }: CVRowProps) => {
 	const router = useRouter()
 	const userEmail = useAuthUser().email
 	const handleDetails = () => {
-		router.push(`${RoutesPaths.USERS}/${cv.id}`)
+		router.push(`${RoutesPaths.CVS}/${cv.id}`)
 	}
 
 	const handleDeleteCV = useDeletionConfirmDialog("Delete CV", {
 		content: (
 			<>
-				{t("Are you sure you want to delete")} {t("cv")}{" "}
+				{t("Are you sure you want to delete")} {t("Cv")}{" "}
 				<b>{cv.name}</b>?
 			</>
 		),

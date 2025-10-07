@@ -1,14 +1,10 @@
-import { useAuthUserId } from "@entities/user"
-import { UserSkillsSuspense } from "@features/skills/ui/Skills"
+import { CvSkillsSuspense } from "@features/skills/ui/Skills"
 
-import { CvPageProps } from "./CvSkillsPage.props"
-
-const UserSkillsPage = async ({ params }: CvPageProps) => {
-	let { id } = await params
+const UserSkillsPage = () => {
 
 	return (
 		<>
-			<UserSkillsSuspense type="cv" id={id} />
+			<CvSkillsSuspense />
 		</>
 	)
 }

@@ -31,13 +31,12 @@ const BulkDeletion = ({
 	isLoading,
 	onAdd,
 	mode,
+	hasAccess
 }: BulkDeletionProps) => {
 	const t = useTranslations()
-	const hasAccess: boolean = useIsAuthUserHasAccess()
-
 	const [isDeletion, setIsDeletion] = useState(false)
 	const [selectedItems, setSelectedItems] = useState<string[]>([])
-
+	
 	const handleCancel = () => {
 		setIsDeletion(false)
 		setSelectedItems([])

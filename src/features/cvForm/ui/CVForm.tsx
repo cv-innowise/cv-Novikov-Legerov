@@ -5,23 +5,25 @@ import { useEffect } from "react"
 import { DialogContent } from "@mui/material"
 import { useTranslations } from "next-intl"
 
-import { useAuthUserId } from "@entities/user"
+import { useAuthUserId, useIsAuthUserHasAccess } from "@entities/user"
+import { CVFormValidation } from "@shared/model/validation/validation"
 import { hideDialog } from "@shared/ui/dialog/model/dialogService"
 import DialogActions from "@shared/ui/dialog/ui/dialogActions/ui/DialogActions"
 import { FormButton } from "@shared/ui/form/FormButton"
 import FormTextField from "@shared/ui/form/FormTextField"
 import FormWrapper from "@shared/ui/form/FormWrapper"
+import Loader from "@shared/ui/loader"
 import { addNotification } from "@shared/ui/notification/notification.service"
-import { CVFormValidation } from "@shared/model/validation/validation"
+
 import { CVFormInput } from "../model/CVForm.types"
 import { useCreateCV, useUpdateCV } from "./../hooks"
 import { CVFormProps } from "./CVForm.props"
 import { styles } from "./CVForm.styles"
-import Loader from "@shared/ui/loader"
 
 export const CVForm = ({ mode, cv }: CVFormProps) => {
 	const t = useTranslations()
 	const schema = CVFormValidation(t)
+	const hasAccess = useIsAuthUserHasAccess(cv)
 
 	const [createCVQuery, { error: createCVError, loading: createCVLoading }] =
 		useCreateCV()
@@ -90,14 +92,21 @@ export const CVForm = ({ mode, cv }: CVFormProps) => {
 			onSubmit={mode === "add" ? createCV : updateCV}
 			schema={schema}
 			defaultValues={defaultValues}
+			sx={{ display: "flex", flexDirection: "column" }}
 		>
 			<DialogContent sx={styles.content}>
-				<FormTextField<CVFormInput> name="name" label={t("CVForm.name")} />
 				<FormTextField<CVFormInput>
+					sx={{ pointerEvents: !hasAccess ? "none" : "auto" }}
+					name="name"
+					label={t("CVForm.name")}
+				/>
+				<FormTextField<CVFormInput>
+					sx={{ pointerEvents: !hasAccess ? "none" : "auto" }}
 					name="education"
 					label={t("CVForm.education")}
 				/>
 				<FormTextField<CVFormInput>
+					sx={{ pointerEvents: !hasAccess ? "none" : "auto" }}
 					name="description"
 					id="description"
 					multiline
@@ -105,16 +114,22 @@ export const CVForm = ({ mode, cv }: CVFormProps) => {
 					label={t("CVForm.description")}
 				/>
 			</DialogContent>
-			{mode === "add" ? (
-				<DialogActions
-					loaders={[createCVLoading, updateCVLoading]}
-					confirmButtonText="Confirm"
-				/>
-			) : (
-				<FormButton sx={styles.updateButton} disabled={updateCVLoading} type="submit" variant="contained">
-					{updateCVLoading ? <Loader /> : "Update"}
-				</FormButton>
-			)}
+			{hasAccess &&
+				(mode === "add" ? (
+					<DialogActions
+						loaders={[createCVLoading, updateCVLoading]}
+						confirmButtonText="Confirm"
+					/>
+				) : (
+					<FormButton
+						sx={styles.updateButton}
+						disabled={updateCVLoading}
+						type="submit"
+						variant="contained"
+					>
+						{updateCVLoading ? <Loader /> : "Update"}
+					</FormButton>
+				))}
 		</FormWrapper>
 	)
 }

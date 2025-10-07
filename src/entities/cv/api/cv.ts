@@ -12,6 +12,9 @@ export const CV = gql`
                 categoryId
                 mastery
             }
+            user {
+                id
+            }
         }
     }
 `
