@@ -17,7 +17,7 @@ import { styles } from "./CVRow.style"
 export const CVRow = ({ row: cv }: CVRowProps) => {
 	const t = useTranslations()
 	const router = useRouter()
-	const userEmail = useAuthUser().email
+	const userEmail = cv.user?.id || useAuthUser().email
 	const handleDetails = () => {
 		router.push(`${RoutesPaths.CVS}/${cv.id}`)
 	}

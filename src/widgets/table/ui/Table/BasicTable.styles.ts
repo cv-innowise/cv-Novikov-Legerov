@@ -1,9 +1,15 @@
 import { SxThemeProps } from "@shared/types/sx.types"
 
 export const styles = {
+    container: {
+        padding: "16px 0",
+    },
     button: {
         "&.MuiButtonBase-root": {
             minWidth: "48px",
+            maxWidth: "220px",
+            height: "40px",
+            width: "100%"
         },
     },
 	buttonText: {

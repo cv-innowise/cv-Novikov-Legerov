@@ -13,7 +13,7 @@ import { UserProfileProps } from "./UserProfile.props"
 
 export const UserProfile: FC<UserProfileProps> = ({ userId }) => {
 	const { user } = useUser(userId)
-
+	console.log(user)
 	const currentUserId = useAuthUserId()
 
 	useBreadcrumbs({

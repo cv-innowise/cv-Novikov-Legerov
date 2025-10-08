@@ -1,1 +1,1 @@
-export { default as CVsPage } from "./ui/CVs"
+export { default as CVsPage } from "./ui/CVsPage"

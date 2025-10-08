@@ -1,1 +1,1 @@
-export { CVsTable } from "./ui/CVsTable/CVcTable"
+export { CVsTableSuspense } from "./ui/CVsTable/CVcTable"

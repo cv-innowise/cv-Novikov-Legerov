@@ -1,4 +1,10 @@
-import { PaletteOptions } from "@mui/material"
+import { PaletteOptions, Palette } from "@mui/material"
+
+declare module '@mui/material/styles' {
+   interface TypeBackground {
+    secondary: string;
+  }
+}
 
 const commonPalette: PaletteOptions = {
 	primary: {
@@ -14,6 +20,7 @@ export const lightPalette: PaletteOptions = {
 	background: {
 		default: "#f5f5f7",
 		paper: "#ffffff",
+		secondary: "#e2e2e4"
 	},
 	text: {
 		primary: "#2e2e2eff",
@@ -25,6 +32,7 @@ export const darkPalette: PaletteOptions = {
 	background: {
 		default: "#353535",
 		paper: "#121212",
+		secondary: "#555555"
 	},
 	text: {
 		primary: "#ffffff",

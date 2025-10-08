@@ -143,5 +143,19 @@
 	"Delete CV": "Удалить резюме",
 	"create cv notification": "Резюме успешно добавлено!",
 	"update cv notification": "Резюме успешно обновлено!",
-	"delete cv notification": "Резюме успешно удалено!"
+	"delete cv notification": "Резюме успешно удалено!",
+
+
+	"projectTable": {
+		"name": "Название",
+		"domain": "Домен",
+		"startDate": "Дата начала",
+		"endDate": "Дата окончания"
+	},
+	"Till now": "По настоящее время",
+	"Add project": "Добавить проект",
+	"Update project": "Обновить проект",
+	"Delete project": "Удалить проект",
+	"create projects notification": "Проект успешно добавлено!",
+	"update projects notification": "Проект успешно обновлено!"
 }

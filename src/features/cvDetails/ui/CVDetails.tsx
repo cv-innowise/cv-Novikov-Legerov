@@ -10,6 +10,9 @@ import { CVForm } from "@features/cvForm/ui/CVForm"
 import { useErrorNotification } from "@shared/hooks/useErrorNotification"
 import Loader from "@shared/ui/loader"
 import { styles } from "./CVDetails.styles"
+import { RoutesPaths } from "@shared/config"
+import { useBreadcrumbs } from "@shared/hooks"
+import { BreadcrumbIconType } from "@shared/const"
 
 const CVDetails = () => {
 	const params = useParams<{ id: string }>()
@@ -18,6 +21,11 @@ const CVDetails = () => {
 	const { cv, error } = useCv(id)
 
 	useErrorNotification([error])
+
+	useBreadcrumbs({
+		path: `${RoutesPaths.CVS}/${cv.id}`,
+		text: cv.name
+	})
 
 	return (
 		<Box sx={styles.container}>

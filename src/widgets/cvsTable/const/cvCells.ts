@@ -1,9 +1,6 @@
-"use client"
-
 import { Cv } from "cv-graphql"
 
 import { HeadCell } from "@shared/types"
-import { SmartButton } from "@mui/icons-material"
 
 export const cvHeadCells: HeadCell<Cv>[] = [
     {

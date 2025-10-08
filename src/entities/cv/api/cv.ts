@@ -15,6 +15,17 @@ export const CV = gql`
             user {
                 id
             }
+            projects {
+                id
+                name
+                description
+                domain
+                start_date
+                end_date
+                environment
+                roles
+                responsibilities
+            }
         }
     }
 `

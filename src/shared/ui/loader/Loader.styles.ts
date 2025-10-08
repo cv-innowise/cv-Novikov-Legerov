@@ -4,5 +4,7 @@ export const LoaderWrapper = styled('div')({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
+  alignSelf: 'center',
+  justifySelf: 'center',
   height: '90%',
 })

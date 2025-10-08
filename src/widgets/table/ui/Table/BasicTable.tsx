@@ -4,7 +4,7 @@ import { useMemo, useState } from "react"
 import { useForm } from "react-hook-form"
 
 import { Add } from "@mui/icons-material"
-import { Button, Stack, Table, TableContainer, Typography } from "@mui/material"
+import { Box, Button, Stack, Table, TableContainer, Typography } from "@mui/material"
 import { useTranslations } from "next-intl"
 
 import { useDebounce } from "@shared/hooks"
@@ -67,7 +67,7 @@ export function BasicTable<T extends { id: string }>({
 	}, [filteredData, order, orderBy, headCells])
 
 	return (
-		<>
+		<Box sx={styles.container}>
 			<Stack direction="row" justifyContent="space-between" gap={"60px"}>
 				<SearchInput control={control} name="search" placeholder="Search" />
 				{addItemHandle && addButtonText && (
@@ -99,6 +99,6 @@ export function BasicTable<T extends { id: string }>({
 					/>
 				</Table>
 			</TableContainer>
-		</>
+		</Box>
 	)
 }
