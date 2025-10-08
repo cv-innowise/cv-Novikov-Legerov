@@ -11,6 +11,9 @@ import { useCv } from "@entities/cv/hooks/useCv"
 import { useAuthUser, useAuthUserId } from "@entities/user"
 import { useUserProfile } from "@entities/userProfileMenu/hooks/useUserProfile"
 import { useSkillMasteryDialog } from "@features/skillsMasteryForm/hooks/useSkillMasteryDialog"
+import { RoutesPaths } from "@shared/config"
+import { BreadcrumbIconType } from "@shared/const"
+import { useBreadcrumbs } from "@shared/hooks"
 import { useErrorNotification } from "@shared/hooks/useErrorNotification"
 import BulkDeletion from "@shared/ui/bulk-deletion"
 import Loader from "@shared/ui/loader"
@@ -64,7 +67,11 @@ const Skills = ({ sourceSkills, type, id }: SkillsProps) => {
 		addNotification(t("delete skill notification"), "success")
 	}
 
-	const error = skillsCategoriesError || skillsError || deleteProfileSkillError || deleteCvSkillError
+	const error =
+		skillsCategoriesError ||
+		skillsError ||
+		deleteProfileSkillError ||
+		deleteCvSkillError
 
 	useEffect(() => {
 		if (error) {
@@ -132,8 +139,14 @@ const Skills = ({ sourceSkills, type, id }: SkillsProps) => {
 const UserSkills = () => {
 	const params = useParams<{ id: string }>()
 	const id = params?.id || useAuthUserId()
-
+	const user = useAuthUser()
 	const { profile, error } = useUserProfile(id)
+
+	useBreadcrumbs({
+		path: `${RoutesPaths.USERS}/${profile.id}`,
+		text: profile.full_name || user.email || "",
+		icon: BreadcrumbIconType.Person,
+	})
 
 	useErrorNotification([error])
 
