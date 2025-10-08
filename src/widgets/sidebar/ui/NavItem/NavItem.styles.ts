@@ -14,9 +14,9 @@ export const navItemStyles = {
 	},
 	icon: {
 		minWidth: "40px",
-		color: "#00000099",
+		color: "icon.color",
 		active: {
-			color: "#2E2E2E",
+			color: "icon.color.active",
 		},
 	},
 
