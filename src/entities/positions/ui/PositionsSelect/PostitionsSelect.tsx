@@ -6,7 +6,7 @@ import { useTranslations } from "next-intl"
 
 import { Select } from "@shared/ui/form/Select"
 
-import { usePositions } from "../hooks/usePositions"
+import { usePositions } from "../../hooks/usePositions"
 import { PositionsSelectProps } from "./PostitionsSelect.props"
 
 export const PositionsSelect = <T extends FieldValues>({

@@ -1,1 +1,5 @@
-export { DepartmentsSelect } from "./ui/DepartmentsSelect"
+export { DepartmentsSelect } from "./ui/DepartmentsSelect/DepartmentsSelect"
+export { departmentsHeadCells } from "./const/departmentsCells.conts"
+export { DepartmentsRow } from "./ui/DepartmentsRow/DepartmentsRow"
+export type { DepartmentsResult } from "./api/departments.types"
+export { DEPARTMENTS } from "./api/departments"
