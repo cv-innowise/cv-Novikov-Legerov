@@ -1,3 +1,6 @@
+import BusinessIcon from "@mui/icons-material/Business"
+import WorkOutlineIcon from "@mui/icons-material/WorkOutline"
+
 import { RoutesPaths } from "@shared/config"
 import {
 	CVSIcon,
@@ -32,5 +35,17 @@ export const navItems: NavItems = [
 		to: RoutesPaths.CVS,
 		label: "navigation.cvs",
 		icon: <CVSIcon />,
+	},
+	{
+		id: "5",
+		to: RoutesPaths.DEPARTMENTS,
+		label: "navigation.departments",
+		icon: <BusinessIcon />,
+	},
+	{
+		id: "6",
+		to: RoutesPaths.POSITIONS,
+		label: "navigation.positions",
+		icon: <WorkOutlineIcon />,
 	},
 ]

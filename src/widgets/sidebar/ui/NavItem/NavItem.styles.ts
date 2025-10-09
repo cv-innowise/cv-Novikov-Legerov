@@ -8,6 +8,10 @@ export const navItemStyles = {
 		borderBottomRightRadius: "50px",
 		transition: "all 0.3s ease",
 
+		"&:nth-of-type(5)": {
+			marginTop: "20px",
+		},
+
 		active: {
 			background: "#0000000a",
 		},
