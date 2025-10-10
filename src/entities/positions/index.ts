@@ -1,1 +1,5 @@
-export { PositionsSelect } from "./ui/PostitionsSelect"
+export { PositionsSelect } from "./ui/PositionsSelect/PostitionsSelect"
+export { POSITIONS } from "./api/positions"
+export { PositionsRow } from "./ui/PositionsRow/PositionsRow"
+export type { PositionsResult } from "./api/positions.types"
+export { positionsHeadCells } from "./const/positionsCells.conts"

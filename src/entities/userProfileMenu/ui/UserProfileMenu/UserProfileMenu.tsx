@@ -7,6 +7,7 @@ import { Avatar, Button, Typography } from "@mui/material"
 import { useUserProfile } from "@entities/userProfileMenu/hooks/useUserProfile"
 
 import { UserMenu } from "../UserMenu/UserMenu"
+import { UserProfileMenuSkeleton } from "./UserProfileMenu.skeleton"
 import { userProfileMenuStyles } from "./UserProfileMenu.styles"
 import { UserProfileMenuProps } from "./UserProfilleMenu.props"
 

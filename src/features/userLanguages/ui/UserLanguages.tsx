@@ -1,13 +1,16 @@
 "use client"
 
-import { Suspense, useEffect, useState } from "react"
+import { Suspense, useEffect } from "react"
 
 import { Box, Stack } from "@mui/material"
 import { useTranslations } from "next-intl"
 
-import { useAuthUserId, useIsAuthUserHasAccess } from "@entities/user"
+import { useAuthUser, useAuthUserId, useIsAuthUserHasAccess } from "@entities/user"
 import { useUserProfile } from "@entities/userProfileMenu/hooks/useUserProfile"
 import { useLanguageProficiencyDialog } from "@features/languageProficiencyForm/hooks"
+import { RoutesPaths } from "@shared/config"
+import { BreadcrumbIconType } from "@shared/const"
+import { useBreadcrumbs } from "@shared/hooks"
 import BulkDeletion from "@shared/ui/bulk-deletion"
 import Loader from "@shared/ui/loader"
 import { addNotification } from "@shared/ui/notification/notification.service"
@@ -28,6 +31,14 @@ const UserLanguages = () => {
 	const { languages, error: languagesError } = useLanguages()
 
 	const { profile, error: profileError } = useUserProfile(userId)
+
+	const user = useAuthUser()
+
+	useBreadcrumbs({
+		path: `${RoutesPaths.USERS}/${profile.id}`,
+		text: profile.full_name || user.email || "",
+		icon: BreadcrumbIconType.Person,
+	})
 
 	const [
 		deleteLanguagesQuery,

@@ -38,7 +38,9 @@
     "employees": "Employees",
     "skills": "Skills",
     "languages": "Languages",
-    "cvs": "CVs"
+    "cvs": "CVs",
+	"departments": "Departments",
+	"positions": "Positions"
   }
 ,
    "user": {
@@ -93,5 +95,16 @@
     "tryAnotherSearch": "Try another search, check the spelling or use a broader term",
     "resetSearch": "Reset search"
 
-  }
+  },
+
+  "depatmentsTable": {
+		"name": "Name",
+		"delete": "Delete"
+	},
+
+	
+  "positionsTable": {
+		"name": "Name",
+		"delete": "Delete"
+	}
 }

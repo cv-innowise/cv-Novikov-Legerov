@@ -1,6 +1,6 @@
 "use client"
 
-import { useMemo, useState } from "react"
+import { Suspense, useMemo, useState } from "react"
 import { useForm } from "react-hook-form"
 
 import { Add } from "@mui/icons-material"
@@ -13,6 +13,7 @@ import { SortOrder } from "@widgets/table/const/sort.const"
 
 import { TableBody } from "../TableBody/TableBody"
 import { TableHeader } from "../TableHeader/TableHeader"
+import { TableLoader } from "../TableLoader/TableLoader"
 import { BasicTableProps } from "./BasicTable.props"
 import { styles } from "./BasicTable.styles"
 
@@ -92,11 +93,13 @@ export function BasicTable<T extends { id: string }>({
 						orderBy={orderBy}
 						onRequestSort={handleSort}
 					/>
-					<TableBody
-						onResetSearch={reset}
-						data={sortedData}
-						RowComponent={RowComponent}
-					/>
+					<Suspense fallback={<TableLoader />}>
+						<TableBody
+							onResetSearch={reset}
+							data={sortedData}
+							RowComponent={RowComponent}
+						/>
+					</Suspense>
 				</Table>
 			</TableContainer>
 		</Box>

@@ -37,6 +37,9 @@ export const lightPalette: PaletteOptions = {
 	text: {
 		primary: "#2e2e2eff",
 	},
+	icon: {
+		color: "#2E2E2E",
+	},
 }
 
 export const darkPalette: PaletteOptions = {
@@ -48,5 +51,8 @@ export const darkPalette: PaletteOptions = {
 	},
 	text: {
 		primary: "#ffffff",
+	},
+	icon: {
+		color: "#FFFFFFB2",
 	},
 }

@@ -6,5 +6,6 @@ export type { UserState } from "./model/userSlice"
 export {
 	useAuthUserId,
 	useIsAuthUserHasAccess,
-	useAuthUser 
+	useAuthUser,
 } from "./hooks/authUserHooks"
+export { UserInfoSkeleton } from "./ui/UserInfo/UserInfo.skeleton"

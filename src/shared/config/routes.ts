@@ -6,6 +6,8 @@ export const enum RoutesPaths {
 	SKILLS = "/skills",
 	LANGUAGES = "/languages",
 	CVS = "/cvs",
+	DEPARTMENTS = "/departments",
+	POSITIONS = "/positions",
 	PROJECTS = "/projects",
 	PREVIEW = "/preview",
 }
