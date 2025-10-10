@@ -1,1 +1,1 @@
-export { default } from "@app/layouts/UserLayout"
+export { default, generateMetadata } from "@app/layouts/UserLayout"

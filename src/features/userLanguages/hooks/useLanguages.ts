@@ -1,18 +1,14 @@
 "use client"
 
-import { Language } from "cv-graphql";
-import { useSuspenseQuery } from "@apollo/client/react";
-import LANGUAGES from "../api/languages";
+import { useSuspenseQuery } from "@apollo/client/react"
 
-type LanguagesResult = {
-    languages: Language[]
-}
+import { LANGUAGES, LanguagesResult } from "@entities/languages"
 
 export const useLanguages = () => {
-    const { data, error } = useSuspenseQuery<LanguagesResult>(LANGUAGES)
+	const { data, error } = useSuspenseQuery<LanguagesResult>(LANGUAGES)
 
-    return {
-        languages: data.languages,
-        error: error
-    }
+	return {
+		languages: data.languages,
+		error: error,
+	}
 }
