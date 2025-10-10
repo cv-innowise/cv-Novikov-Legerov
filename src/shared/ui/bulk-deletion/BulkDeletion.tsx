@@ -9,7 +9,6 @@ import { useTranslations } from "next-intl"
 import Loader from "../loader"
 import { BulkDeletionProps } from "./BulkDeletion.props"
 import { styles } from "./BulkDeletion.styles"
-import { useIsAuthUserHasAccess } from "@entities/user"
 
 type BulkDeletionContextType = {
 	isDeletion: boolean
@@ -31,13 +30,12 @@ const BulkDeletion = ({
 	isLoading,
 	onAdd,
 	mode,
+	hasAccess
 }: BulkDeletionProps) => {
 	const t = useTranslations()
-	const hasAccess: boolean = useIsAuthUserHasAccess()
-
 	const [isDeletion, setIsDeletion] = useState(false)
 	const [selectedItems, setSelectedItems] = useState<string[]>([])
-
+	
 	const handleCancel = () => {
 		setIsDeletion(false)
 		setSelectedItems([])

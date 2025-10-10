@@ -1,16 +1,22 @@
-import { AuthInput, ForgotPasswordInput, SkillMasteryInput } from "cv-graphql"
+import {
+	AuthInput,
+	ForgotPasswordInput,
+	Skill,
+	SkillMasteryInput,
+} from "cv-graphql"
 import { useTranslations } from "next-intl"
 import * as yup from "yup"
 
+import { CVFormInput } from "@features/cvForm/model/CVForm.types"
+import { LanguageProficiencyFormInput } from "@features/languageProficiencyForm/model/LanguageProficiencyForm.types"
+import { CvProjectFormInput } from "@features/projectForm/model/CvProjectForm.types"
 import { SkillMasteryFormInput } from "@features/skillsMasteryForm/model/SkillMasteryForm.types"
 import { EMAIL_REGEXP } from "@shared/const/regexp/email"
 import { PASSWORD_REGEXP } from "@shared/const/regexp/password"
 import { minMaxFieldValidation } from "@shared/lib/validation/minMaxFieldValidation"
-import { Skill } from "cv-graphql"
+
 import { Mastery } from "../mastery"
-import { LanguageProficiencyFormInput } from "@features/languageProficiencyForm/model/LanguageProficiencyForm.types"
 import { Proficiency } from "../proficiency"
-import { CVFormInput } from "@features/cvForm/model/CVForm.types"
 
 type TFunction = ReturnType<typeof useTranslations>
 
@@ -79,12 +85,26 @@ export function languageFormValidation(
 	})
 }
 
-export function CVFormValidation(
-	t: TFunction,
-): yup.ObjectSchema<CVFormInput> {
+export function CVFormValidation(t: TFunction): yup.ObjectSchema<CVFormInput> {
 	return yup.object({
 		name: yup.string().required(t("errors.required")),
 		education: yup.string().required(t("errors.required")),
-		description: yup.string().required(t("errors.required"))
+		description: yup.string().required(t("errors.required")),
+	})
+}
+
+export function CvProjectFormValidation(
+	t: TFunction,
+): yup.ObjectSchema<CvProjectFormInput> {
+	return yup.object({
+		project: yup
+			.mixed<{
+				id: string
+				name: string
+			}>()
+			.required(t("errors.required")),
+		start_date: yup.date().required(t("errors.required")),
+		end_date: yup.date().required(t("errors.required")),
+		responsibilities: yup.string().required(t("errors.required")),
 	})
 }

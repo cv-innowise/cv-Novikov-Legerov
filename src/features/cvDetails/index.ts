@@ -1,0 +1,1 @@
+export { CVDetailsSuspense } from "./ui/CVDetails"

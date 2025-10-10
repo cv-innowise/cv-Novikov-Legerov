@@ -1,15 +1,21 @@
+'use client'
+
 import { BasicTable } from "@widgets/table"
 import { CVRow } from "../CVRow/CVRow"
 import { cvHeadCells } from "@widgets/cvsTable/const/cvCells"
-import { CVsTableProps } from "./CVcTable.props"
 import { useCVDialog } from "@features/cvForm/hooks/useCVFormDialog"
+import { Suspense } from "react"
+import { useAuthUserId, useUser } from "@entities/user"
+import Loader from "@shared/ui/loader"
 
-export const CVsTable = ({cvs}: CVsTableProps) => {
+const CVsTable = () => {
     const addCV = useCVDialog({mode: "add"})
-   
+    const userId = useAuthUserId()
+    const { user } = useUser(userId)
+
     return (
         <BasicTable
-            data={cvs}
+            data={user.cvs || []}
             RowComponent={CVRow}
             headCells={cvHeadCells}
             addItemHandle={addCV}
@@ -17,3 +23,11 @@ export const CVsTable = ({cvs}: CVsTableProps) => {
         />
     )
 }
+
+export const CVsTableSuspense = () => {
+    return (
+        <Suspense fallback={<Loader />}>
+            <CVsTable />
+        </Suspense>
+    )
+}   

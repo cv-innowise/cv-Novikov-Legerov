@@ -12,6 +12,27 @@ export const CV = gql`
                 categoryId
                 mastery
             }
+            user {
+                id
+            }
+            projects {
+                id
+                project {
+                    id
+                    name
+                    domain
+                    description
+                    environment
+                }
+                name
+                description
+                domain
+                start_date
+                end_date
+                environment
+                roles
+                responsibilities
+            }
         }
     }
 `

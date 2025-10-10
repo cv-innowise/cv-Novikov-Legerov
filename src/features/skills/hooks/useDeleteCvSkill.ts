@@ -3,7 +3,7 @@ import { DeleteCvSkillInput, Cv  } from "cv-graphql";
 import DELETE_CV_SKILL from "../api/deleteCvSkill";
 
 type deleteCvSkillArgs = {
-    cv: DeleteCvSkillInput
+    skill: DeleteCvSkillInput
 }
 
 type deleteCvSkillResult = {

@@ -1,6 +1,6 @@
 "use client"
 
-import { Suspense, useEffect } from "react"
+import { Suspense } from "react"
 
 import { Stack } from "@mui/material"
 import { SkillMastery } from "cv-graphql"
@@ -8,7 +8,11 @@ import { useTranslations } from "next-intl"
 import { useParams } from "next/navigation"
 
 import { useCv } from "@entities/cv/hooks/useCv"
-import { useAuthUser, useAuthUserId } from "@entities/user"
+import {
+	useAuthUser,
+	useAuthUserId,
+	useIsAuthUserHasAccess,
+} from "@entities/user"
 import { useUserProfile } from "@entities/userProfileMenu/hooks/useUserProfile"
 import { useSkillMasteryDialog } from "@features/skillsMasteryForm/hooks/useSkillMasteryDialog"
 import { RoutesPaths } from "@shared/config"
@@ -27,7 +31,7 @@ import { SkillsProps } from "./Skills.props"
 import { userSkillsStyles as styles } from "./Skills.styles"
 import SkillsCategory from "./skillsCategory/SkillsCategory"
 
-const Skills = ({ sourceSkills, type, id }: SkillsProps) => {
+const Skills = ({ sourceSkills, type, id, hasAccess }: SkillsProps) => {
 	const t = useTranslations()
 
 	const { skillCategories, error: skillsCategoriesError } = useSkillCategories()
@@ -58,7 +62,7 @@ const Skills = ({ sourceSkills, type, id }: SkillsProps) => {
 	const deleteCvSkills = async (names: string[]) => {
 		await deleteCvSkillQuery({
 			variables: {
-				cv: {
+				skill: {
 					cvId: id,
 					name: names,
 				},
@@ -67,17 +71,14 @@ const Skills = ({ sourceSkills, type, id }: SkillsProps) => {
 		addNotification(t("delete skill notification"), "success")
 	}
 
-	const error =
-		skillsCategoriesError ||
-		skillsError ||
-		deleteProfileSkillError ||
-		deleteCvSkillError
+	const errors = [
+		skillsCategoriesError,
+		skillsError,
+		deleteProfileSkillError,
+		deleteCvSkillError,
+	]
 
-	useEffect(() => {
-		if (error) {
-			addNotification(t(error.message), "error")
-		}
-	}, [error])
+	useErrorNotification(errors)
 
 	const openAddDialog = useSkillMasteryDialog({
 		type: type,
@@ -118,6 +119,7 @@ const Skills = ({ sourceSkills, type, id }: SkillsProps) => {
 				onAdd={openAddDialog}
 				isLoading={deleteProfileSkillLoading || deleteCvSkillLoading}
 				mode="skills"
+				hasAccess={hasAccess}
 			>
 				{Object.entries(skillsCategoryMap).map(
 					([categoryName, categorySkills]) => {
@@ -141,6 +143,7 @@ const UserSkills = () => {
 	const id = params?.id || useAuthUserId()
 	const user = useAuthUser()
 	const { profile, error } = useUserProfile(id)
+	const hasAccess = useIsAuthUserHasAccess()
 
 	useBreadcrumbs({
 		path: `${RoutesPaths.USERS}/${profile.id}`,
@@ -150,7 +153,14 @@ const UserSkills = () => {
 
 	useErrorNotification([error])
 
-	return <Skills sourceSkills={profile.skills} type="user" id={id} />
+	return (
+		<Skills
+			sourceSkills={profile.skills}
+			type="user"
+			id={id}
+			hasAccess={hasAccess}
+		/>
+	)
 }
 
 export const UserSkillsSuspense = () => {
@@ -166,10 +176,13 @@ export const CvSkills = () => {
 	const id = params?.id as string
 
 	const { cv, error } = useCv(id)
+	const hasAccess = useIsAuthUserHasAccess(cv)
 
 	useErrorNotification([error])
 
-	return <Skills sourceSkills={cv.skills} type="cv" id={id} />
+	return (
+		<Skills sourceSkills={cv.skills} type="cv" id={id} hasAccess={hasAccess} />
+	)
 }
 
 export const CvSkillsSuspense = () => {

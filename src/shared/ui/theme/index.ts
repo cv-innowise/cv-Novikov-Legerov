@@ -44,11 +44,13 @@ export const getTheme = () =>
 			MuiOutlinedInput: {
 				styleOverrides: {
 					root: {
-						padding: "12px",
-						borderRadius: 0,
+						minHeight: 47,
+						borderRadius: "0px",
 					},
 					input: {
-						padding: 0,
+						paddingTop: 0,
+						paddingBottom: 0,
+						boxSizing: 'border-box',
 					},
 					notchedOutline: {
 						borderWidth: "1px !important",

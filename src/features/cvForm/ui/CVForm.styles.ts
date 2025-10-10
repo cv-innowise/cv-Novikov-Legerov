@@ -8,7 +8,9 @@ export const styles = {
         gap: "32px"
     },
     updateButton: {
+        justifySelf: "end",
         alignSelf: "end",
-        width: "48%"
+        width: "48%",
+        margin: "16px 24px",
     }
 } satisfies SxThemeProps

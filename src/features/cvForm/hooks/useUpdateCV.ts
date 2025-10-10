@@ -1,5 +1,5 @@
 import { useMutation } from "@apollo/client/react"
-import { CREATE_CV } from "../api/createCV"
+import { UPDATE_CV } from "../api/updateCV"
 import { UpdateCvInput, Cv } from "cv-graphql"
 
 type UpdateCVArguments = {
@@ -11,5 +11,5 @@ type UpdateCVResult = {
 }
 
 export const useUpdateCV = () => {
-    return useMutation<UpdateCVResult, UpdateCVArguments>(CREATE_CV)
+    return useMutation<UpdateCVResult, UpdateCVArguments>(UPDATE_CV)
 }

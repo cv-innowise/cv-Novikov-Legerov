@@ -52,6 +52,7 @@
 	"add skill notification": "Навык успешно добавлен!",
 	"update skill notification": "Навык успешно обновлен!",
 	"delete skill notification": "Навыки успешно удалены!",
+	"Are you sure you want to delete": "Вы уверены, что хотите удалить ",
 
 	"Add language": "Добавить язык",
 	"Update language": "Обновить язык",
@@ -132,6 +133,13 @@
 		"delete": "Delete"
 	},
 	
+	"Cv": "резюме",
+	"cv": {
+		"details": "Детали",
+		"skills": "Навыки",
+		"projects": "Проекты",
+		"preview": "Предпросмотр"
+	},
 	"cvTable": {
 		"name": "Название",
 		"education": "Образование",
@@ -148,5 +156,22 @@
 	"Delete CV": "Удалить резюме",
 	"create cv notification": "Резюме успешно добавлено!",
 	"update cv notification": "Резюме успешно обновлено!",
-	"delete cv notification": "Резюме успешно удалено!"
+	"delete cv notification": "Резюме успешно удалено!",
+
+	"Project": "Проект",
+	"name": "Название",
+	"domain": "Домен",
+	"start date": "Дата начала",
+	"end date": "Дата окончания",
+	"description": "Описание",
+	"responsibilities": "Ответственность",
+	"environment": "Окружение",
+	"Till now": "По настоящее время",
+	"Add project": "Добавить проект",
+	"Update project": "Обновить проект",
+	"Delete project": "Удалить проект",
+	"add project notification": "Проект успешно добавлен!",
+	"update project notification": "Проект успешно обновлен!",
+	"delete project notification": "Проект успешно удален!",
+	"software engineer": "Инженер-программист"
 }

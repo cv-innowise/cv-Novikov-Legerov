@@ -6,4 +6,5 @@ export type BulkDeletionProps = {
     isLoading: boolean;
     onAdd: () => void;
     mode: "skills" | "languages";
+    hasAccess: boolean;
 }

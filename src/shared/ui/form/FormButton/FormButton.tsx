@@ -6,9 +6,20 @@ import { Button } from "@mui/material"
 import { FormButtonProps } from "./FormButton.props"
 
 export const FormButton: FC<FormButtonProps> = ({ children, ...props }) => {
+	const context = useFormContext()
+
+	if (!context) {
+		return (
+			<Button type="submit" variant="contained" disabled={props.disabled} {...props}>
+				{children}
+			</Button>
+		)
+	}
+
 	const {
 		formState: { isDirty },
-	} = useFormContext()
+	} = context
+	
 	return (
 		<Button
 			type="submit"
