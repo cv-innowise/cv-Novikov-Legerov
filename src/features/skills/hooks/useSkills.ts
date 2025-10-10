@@ -1,22 +1,14 @@
 "use client"
 
-import { Skill } from "cv-graphql";
-import { useQuery, useSuspenseQuery } from "@apollo/client/react";
-import SKILLS from "../api/skills";
+import { useSuspenseQuery } from "@apollo/client/react"
 
-type SkillsResult = {
-	skills: Skill[]
-}
-
-// export const useSkills = () => {
-// 	return useQuery<SkillsResult>(SKILLS)
-// }
+import { SKILLS, SkillsResult } from "@entities/skills"
 
 export const useSkills = () => {
 	const { data, error } = useSuspenseQuery<SkillsResult>(SKILLS)
 
 	return {
 		skills: data.skills,
-		error: error
+		error: error,
 	}
 }

@@ -68,7 +68,8 @@
 		"languages": "Languages",
 		"cvs": "CVs",
 		"departments": "Departments",
-		"positions": "Positions"
+		"positions": "Positions",
+		"projects": "Projects"
 	},
 
 	"departments": {
@@ -131,6 +132,19 @@
 		"name": "Name",
 		"delete": "Delete"
 	},
+
+	  "skillsTable": {
+		"name": "Name",
+		"category": "Category",
+		"delete": "Delete"
+	}
+,
+ "languagesTable": {
+		"name": "Name",
+		"nativeName": "Native Name",
+		"iso2": "ISO2",
+		"delete": "Delete"
+	},
 	
 	"cvTable": {
 		"name": "Название",
@@ -142,6 +156,15 @@
 		"education": "Образование",
 		"description": "Описание"
 	},
+		"projectsTable": {
+		"name":"Name",
+		"internalName": "Internal Name",
+		 "domain": "Domain",
+		 "startDate": "Start Date",
+		 "endDate": "End Date",
+		 "tillNow": "Till Now",
+		 "actions": "View"
+	}, 
 	"Add CV": "Добавить резюме",
 	"Update CV": "Обновить резюме",
 	"Details": "Детали",
