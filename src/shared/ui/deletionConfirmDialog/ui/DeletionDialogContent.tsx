@@ -8,6 +8,7 @@ import { DeletionDialogContentProps } from "./DeletionDialogContent.props"
 import { addNotification } from "@shared/ui/notification/notification.service"
 import { useEffect } from "react"
 import { hideDialog } from "@shared/ui/dialog/model/dialogService"
+import { useErrorNotification } from "@shared/hooks/useErrorNotification"
 
 export const DeletionConfirmDialogContent = ({
 	content,
@@ -19,16 +20,12 @@ export const DeletionConfirmDialogContent = ({
 
 	const handleDelete = () => {
 		deleteQuery().then(() => {
-			addNotification(t("delete cv notification"), "success")
+			addNotification(t("delete project notification"), "success")
 			hideDialog()
 		})
 	}
 
-	useEffect(() => {
-		if (error) {
-			addNotification(t(error.message), "error")
-		}
-	}, [error])
+	useErrorNotification([error])
 
 	return (
 		<>

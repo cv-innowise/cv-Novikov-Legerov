@@ -1,30 +1,55 @@
 "use client"
 
-import { MenuItem, TableCell, TableRow, Typography } from "@mui/material"
+import { MenuItem, Stack, TableCell, TableRow, Typography } from "@mui/material"
+import { RemoveCvProjectInput } from "cv-graphql"
 import { format } from "date-fns"
 import { useTranslations } from "next-intl"
+import { useParams } from "next/navigation"
 
-import { useDeleteCV } from "@features/cvDeletion/hooks/useDeleteCV"
+import { useCv } from "@entities/cv/hooks/useCv"
+import { useDeleteCvProject } from "@features/projectForm/hooks"
+import { useCvProjectDialog } from "@features/projectForm/hooks/useCvProjectFormDialog"
 import { ActionsMenu } from "@shared/ui/ActionsMenu"
 import { useDeletionConfirmDialog } from "@shared/ui/deletionConfirmDialog/hooks/useDeletionConfirmDialog"
 import { commonStyles } from "@shared/ui/theme/commonStyles"
+import { useProjects } from "@widgets/projectsTable/hooks/useProjects"
 
 import { ProjectRowProps } from "./ProjectRow.props"
 import { styles } from "./ProjectRow.styles"
+import { useErrorNotification } from "@shared/hooks/useErrorNotification"
 
 export const ProjectRow = ({ row: project }: ProjectRowProps) => {
 	const t = useTranslations()
-	const handleUpdateProject = () => {}
+	const params = useParams<{ id: string }>()
+	const id = params?.id as string
+	const { cv, error: cvError } = useCv(id)
+	const { projects, error: projectsError } = useProjects()
 
-	const handleDeleteProject = useDeletionConfirmDialog("Delete CV", {
+	const filteredProjects = projects.filter(
+		(pr) => !cv.projects?.find((cvPr) => cvPr.project.id === pr.id),
+	)
+
+	const handleUpdateProject = useCvProjectDialog({
+		mode: "update",
+		project: project,
+		projects: filteredProjects,
+	})
+
+	const handleDeleteProject = useDeletionConfirmDialog("Delete project", {
 		content: (
 			<>
-				{t("Are you sure you want to delete")} {t("Cv")} <b>{project.name}</b>?
+				{t("Are you sure you want to delete")} {t("Project")}{" "}
+				<b>{project.name}</b>?
 			</>
 		),
-		useDelete: useDeleteCV,
-		deletedObjectArgs: project.id,
+		useDelete: useDeleteCvProject,
+		deletedObjectArgs: {
+			cvId: id,
+			projectId: project.project.id,
+		} as RemoveCvProjectInput,
 	})
+
+	useErrorNotification([cvError, projectsError])
 
 	return (
 		<>
@@ -57,7 +82,13 @@ export const ProjectRow = ({ row: project }: ProjectRowProps) => {
 			</TableRow>
 			<TableRow>
 				<TableCell sx={styles.fullWidthCell} colSpan={5}>
-					<Typography sx={styles.responsibilities}>{project.responsibilities.join(" ")}</Typography>
+					<Stack flexDirection="row" flexWrap="wrap" gap="8px">
+						{project.responsibilities.map((resp) => (
+							<Typography key={resp} sx={styles.responsibilities}>
+								{resp}
+							</Typography>
+						))}
+					</Stack>
 				</TableCell>
 			</TableRow>
 		</>

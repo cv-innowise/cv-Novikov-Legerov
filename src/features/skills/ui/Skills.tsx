@@ -1,6 +1,6 @@
 "use client"
 
-import { Suspense, use, useEffect } from "react"
+import { Suspense } from "react"
 
 import { Stack } from "@mui/material"
 import { SkillMastery } from "cv-graphql"
@@ -9,7 +9,6 @@ import { useParams } from "next/navigation"
 
 import { useCv } from "@entities/cv/hooks/useCv"
 import {
-	useAuthUser,
 	useAuthUserId,
 	useIsAuthUserHasAccess,
 } from "@entities/user"

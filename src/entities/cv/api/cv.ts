@@ -17,6 +17,13 @@ export const CV = gql`
             }
             projects {
                 id
+                project {
+                    id
+                    name
+                    domain
+                    description
+                    environment
+                }
                 name
                 description
                 domain

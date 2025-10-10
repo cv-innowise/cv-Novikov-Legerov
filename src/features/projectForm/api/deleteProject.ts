@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client"
 
-export const UPDATE_CV_PROJECT = gql`
-	mutation UpdateCvProject($project: UpdateCvProjectInput!) {
-		updateCvProject(project: $project) {
+const REMOVE_CV_PROJECT = gql`
+	mutation RemoveCvProject($project: RemoveCvProjectInput!) {
+		removeCvProject(project: $project) {
 			id
 			projects {
 				id
@@ -21,3 +21,5 @@ export const UPDATE_CV_PROJECT = gql`
 		}
 	}
 `
+
+export default REMOVE_CV_PROJECT

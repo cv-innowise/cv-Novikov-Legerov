@@ -12,6 +12,6 @@ type UpdateCVProjectResult = {
     cv: Cv
 }
 
-export const useUpdateCVProject = () => {
+export const useUpdateCvProject = () => {
     return useMutation<UpdateCVProjectResult, UpdateCVProjectArguments>(UPDATE_CV_PROJECT)
 }

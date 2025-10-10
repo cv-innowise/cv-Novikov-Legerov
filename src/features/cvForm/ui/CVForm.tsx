@@ -106,7 +106,9 @@ export const CVForm = ({ mode, cv }: CVFormProps) => {
 					label={t("CVForm.education")}
 				/>
 				<FormTextField<CVFormInput>
-					sx={{ pointerEvents: !hasAccess ? "none" : "auto" }}
+					sx={{
+						pointerEvents: !hasAccess ? "none" : "auto",
+					}}
 					name="description"
 					id="description"
 					multiline

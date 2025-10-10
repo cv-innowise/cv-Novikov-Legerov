@@ -21,9 +21,6 @@ export const SkillsSelect = ({ skills, disabled }: SkillsSelectProps) => {
 			control={control}
 			render={({ field, fieldState: { error } }) => (
 				<Autocomplete
-					sx={{
-						"& .MuiInputBase-root": { height: "47px" },
-					}}
 					disabled={disabled}
 					{...field}
 					value={field.value || null}

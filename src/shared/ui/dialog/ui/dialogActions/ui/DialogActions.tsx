@@ -9,7 +9,6 @@ import { styles } from "./DialogActions.styles"
 import { FormButton } from "@shared/ui/form/FormButton"
 
 const DialogActions = ({ loaders, confirmButtonText, onConfirmButtonClick }: DialogActionsProps) => {
-	console.log(loaders)
 	const isLoading = loaders?.some(Boolean)
 	const t = useTranslations()
 

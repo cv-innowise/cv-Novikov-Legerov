@@ -145,17 +145,20 @@
 	"update cv notification": "Резюме успешно обновлено!",
 	"delete cv notification": "Резюме успешно удалено!",
 
-
-	"projectTable": {
-		"name": "Название",
-		"domain": "Домен",
-		"startDate": "Дата начала",
-		"endDate": "Дата окончания"
-	},
+	"Project": "Проект",
+	"name": "Название",
+	"domain": "Домен",
+	"start date": "Дата начала",
+	"end date": "Дата окончания",
+	"description": "Описание",
+	"responsibilities": "Ответственность",
+	"environment": "Окружение",
 	"Till now": "По настоящее время",
 	"Add project": "Добавить проект",
 	"Update project": "Обновить проект",
 	"Delete project": "Удалить проект",
-	"create projects notification": "Проект успешно добавлено!",
-	"update projects notification": "Проект успешно обновлено!"
+	"add project notification": "Проект успешно добавлен!",
+	"update project notification": "Проект успешно обновлен!",
+	"delete project notification": "Проект успешно удален!",
+	"software engineer": "Инженер-программист"
 }
