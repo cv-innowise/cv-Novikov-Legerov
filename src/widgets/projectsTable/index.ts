@@ -1,1 +1,0 @@
-export { ProjectsTableSuspense } from "./ui/RojectTable/ProjectsTable"

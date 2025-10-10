@@ -1,0 +1,1 @@
+export { CvProjectsTableSuspense } from "./ui/CvProjectTable/CvProjectsTable"

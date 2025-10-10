@@ -12,13 +12,13 @@ import { useCvProjectDialog } from "@features/projectForm/hooks/useCvProjectForm
 import { ActionsMenu } from "@shared/ui/ActionsMenu"
 import { useDeletionConfirmDialog } from "@shared/ui/deletionConfirmDialog/hooks/useDeletionConfirmDialog"
 import { commonStyles } from "@shared/ui/theme/commonStyles"
-import { useProjects } from "@widgets/projectsTable/hooks/useProjects"
+import { useProjects } from "@widgets/cvProjectsTable/hooks/useProjects"
 
-import { ProjectRowProps } from "./ProjectRow.props"
-import { styles } from "./ProjectRow.styles"
+import { CvProjectRowProps } from "./CvProjectRow.props"
+import { styles } from "./CvProjectRow.styles"
 import { useErrorNotification } from "@shared/hooks/useErrorNotification"
 
-export const ProjectRow = ({ row: project }: ProjectRowProps) => {
+export const CvProjectRow = ({ row: project }: CvProjectRowProps) => {
 	const t = useTranslations()
 	const params = useParams<{ id: string }>()
 	const id = params?.id as string
