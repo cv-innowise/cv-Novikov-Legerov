@@ -1,1 +1,1 @@
-export { ProjectsPage as default } from "@pages/projects"
+export { CvProjectsPage as default } from "@pages/cvProjects"

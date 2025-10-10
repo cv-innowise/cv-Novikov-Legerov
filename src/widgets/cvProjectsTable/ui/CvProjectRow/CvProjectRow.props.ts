@@ -1,5 +1,5 @@
 import { CvProject } from "cv-graphql"
 
-export type ProjectRowProps = {
+export type CvProjectRowProps = {
     row: CvProject
 }

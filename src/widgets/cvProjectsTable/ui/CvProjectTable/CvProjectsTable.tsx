@@ -5,23 +5,22 @@ import { Suspense } from "react"
 import { useParams } from "next/navigation"
 
 import { useCv } from "@entities/cv/hooks/useCv"
-import { useCVDialog } from "@features/cvForm/hooks/useCVFormDialog"
 import { useCvProjectDialog } from "@features/projectForm/hooks/useCvProjectFormDialog"
 import { useErrorNotification } from "@shared/hooks/useErrorNotification"
 import Loader from "@shared/ui/loader"
-import { projectHeadCells } from "@widgets/projectsTable/const/projectHeadCells"
-import { useProjects } from "@widgets/projectsTable/hooks/useProjects"
+import { projectHeadCells } from "@widgets/cvProjectsTable/const/projectHeadCells"
+import { useProjects } from "@widgets/cvProjectsTable/hooks/useProjects"
 import { BasicTable } from "@widgets/table"
 
-import { ProjectRow } from "../ProjectRow/ProjectRow"
+import { CvProjectRow } from "../CvProjectRow/CvProjectRow"
 
-const ProjectsTable = () => {
+const CvProjectsTable = () => {
 	const params = useParams<{ id: string }>()
 	const id = params?.id as string
 
 	const { cv, error: cvError } = useCv(id)
 	const { projects, error: projectsError } = useProjects()
-
+	console.log(cv.projects);
 	const filteredProjects = projects.filter(
 		(pr) => !cv.projects?.find((cvPr) => cvPr.project.id === pr.id),
 	)
@@ -36,7 +35,7 @@ const ProjectsTable = () => {
 	return (
 		<BasicTable
 			data={cv.projects || []}
-			RowComponent={ProjectRow}
+			RowComponent={CvProjectRow}
 			headCells={projectHeadCells}
 			addItemHandle={addCvProject}
 			addButtonText="Add project"
@@ -44,10 +43,10 @@ const ProjectsTable = () => {
 	)
 }
 
-export const ProjectsTableSuspense = () => {
+export const CvProjectsTableSuspense = () => {
 	return (
 		<Suspense fallback={<Loader />}>
-			<ProjectsTable />
+			<CvProjectsTable />
 		</Suspense>
 	)
 }
