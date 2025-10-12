@@ -159,8 +159,12 @@
 	"delete cv notification": "Резюме успешно удалено!",
 
 	"Project": "Проект",
+	"projects": "Проекты",
 	"name": "Название",
 	"domain": "Домен",
+	"domains": "Домены",
+	"roles": "Роли",
+	"period": "Период",
 	"start date": "Дата начала",
 	"end date": "Дата окончания",
 	"description": "Описание",
@@ -173,5 +177,6 @@
 	"add project notification": "Проект успешно добавлен!",
 	"update project notification": "Проект успешно обновлен!",
 	"delete project notification": "Проект успешно удален!",
-	"software engineer": "Инженер-программист"
+	"software engineer": "Инженер-программист",
+	"export pdf": "Экспорт в PDF"
 }

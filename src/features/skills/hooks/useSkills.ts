@@ -8,10 +8,6 @@ type SkillsResult = {
 	skills: Skill[]
 }
 
-// export const useSkills = () => {
-// 	return useQuery<SkillsResult>(SKILLS)
-// }
-
 export const useSkills = () => {
 	const { data, error } = useSuspenseQuery<SkillsResult>(SKILLS)
 
