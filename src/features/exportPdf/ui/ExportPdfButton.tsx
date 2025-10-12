@@ -1,15 +1,16 @@
 import { Button } from "@mui/material"
 import { useTranslations } from "next-intl"
 
-import { styles } from "./ExportPdfButton.styles"
-import { useExportPdf } from "../hooks/useExportPdf"
-import { exportPdfProps } from "./ExportPdfButtonProps"
-import { prepareHtml } from "../lib/prepareHtml"
-import { exportPdf } from "../lib/exportPdf"
-import Loader from "@shared/ui/loader"
 import { useErrorNotification } from "@shared/hooks/useErrorNotification"
+import Loader from "@shared/ui/loader"
 
-export const ExportPdfButton = ({previewRef, cvName}: exportPdfProps) => {
+import { useExportPdf } from "../hooks/useExportPdf"
+import { exportPdf } from "../lib/exportPdf"
+import { prepareHtml } from "../lib/prepareHtml"
+import { styles } from "./ExportPdfButton.styles"
+import { exportPdfProps } from "./ExportPdfButtonProps"
+
+export const ExportPdfButton = ({ previewRef, cvName }: exportPdfProps) => {
 	const t = useTranslations()
 	const [exportPdfQuery, { loading, error }] = useExportPdf()
 
@@ -30,7 +31,7 @@ export const ExportPdfButton = ({previewRef, cvName}: exportPdfProps) => {
 					},
 				},
 			},
-		}).then(({data}) => {
+		}).then(({ data }) => {
 			data && exportPdf({ name: cvName, base64: data.exportPdf })
 		})
 	}
@@ -38,8 +39,13 @@ export const ExportPdfButton = ({previewRef, cvName}: exportPdfProps) => {
 	useErrorNotification([error])
 
 	return (
-		<Button onClick={handleExport} sx={styles.button} variant="outlined">
-			{loading ? <Loader /> : t("export pdf")}
+		<Button
+			onClick={handleExport}
+			disabled={loading}
+			sx={styles.button}
+			variant="outlined"
+		>
+			{loading ? t("export process") : t("export pdf")}
 		</Button>
 	)
 }

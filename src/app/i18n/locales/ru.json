@@ -178,5 +178,6 @@
 	"update project notification": "Проект успешно обновлен!",
 	"delete project notification": "Проект успешно удален!",
 	"software engineer": "Инженер-программист",
-	"export pdf": "Экспорт в PDF"
+	"export pdf": "Экспорт в PDF",
+	"export process": "Идет экспорт резюме..."
 }
