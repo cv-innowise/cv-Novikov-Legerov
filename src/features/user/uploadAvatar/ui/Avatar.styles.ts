@@ -1,13 +1,18 @@
+import { Theme } from "@mui/material"
+
 import { SxThemeProps } from "@shared/types/sx.types"
 
-export const avatarStyles = {
-	container: {
+export const avatarStyles: SxThemeProps = {
+	container: (theme: Theme) => ({
 		display: "flex",
 		gap: "60px",
 		alignItems: "center",
 		justifyContent: "center",
 		marginBottom: "32px",
-	},
+		[theme.breakpoints.down("sm")]: {
+			flexDirection: "column",
+		},
+	}),
 
 	avatar: {
 		width: 120,
@@ -33,4 +38,4 @@ export const avatarStyles = {
 	fileRestrictions: {
 		color: "secondary.main",
 	},
-} satisfies SxThemeProps
+}

@@ -38,7 +38,10 @@ export const lightPalette: PaletteOptions = {
 		primary: "#2e2e2eff",
 	},
 	icon: {
-		color: "#2E2E2E",
+		color: "#00000099",
+		active: {
+			color: "#2E2E2E",
+		},
 	},
 }
 

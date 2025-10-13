@@ -16,6 +16,7 @@ import { useRouter } from "next/navigation"
 import { useUserDialog } from "@features/user/updateUser/hooks/useUserDialog"
 import { RoutesPaths } from "@shared/config"
 import { ActionsMenu } from "@shared/ui/ActionsMenu"
+import { commonStyles } from "@shared/ui/theme/commonStyles"
 
 import { UserItemProps } from "./UserItem.props"
 
@@ -42,10 +43,14 @@ export const UserItem: FC<UserItemProps> = ({ row: user, currentUserId }) => {
 				</Avatar>
 			</TableCell>
 			<TableCell>{user.profile.first_name}</TableCell>
-			<TableCell>{user.profile.last_name}</TableCell>
-			<TableCell>{user.email}</TableCell>
+			<TableCell sx={commonStyles.disappearance("sm")}>
+				{user.profile.last_name}
+			</TableCell>
+			<TableCell sx={commonStyles.disappearance("md")}>{user.email}</TableCell>
 			<TableCell>{user.department?.name}</TableCell>
-			<TableCell>{user.position?.name}</TableCell>
+			<TableCell sx={commonStyles.disappearance("md")}>
+				{user.position?.name}
+			</TableCell>
 			<TableCell>
 				{isCurrentUser ? (
 					<ActionsMenu>

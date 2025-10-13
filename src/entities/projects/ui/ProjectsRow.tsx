@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation"
 
 import { RoutesPaths } from "@shared/config"
 import { ActionsMenu } from "@shared/ui/ActionsMenu"
+import { commonStyles } from "@shared/ui/theme/commonStyles"
 
 import { ProjectsRowProps } from "./ProjectsRow.props"
 
@@ -24,9 +25,15 @@ export const ProjectsRow: FC<ProjectsRowProps> = ({ row: project }) => {
 		<TableRow>
 			<TableCell>{project.name}</TableCell>
 			<TableCell>{project.internal_name}</TableCell>
-			<TableCell>{project.domain}</TableCell>
-			<TableCell>{project.start_date}</TableCell>
-			<TableCell>{project.end_date || t("projectsTable.tillNow")}</TableCell>
+			<TableCell sx={commonStyles.disappearance("sm")}>
+				{project.domain}
+			</TableCell>
+			<TableCell sx={commonStyles.disappearance("md")}>
+				{project.start_date}
+			</TableCell>
+			<TableCell sx={commonStyles.disappearance("md")}>
+				{project.end_date || t("projectsTable.tillNow")}
+			</TableCell>
 			<TableCell align="right">
 				<ActionsMenu>
 					<MenuItem onClick={hadnleProject}>

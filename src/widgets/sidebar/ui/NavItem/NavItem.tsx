@@ -12,33 +12,17 @@ import { navItemStyles } from "./NavItem.styles"
 export const NavItem: FC<NavItemProps> = ({ to, label, icon, id }) => {
 	const pathname = usePathname()
 
-	const isActive = pathname === to || pathname?.startsWith(`${to}/`)
+	const isActive = !!(pathname === to || pathname?.startsWith(`${to}/`))
 
 	return (
 		<ListItemButton
-			sx={{
-				...navItemStyles.container,
-				...(isActive && navItemStyles.container.active),
-			}}
+			sx={navItemStyles.container(isActive)}
 			id={id}
 			component={Link}
 			href={to}
 		>
-			<ListItemIcon
-				sx={{
-					...navItemStyles.icon,
-					...(isActive && navItemStyles.icon.active),
-				}}
-			>
-				{icon}
-			</ListItemIcon>
-			<ListItemText
-				sx={{
-					...navItemStyles.text,
-					...(isActive && navItemStyles.text.active),
-				}}
-				primary={label}
-			/>
+			<ListItemIcon sx={navItemStyles.icon(isActive)}>{icon}</ListItemIcon>
+			<ListItemText sx={navItemStyles.text(isActive)} primary={label} />
 		</ListItemButton>
 	)
 }

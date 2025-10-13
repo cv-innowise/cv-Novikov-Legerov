@@ -19,15 +19,18 @@ export const projectsHeadCells: HeadCell<Project>[] = [
 		id: "3",
 		label: "projectsTable.domain",
 		getValue: (row) => row.domain,
+		disappearance: "sm",
 	},
 	{
 		id: "4",
 		label: "projectsTable.startDate",
 		getValue: (row) => row.start_date,
+		disappearance: "md",
 	},
 	{
 		id: "5",
 		label: "projectsTable.endDate",
 		getValue: (row) => row.end_date,
+		disappearance: "md",
 	},
 ]

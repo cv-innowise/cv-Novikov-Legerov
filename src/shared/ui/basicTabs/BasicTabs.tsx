@@ -17,7 +17,12 @@ export const BasicTabs: FC<BasicTabsProps> = ({ tabs }) => {
 	const currentIndex = tabs.findIndex(({ to }) => pathname === to)
 
 	return (
-		<Tabs value={currentIndex !== -1 ? currentIndex : 0}>
+		<Tabs
+			variant="scrollable"
+			scrollButtons
+			allowScrollButtonsMobile
+			value={currentIndex !== -1 ? currentIndex : 0}
+		>
 			{tabs.map(({ id, label, to }) => (
 				<Tab
 					component={Link}

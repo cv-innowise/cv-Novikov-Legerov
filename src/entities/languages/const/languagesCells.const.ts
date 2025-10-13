@@ -19,5 +19,6 @@ export const langualesHeadCells: HeadCell<Language>[] = [
 		id: "3",
 		label: "languagesTable.iso2",
 		getValue: (row) => row.iso2,
+		disappearance: "sm",
 	},
 ]
