@@ -45,7 +45,7 @@ export const UserMenu: FC<UserMenuProps> = ({
 				</ListItemIcon>
 				<ListItemText>{t("user.menu.profile")}</ListItemText>
 			</MenuItem>
-			<MenuItem component={Link} href="" onClick={onClose}>
+			<MenuItem component={Link} href={RoutesPaths.SETTINGS} onClick={onClose}>
 				<ListItemIcon>
 					<Settings />
 				</ListItemIcon>

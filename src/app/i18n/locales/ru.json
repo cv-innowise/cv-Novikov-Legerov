@@ -37,6 +37,10 @@
 	"Cancel": "Отмена",
 	"Confirm": "Подтвердить",
 	"Update": "Обновить",
+	"system": "Системная",
+	"light": "Светлая",
+	"dark": "Темная",
+	"color theme": "Цветовая тема",
 
 	"Add skill": "Добавить навык",
 	"Update skill": "Обновить навык",
@@ -59,95 +63,96 @@
 	"Remove languages": "Удалить языки",
 	"Language": "Язык",
 	"Language proficiency": "Уровень знания языка",
-	"add language notification": "Языки успешно добавлен!",
+	"add language notification": "Язык успешно добавлен!",
 	"update language notification": "Язык успешно обновлен!",
 	"delete language notification": "Языки успешно удалены!",
-
+	"english": "Английский",
+	"russian": "Русский",
+	
 	"navigation": {
-		"employees": "Employees",
-		"skills": "Skills",
-		"languages": "Languages",
-		"cvs": "CVs",
-		"departments": "Departments",
-		"positions": "Positions",
-		"projects": "Projects"
+		"employees": "Сотрудники",
+		"skills": "Навыки",
+		"languages": "Языки",
+		"cvs": "Резюме",
+		"departments": "Отделы",
+		"positions": "Должности",
+		"projects": "Проекты"
 	},
 
 	"departments": {
-		"label": "Department",
-		"nodepartment": "No department"
+		"label": "Отдел",
+		"nodepartment": "Нет отдела"
 	},
 	"positions": {
-		"label": "Positions",
-		"noposition": "No position"
+		"label": "Должность",
+		"noposition": "Нет должности"
 	},
 	"userForm": {
-		"title": "Update user",
-		"firstName": "First name",
-		"lastName": "Last name",
-		"save": "Save",
-		"department": "Department",
-		"position": "Position",
-		"btn": "Update",
-		"success": "Profile was updated"
+		"title": "Обновить пользователя",
+		"firstName": "Имя",
+		"lastName": "Фамилия",
+		"save": "Сохранить",
+		"department": "Отдел",
+		"position": "Должность",
+		"btn": "Обновить",
+		"success": "Профиль был обновлен"
 	},
 	"avatar": {
-		"alt": "User avatar",
-		"uploadText": "Upload avatar image",
-		"fileRestrictions": "png, jpg or gif no more than 0.5MB",
-		"uploadSuccess": "Avatar was uploaded successfully",
-		"deleteSuccess": "Avatar was deleted successfully"
+		"alt": "Аватар пользователя",
+		"uploadText": "Загрузить изображение аватара",
+		"fileRestrictions": "png, jpg или gif не более 0.5 МБ",
+		"uploadSuccess": "Аватар успешно загружен",
+		"deleteSuccess": "Аватар успешно удален"
 	},
 
 	"user": {
-		"profile": "Profile",
-		"skills": "Skills",
-		"data": "A member since",
-		"languages": "Languages",
+		"profile": "Профиль",
+		"skills": "Навыки",
+		"data": "Участник с",
+		"languages": "Языки",
 		"menu": {
-			"profile": "Profile",
-			"settings": "Settings",
-			"logout": "Logout"
+			"profile": "Профиль",
+			"settings": "Настройки",
+			"logout": "Выйти"
 		},
-		"update": "Update user",
-		"delete": "Delete user"
+		"update": "Обновить пользователя",
+		"delete": "Удалить пользователя"
 	},
 
 	"table": {
-		"firstName": "First Name",
-		"lastName": "Last Name",
-		"email": "Email",
-		"department": "Department",
-		"position": "Position",
-		"noResultsFound": "No results found",
-		"tryAnotherSearch": "Try another search, check the spelling or use a broader term",
-		"resetSearch": "Reset search"
+		"firstName": "Имя",
+		"lastName": "Фамилия",
+		"email": "Электронная почта",
+		"department": "Отдел",
+		"position": "Должность",
+		"noResultsFound": "Результатов не найдено",
+		"tryAnotherSearch": "Попробуйте другой запрос, проверьте правописание или используйте более общий термин",
+		"resetSearch": "Сбросить поиск"
 	},
 
 	"depatmentsTable": {
-		"name": "Name",
-		"delete": "Delete"
+		"name": "Название",
+		"delete": "Удалить"
 	},
 
-	 "positionsTable": {
-		"name": "Name",
-		"delete": "Delete"
+	"positionsTable": {
+		"name": "Название",
+		"delete": "Удалить"
 	},
 
-	  "skillsTable": {
-		"name": "Name",
-		"category": "Category",
-		"delete": "Delete"
-	}
-,
- "languagesTable": {
-		"name": "Name",
-		"nativeName": "Native Name",
-		"iso2": "ISO2",
-		"delete": "Delete"
+	"skillsTable": {
+		"name": "Название",
+		"category": "Категория",
+		"delete": "Удалить"
 	},
-	
-	"Cv": "резюме",
+	"languagesTable": {
+		"name": "Название",
+		"nativeName": "Родное название",
+		"iso2": "Код ISO2",
+		"delete": "Удалить"
+	},
+
+	"Cv": "Резюме",
 	"cv": {
 		"details": "Детали",
 		"skills": "Навыки",
@@ -164,15 +169,15 @@
 		"education": "Образование",
 		"description": "Описание"
 	},
-		"projectsTable": {
-		"name":"Name",
-		"internalName": "Internal Name",
-		 "domain": "Domain",
-		 "startDate": "Start Date",
-		 "endDate": "End Date",
-		 "tillNow": "Till Now",
-		 "actions": "View"
-	}, 
+	"projectsTable": {
+		"name": "Название",
+		"internalName": "Внутреннее название",
+		"domain": "Домен",
+		"startDate": "Дата начала",
+		"endDate": "Дата окончания",
+		"tillNow": "По настоящее время",
+		"actions": "Просмотр"
+	},
 	"Add CV": "Добавить резюме",
 	"Update CV": "Обновить резюме",
 	"Details": "Детали",
