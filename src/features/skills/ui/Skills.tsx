@@ -2,7 +2,7 @@
 
 import { Suspense } from "react"
 
-import { Stack } from "@mui/material"
+import { Box, Stack } from "@mui/material"
 import { SkillMastery } from "cv-graphql"
 import { useTranslations } from "next-intl"
 import { useParams } from "next/navigation"
@@ -113,7 +113,7 @@ const Skills = ({ sourceSkills, type, id, hasAccess }: SkillsProps) => {
 	}
 
 	return (
-		<Stack sx={styles.container}>
+		<Box sx={styles.container}>
 			<BulkDeletion
 				onDelete={type === "user" ? deleteProfileSkills : deleteCvSkills}
 				onAdd={openAddDialog}
@@ -134,7 +134,7 @@ const Skills = ({ sourceSkills, type, id, hasAccess }: SkillsProps) => {
 					},
 				)}
 			</BulkDeletion>
-		</Stack>
+		</Box>
 	)
 }
 

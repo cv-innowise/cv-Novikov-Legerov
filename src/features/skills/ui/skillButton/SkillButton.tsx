@@ -11,7 +11,6 @@ import { BulkDeletionContext } from "@shared/ui/bulk-deletion/BulkDeletion"
 import ContextualActionButton from "@shared/ui/contextualActionButton/ContextualActionButton"
 
 import { SkillButtonProps } from "./SkillButton.props"
-import { styles } from "./SkillButton.styles"
 import { usePathname } from "next/navigation"
 
 const SkillButton = ({ skill, skills }: SkillButtonProps) => {
@@ -33,7 +32,6 @@ const SkillButton = ({ skill, skills }: SkillButtonProps) => {
 			color="secondary"
 			item={skill}
 			openDialog={openDialog}
-			sx={styles.button}
 		>
 			<LinearProgress
 				variant="determinate"

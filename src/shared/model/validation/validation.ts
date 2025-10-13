@@ -104,7 +104,7 @@ export function CvProjectFormValidation(
 			}>()
 			.required(t("errors.required")),
 		start_date: yup.date().required(t("errors.required")),
-		end_date: yup.date().required(t("errors.required")),
+		end_date: yup.date().nullable().defined(),
 		responsibilities: yup.string().required(t("errors.required")),
 	})
 }
