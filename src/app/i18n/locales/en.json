@@ -1,134 +1,211 @@
 {
 	"auth": {
-		"loginTab": "ВОЙТИ",
-		"signupTab": "СОЗДАТЬ",
+		"loginTab": "LOGIN",
+		"signupTab": "SIGN UP",
 		"login": {
-			"title": "С возвращением",
-			"subtitle": "Рады вас видеть! Войдите, чтобы продолжить",
-			"button": "ВОЙТИ",
-			"link": "ЗАБЫЛИ ПАРОЛЬ"
+			"title": "Welcome Back",
+			"subtitle": "Glad to see you! Log in to continue",
+			"button": "LOGIN",
+			"link": "FORGOT PASSWORD"
 		},
 		"signup": {
-			"title": "Зарегистрируйтесь",
-			"subtitle": "Добро пожаловать! Создайте аккаунт, чтобы продолжить",
-			"button": "СОЗДАТЬ АККАУНТ",
-			"link": "У МЕНЯ ЕСТЬ АККАУНТ"
-		},
-		"errors": {
-			"required": "Обязательное поле",
-			"minLength": "Должно быть как минимум {count} символов",
-			"maxLength": "Должно быть не более {count} символов",
-			"emailInvalid": "Неверный формат email адреса",
-			"passwordInvalid": "Пароль должен содержать как минимум одну большую букву, одну маленькую букву, одну цифру и один специальный символ"
+			"title": "Sign Up",
+			"subtitle": "Welcome! Create an account to continue",
+			"button": "CREATE ACCOUNT",
+			"link": "I ALREADY HAVE AN ACCOUNT"
 		}
 	},
+	"errors": {
+		"required": "Required field",
+		"minLength": "Must be at least {count} characters",
+		"maxLength": "Must be no more than {count} characters",
+		"emailInvalid": "Invalid email format",
+		"passwordInvalid": "Password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character"
+	},
 	"forgot-password": {
-		"title": "Забыли пароль",
-		"subtitle": "Мы отправим вам письмо с дальнейшими инструкциями",
-		"button": "СБРОСИТЬ ПАРОЛЬ",
-		"link": "ОТМЕНА",
-		"message": "Проверьте свой почтовый ящик",
-		"Failed to send email": "Не удалось отправить письмо"
+		"title": "Forgot Password",
+		"subtitle": "We will send you an email with further instructions",
+		"button": "RESET PASSWORD",
+		"link": "CANCEL",
+		"message": "Check your email inbox",
+		"Failed to send email": "Failed to send email"
 	},
-	"email": "Почта",
-	"password": "Пароль",
-	"Invalid credentials": "Неверный логин или пароль",
+	"email": "Email",
+	"password": "Password",
+	"Invalid credentials": "Invalid email or password",
+	"Delete": "Delete",
+	"Cancel": "Cancel",
+	"Confirm": "Confirm",
+	"Update": "Update",
+	"system": "System",
+	"light": "Light",
+	"dark": "Dark",
+	"color theme": "Color Theme",
 
-	"navigation": {
-    "employees": "Employees",
-    "skills": "Skills",
-    "languages": "Languages",
-    "cvs": "CVs",
-	"departments": "Departments",
-	"positions": "Positions",
-    "projects": "Projects"
-  }
-,
-   "user": {
-    "profile": "Profile",
-    "skills": "Skills",
-	"data": "A member since",
-    "languages": "Languages",
-	"menu": {
-        "profile": "Profile",
-		"settings": "Settings",
-        "logout": "Logout"
-	},
-	"update": "Update user",
-    "delete": "Delete user"
+	"Add skill": "Add skill",
+	"Update skill": "Update skill",
+	"Remove skills": "Remove skills",
+	"Skills": "Skills",
+	"Skill": "Skill",
+	"Skill mastery": "Skill mastery",
+	"Novice": "Novice",
+	"Advanced": "Advanced",
+	"Competent": "Competent",
+	"Proficient": "Proficient",
+	"Expert": "Expert",
+	"add skill notification": "Skill successfully added!",
+	"update skill notification": "Skill successfully updated!",
+	"delete skill notification": "Skills successfully deleted!",
+	"Are you sure you want to delete": "Are you sure you want to delete ",
 
-  },
-    "departments": {
-	  "label": "Department",
-	  "nodepartment": "No department"
-  },
-
-  "positions": {
-	  "label": "Positions",
-	  "noposition": "No position"
-  },
-  "userForm": {
-	"title": "Update user",
-	"firstName": "First name",
-    "lastName": "Last name",
-    "save": "Save",
-    "department": "Department",
-    "position": "Position",
-	"btn": "Update",
-	"success": "Profile was updated"
-   },
-
-   "avatar": {
-    "alt": "User avatar",
-    "uploadText": "Upload avatar image",
-    "fileRestrictions": "png, jpg or gif no more than 0.5MB",
-	"uploadSuccess": "Avatar was uploaded successfully",
-    "deleteSuccess": "Avatar was deleted successfully"
-  },
-
-  "table": {
-    "firstName": "First Name",
-    "lastName": "Last Name",
-    "email": "Email",
-    "department": "Department",
-    "position": "Position",
-    "noResultsFound": "No results found",
-    "tryAnotherSearch": "Try another search, check the spelling or use a broader term",
-    "resetSearch": "Reset search"
-
-  },
-
-  "depatmentsTable": {
-		"name": "Name",
-		"delete": "Delete"
-	},
-
+	"Add language": "Add language",
+	"Update language": "Update language",
+	"Remove languages": "Remove languages",
+	"Language": "Language",
+	"Language proficiency": "Language proficiency",
+	"add language notification": "Language successfully added!",
+	"update language notification": "Language successfully updated!",
+	"delete language notification": "Languages successfully deleted!",
+	"english": "English",
+	"russian": "Russian",
 	
-  "positionsTable": {
+	"navigation": {
+		"employees": "Employees",
+		"skills": "Skills",
+		"languages": "Languages",
+		"cvs": "CVs",
+		"departments": "Departments",
+		"positions": "Positions",
+		"projects": "Projects"
+	},
+
+	"departments": {
+		"label": "Department",
+		"nodepartment": "No department"
+	},
+	"positions": {
+		"label": "Position",
+		"noposition": "No position"
+	},
+	"userForm": {
+		"title": "Update user",
+		"firstName": "First name",
+		"lastName": "Last name",
+		"save": "Save",
+		"department": "Department",
+		"position": "Position",
+		"btn": "Update",
+		"success": "Profile has been updated"
+	},
+	"avatar": {
+		"alt": "User avatar",
+		"uploadText": "Upload avatar image",
+		"fileRestrictions": "png, jpg, or gif up to 0.5 MB",
+		"uploadSuccess": "Avatar uploaded successfully",
+		"deleteSuccess": "Avatar deleted successfully"
+	},
+
+	"user": {
+		"profile": "Profile",
+		"skills": "Skills",
+		"data": "Member since",
+		"languages": "Languages",
+		"menu": {
+			"profile": "Profile",
+			"settings": "Settings",
+			"logout": "Logout"
+		},
+		"update": "Update user",
+		"delete": "Delete user"
+	},
+
+	"table": {
+		"firstName": "First name",
+		"lastName": "Last name",
+		"email": "Email",
+		"department": "Department",
+		"position": "Position",
+		"noResultsFound": "No results found",
+		"tryAnotherSearch": "Try another search, check the spelling, or use a more general term",
+		"resetSearch": "Reset search"
+	},
+
+	"depatmentsTable": {
 		"name": "Name",
 		"delete": "Delete"
 	},
 
-    "skillsTable": {
+	"positionsTable": {
+		"name": "Name",
+		"delete": "Delete"
+	},
+
+	"skillsTable": {
 		"name": "Name",
 		"category": "Category",
 		"delete": "Delete"
 	},
 	"languagesTable": {
 		"name": "Name",
-		"nativeName": "Native Name",
-		"iso2": "ISO2",
+		"nativeName": "Native name",
+		"iso2": "ISO2 code",
 		"delete": "Delete"
 	},
-	"projectsTable": {
-		"name":"Name",
-		"internalName": "Internal Name",
-		 "domain": "Domain",
-		 "startDate": "Start Date",
-		 "endDate": "End Date",
-		 "tillNow": "Till Now",
-		  "actions": "View"
-	} 
 
-	
+	"Cv": "CV",
+	"cv": {
+		"details": "Details",
+		"skills": "Skills",
+		"projects": "Projects",
+		"preview": "Preview"
+	},
+	"cvTable": {
+		"name": "Name",
+		"education": "Education",
+		"employee": "Employee"
+	},
+	"CVForm": {
+		"name": "Name",
+		"education": "Education",
+		"description": "Description"
+	},
+	"projectsTable": {
+		"name": "Name",
+		"internalName": "Internal name",
+		"domain": "Domain",
+		"startDate": "Start date",
+		"endDate": "End date",
+		"tillNow": "Till now",
+		"actions": "View"
+	},
+	"Add CV": "Add CV",
+	"Update CV": "Update CV",
+	"Details": "Details",
+	"Delete CV": "Delete CV",
+	"create cv notification": "CV successfully added!",
+	"update cv notification": "CV successfully updated!",
+	"delete cv notification": "CV successfully deleted!",
+
+	"Project": "Project",
+	"projects": "Projects",
+	"name": "Name",
+	"domain": "Domain",
+	"domains": "Domains",
+	"roles": "Roles",
+	"period": "Period",
+	"start date": "Start date",
+	"end date": "End date",
+	"description": "Description",
+	"responsibilities": "Responsibilities",
+	"environment": "Environment",
+	"Till now": "Till now",
+	"Add project": "Add project",
+	"Update project": "Update project",
+	"Delete project": "Delete project",
+	"add project notification": "Project successfully added!",
+	"update project notification": "Project successfully updated!",
+	"delete project notification": "Project successfully deleted!",
+	"software engineer": "Software engineer",
+	"export pdf": "Export to PDF",
+	"export process": "Exporting CV..."
 }

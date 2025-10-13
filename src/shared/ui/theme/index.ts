@@ -1,4 +1,4 @@
-import { createTheme, PaletteMode } from "@mui/material/styles"
+import { createTheme } from "@mui/material/styles"
 import { Roboto } from "next/font/google"
 
 import { darkPalette, lightPalette } from "./palette"

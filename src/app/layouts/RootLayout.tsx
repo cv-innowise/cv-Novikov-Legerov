@@ -14,6 +14,7 @@ import StoreProvider from "@app/providers/store/provider/StoreProvider"
 import { getAuthUserServerSide } from "@shared/lib/serverSideCookiesService"
 import Dialog from "@shared/ui/dialog/ui/Dialog"
 import Notification from "@shared/ui/notification/Notification"
+import {getLocale} from 'next-intl/server'
 
 export const metadata: Metadata = {
 	title: "CV manager",
@@ -24,8 +25,10 @@ export const RootLayout = async ({
 	children,
 }: Readonly<{ children: ReactNode }>) => {
 	const user = await getAuthUserServerSide()
+	const locale = await getLocale()
+
 	return (
-		<html lang="en" suppressHydrationWarning>
+		<html lang={locale} suppressHydrationWarning>
 			<head />
 			<body>
 				<NextIntlClientProvider>
