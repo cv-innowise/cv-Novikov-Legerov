@@ -8,7 +8,7 @@ export const userHeadCells: HeadCell<User>[] = [
 	{
 		id: "0",
 		label: "",
-		getValue: (row) => "",
+		getValue: () => "",
 	},
 	{
 		id: "1",
@@ -19,11 +19,13 @@ export const userHeadCells: HeadCell<User>[] = [
 		id: "2",
 		label: "table.lastName",
 		getValue: (row) => row.profile.last_name,
+		disappearance: "sm",
 	},
 	{
 		id: "3",
 		label: "table.email",
 		getValue: (row) => row.email,
+		disappearance: "md",
 	},
 	{
 		id: "4",
@@ -34,5 +36,6 @@ export const userHeadCells: HeadCell<User>[] = [
 		id: "5",
 		label: "table.position",
 		getValue: (row) => row.position?.name,
+		disappearance: "md",
 	},
 ]

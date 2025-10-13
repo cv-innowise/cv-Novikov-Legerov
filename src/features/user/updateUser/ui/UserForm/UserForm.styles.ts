@@ -1,12 +1,15 @@
+import { Theme } from "@mui/material"
+
 import { SxThemeProps } from "@shared/types/sx.types"
 
-export const userFormStyles = {
+export const userFormStyles: SxThemeProps = {
 	wrapper: {
 		width: "100%",
 		display: "flex",
 		justifyContent: "center",
 	},
-	form: {
+
+	form: (theme: Theme) => ({
 		maxWidth: "852px",
 		width: "100%",
 		display: "grid",
@@ -14,8 +17,15 @@ export const userFormStyles = {
 		columnGap: 32,
 		rowGap: 16,
 		gap: "36px",
-	},
-	btn: {
+		[theme.breakpoints.down("md")]: {
+			gridTemplateColumns: "1fr",
+		},
+	}),
+	btn: (theme: Theme) => ({
 		gridColumn: "2/3",
-	},
-} satisfies SxThemeProps
+		[theme.breakpoints.down("md")]: {
+			gridColumn: "1",
+			width: "100%",
+		},
+	}),
+}
