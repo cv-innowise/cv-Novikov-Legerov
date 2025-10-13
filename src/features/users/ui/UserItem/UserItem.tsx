@@ -22,7 +22,7 @@ import { UserItemProps } from "./UserItem.props"
 export const UserItem: FC<UserItemProps> = ({ row: user, currentUserId }) => {
 	const t = useTranslations()
 	const router = useRouter()
-	const isCurrentUser = user.id === currentUserId
+	const isCurrentUser = user.id == currentUserId
 
 	const openUserDialog = useUserDialog({ user })
 

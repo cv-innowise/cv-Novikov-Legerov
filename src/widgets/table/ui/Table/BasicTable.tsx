@@ -1,9 +1,11 @@
 "use client"
 
-import { useMemo, useState } from "react"
+import { Suspense, useMemo, useState } from "react"
 import { useForm } from "react-hook-form"
 
-import { Table, TableContainer } from "@mui/material"
+import { Add } from "@mui/icons-material"
+import { Box, Button, Stack, Table, TableContainer, Typography } from "@mui/material"
+import { useTranslations } from "next-intl"
 
 import { useDebounce } from "@shared/hooks"
 import { SearchInput } from "@shared/ui/SearchInput"
@@ -11,16 +13,20 @@ import { SortOrder } from "@widgets/table/const/sort.const"
 
 import { TableBody } from "../TableBody/TableBody"
 import { TableHeader } from "../TableHeader/TableHeader"
+import { TableLoader } from "../TableLoader/TableLoader"
 import { BasicTableProps } from "./BasicTable.props"
+import { styles } from "./BasicTable.styles"
 
 export function BasicTable<T extends { id: string }>({
 	headCells,
 	data,
 	RowComponent,
+	addItemHandle,
+	addButtonText,
 }: BasicTableProps<T>) {
 	const [order, setOrder] = useState<SortOrder>(SortOrder.Asc)
 	const [orderBy, setOrderBy] = useState<string>("")
-
+	const t = useTranslations()
 	const handleSort = (property: string) => {
 		const isAsc = orderBy === property && order === SortOrder.Asc
 		setOrder(isAsc ? SortOrder.Desc : SortOrder.Asc)
@@ -62,8 +68,23 @@ export function BasicTable<T extends { id: string }>({
 	}, [filteredData, order, orderBy, headCells])
 
 	return (
-		<>
-			<SearchInput control={control} name="search" placeholder="Search" />
+		<Box sx={styles.container}>
+			<Stack direction="row" justifyContent="space-between" gap={"60px"}>
+				<SearchInput control={control} name="search" placeholder="Search" />
+				{addItemHandle && addButtonText && (
+					<Button sx={styles.button} onClick={addItemHandle}>
+						<Stack
+							direction="row"
+							justifyContent="center"
+							alignItems="center"
+							gap="8px"
+						>
+							<Add />
+							<Typography sx={styles.buttonText}>{t(addButtonText)}</Typography>
+						</Stack>
+					</Button>
+				)}
+			</Stack>
 			<TableContainer sx={{ overflow: "visible" }}>
 				<Table stickyHeader>
 					<TableHeader
@@ -72,13 +93,15 @@ export function BasicTable<T extends { id: string }>({
 						orderBy={orderBy}
 						onRequestSort={handleSort}
 					/>
-					<TableBody
-						onResetSearch={reset}
-						data={sortedData}
-						RowComponent={RowComponent}
-					/>
+					<Suspense fallback={<TableLoader />}>
+						<TableBody
+							onResetSearch={reset}
+							data={sortedData}
+							RowComponent={RowComponent}
+						/>
+					</Suspense>
 				</Table>
 			</TableContainer>
-		</>
+		</Box>
 	)
 }

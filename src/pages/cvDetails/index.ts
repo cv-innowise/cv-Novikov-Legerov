@@ -1,0 +1,1 @@
+export { default as CVDetailsPage } from "./ui/CVDetailsPage"

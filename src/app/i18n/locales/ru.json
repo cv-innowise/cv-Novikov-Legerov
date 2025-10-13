@@ -13,14 +13,14 @@
 			"subtitle": "Добро пожаловать! Создайте аккаунт, чтобы продолжить",
 			"button": "СОЗДАТЬ АККАУНТ",
 			"link": "У МЕНЯ ЕСТЬ АККАУНТ"
-		},
-		"errors": {
-			"required": "Обязательное поле",
-			"minLength": "Должно быть как минимум {count} символов",
-			"maxLength": "Должно быть не более {count} символов",
-			"emailInvalid": "Неверный формат email адреса",
-			"passwordInvalid": "Пароль должен содержать как минимум одну большую букву, одну маленькую букву, одну цифру и один специальный символ"
 		}
+	},
+	"errors": {
+		"required": "Обязательное поле",
+		"minLength": "Должно быть как минимум {count} символов",
+		"maxLength": "Должно быть не более {count} символов",
+		"emailInvalid": "Неверный формат email адреса",
+		"passwordInvalid": "Пароль должен содержать как минимум одну большую букву, одну маленькую букву, одну цифру и один специальный символ"
 	},
 	"forgot-password": {
 		"title": "Забыли пароль",
@@ -36,6 +36,11 @@
 	"Delete": "Удалить",
 	"Cancel": "Отмена",
 	"Confirm": "Подтвердить",
+	"Update": "Обновить",
+	"system": "Системная",
+	"light": "Светлая",
+	"dark": "Темная",
+	"color theme": "Цветовая тема",
 
 	"Add skill": "Добавить навык",
 	"Update skill": "Обновить навык",
@@ -51,73 +56,156 @@
 	"add skill notification": "Навык успешно добавлен!",
 	"update skill notification": "Навык успешно обновлен!",
 	"delete skill notification": "Навыки успешно удалены!",
+	"Are you sure you want to delete": "Вы уверены, что хотите удалить ",
 
 	"Add language": "Добавить язык",
 	"Update language": "Обновить язык",
 	"Remove languages": "Удалить языки",
 	"Language": "Язык",
 	"Language proficiency": "Уровень знания языка",
-	"add language notification": "Языки успешно добавлен!",
+	"add language notification": "Язык успешно добавлен!",
 	"update language notification": "Язык успешно обновлен!",
 	"delete language notification": "Языки успешно удалены!",
-
+	"english": "Английский",
+	"russian": "Русский",
+	
 	"navigation": {
-		"employees": "Employees",
-		"skills": "Skills",
-		"languages": "Languages",
-		"cvs": "CVs"
+		"employees": "Сотрудники",
+		"skills": "Навыки",
+		"languages": "Языки",
+		"cvs": "Резюме",
+		"departments": "Отделы",
+		"positions": "Должности",
+		"projects": "Проекты"
 	},
 
-
- "departments": {
-	  "label": "Department",
-	  "nodepartment": "No department"
-  },
-   "positions": {
-	  "label": "Positions",
-	  "noposition": "No position"
-  },
-    "userForm": {
-	  "title": "Update user",
-	  "firstName": "First name",
-    "lastName": "Last name",
-    "save": "Save",
-    "department": "Department",
-    "position": "Position",
-	  "btn": "Update",
-    "success": "Profile was updated"
-   },
-      "avatar": {
-    "alt": "User avatar",
-    "uploadText": "Upload avatar image",
-    "fileRestrictions": "png, jpg or gif no more than 0.5MB",
-	  "uploadSuccess": "Avatar was uploaded successfully",
-    "deleteSuccess": "Avatar was deleted successfully"
-  },
-
+	"departments": {
+		"label": "Отдел",
+		"nodepartment": "Нет отдела"
+	},
+	"positions": {
+		"label": "Должность",
+		"noposition": "Нет должности"
+	},
+	"userForm": {
+		"title": "Обновить пользователя",
+		"firstName": "Имя",
+		"lastName": "Фамилия",
+		"save": "Сохранить",
+		"department": "Отдел",
+		"position": "Должность",
+		"btn": "Обновить",
+		"success": "Профиль был обновлен"
+	},
+	"avatar": {
+		"alt": "Аватар пользователя",
+		"uploadText": "Загрузить изображение аватара",
+		"fileRestrictions": "png, jpg или gif не более 0.5 МБ",
+		"uploadSuccess": "Аватар успешно загружен",
+		"deleteSuccess": "Аватар успешно удален"
+	},
 
 	"user": {
-		"profile": "Profile",
-		"skills": "Skills",
-		"data": "A member since",
-		"languages": "Languages",
+		"profile": "Профиль",
+		"skills": "Навыки",
+		"data": "Участник с",
+		"languages": "Языки",
 		"menu": {
-			"profile": "Profile",
-			"settings": "Settings",
-			"logout": "Logout"
+			"profile": "Профиль",
+			"settings": "Настройки",
+			"logout": "Выйти"
 		},
-		"update": "Update user",
-		"delete": "Delete user"
+		"update": "Обновить пользователя",
+		"delete": "Удалить пользователя"
 	},
-	
+
 	"table": {
-		"firstName": "First Name",
-		"lastName": "Last Name",
-		"email": "Email",
-		"department": "Department",
-		"position": "Position",
-		"noResultsFound": "No results found",
-		"tryAnotherSearch": "Try another search, check the spelling or use a broader term",
-		"resetSearch": "Reset search"
-	}
+		"firstName": "Имя",
+		"lastName": "Фамилия",
+		"email": "Электронная почта",
+		"department": "Отдел",
+		"position": "Должность",
+		"noResultsFound": "Результатов не найдено",
+		"tryAnotherSearch": "Попробуйте другой запрос, проверьте правописание или используйте более общий термин",
+		"resetSearch": "Сбросить поиск"
+	},
+
+	"depatmentsTable": {
+		"name": "Название",
+		"delete": "Удалить"
+	},
+
+	"positionsTable": {
+		"name": "Название",
+		"delete": "Удалить"
+	},
+
+	"skillsTable": {
+		"name": "Название",
+		"category": "Категория",
+		"delete": "Удалить"
+	},
+	"languagesTable": {
+		"name": "Название",
+		"nativeName": "Родное название",
+		"iso2": "Код ISO2",
+		"delete": "Удалить"
+	},
+
+	"Cv": "Резюме",
+	"cv": {
+		"details": "Детали",
+		"skills": "Навыки",
+		"projects": "Проекты",
+		"preview": "Предпросмотр"
+	},
+	"cvTable": {
+		"name": "Название",
+		"education": "Образование",
+		"employee": "Сотрудник"
+	},
+	"CVForm": {
+		"name": "Название",
+		"education": "Образование",
+		"description": "Описание"
+	},
+	"projectsTable": {
+		"name": "Название",
+		"internalName": "Внутреннее название",
+		"domain": "Домен",
+		"startDate": "Дата начала",
+		"endDate": "Дата окончания",
+		"tillNow": "По настоящее время",
+		"actions": "Просмотр"
+	},
+	"Add CV": "Добавить резюме",
+	"Update CV": "Обновить резюме",
+	"Details": "Детали",
+	"Delete CV": "Удалить резюме",
+	"create cv notification": "Резюме успешно добавлено!",
+	"update cv notification": "Резюме успешно обновлено!",
+	"delete cv notification": "Резюме успешно удалено!",
+
+	"Project": "Проект",
+	"projects": "Проекты",
+	"name": "Название",
+	"domain": "Домен",
+	"domains": "Домены",
+	"roles": "Роли",
+	"period": "Период",
+	"start date": "Дата начала",
+	"end date": "Дата окончания",
+	"description": "Описание",
+	"responsibilities": "Ответственность",
+	"environment": "Окружение",
+	"Till now": "По настоящее время",
+	"Add project": "Добавить проект",
+	"Update project": "Обновить проект",
+	"Delete project": "Удалить проект",
+	"add project notification": "Проект успешно добавлен!",
+	"update project notification": "Проект успешно обновлен!",
+	"delete project notification": "Проект успешно удален!",
+	"software engineer": "Инженер-программист",
+	"export pdf": "Экспорт в PDF",
+	"export process": "Идет экспорт резюме..."
 }

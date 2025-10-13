@@ -52,7 +52,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-  ],
+, "src/entities/user/ui/UserInfo/UserInfo.skeleton.tsч"  ],
   "exclude": [
     "node_modules"
   ]

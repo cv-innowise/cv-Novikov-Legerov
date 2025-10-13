@@ -1,127 +1,138 @@
 "use client"
 
-import { useEffect, useState } from "react"
-
 import { DialogContent } from "@mui/material"
-import { Skill } from "cv-graphql"
+import { AddCvSkillInput, AddProfileSkillInput, Skill, UpdateCvSkillInput, UpdateProfileSkillInput } from "cv-graphql"
 import { useTranslations } from "next-intl"
+import { useParams } from "next/navigation"
 
+import { useAuthUserId } from "@entities/user"
+import { useErrorNotification } from "@shared/hooks/useErrorNotification"
+import { Mastery } from "@shared/model/mastery"
+import { skillFormValidation } from "@shared/model/validation/validation"
 import { hideDialog } from "@shared/ui/dialog/model/dialogService"
 import DialogActions from "@shared/ui/dialog/ui/dialogActions/ui/DialogActions"
 import FormWrapper from "@shared/ui/form/FormWrapper"
 import { addNotification } from "@shared/ui/notification/notification.service"
 
-import { useAddProfileSkill, useUpdateProfileSkill } from "../hooks"
+import {
+	useAddCvSkill,
+	useAddProfileSkill,
+	useUpdateCvSkill,
+	useUpdateProfileSkill,
+} from "../hooks"
+import { getTransformedAndFilteredSkills } from "../lib/getTransformedAndFilteredSkills"
 import { SkillMasteryFormInput } from "../model/SkillMasteryForm.types"
 import { MasterySelect } from "./masterySelect/ui/MasterySelect"
 import { SkillMasteryFormProps } from "./SkillMasteryForm.props"
 import { styles } from "./SkillMasteryForm.styles"
 import { SkillsSelect } from "./skillsSelect/ui/SkillsSelect"
-import { Mastery } from "@shared/model/mastery"
-import { useAuthUserId } from "@entities/user"
 
 const SkillMasteryForm = ({
 	skill,
 	mode,
-	userSkills,
+	sourceSkills,
 	skills,
 	type,
 }: SkillMasteryFormProps) => {
+	const t = useTranslations()
+	const schema = skillFormValidation(t)
+	const params = useParams<{ id: string }>()
+	const id = params?.id || useAuthUserId()
+
 	const [
 		addProfileSkillQuery,
-		{ error: addSkillError, loading: addSkillLoading },
+		{ error: addProfileSkillError, loading: addProfileSkillLoading },
 	] = useAddProfileSkill()
 
 	const [
 		updateProfileSkillQuery,
-		{ error: updateSkillError, loading: updateSkillLoading },
+		{ error: updateProfileSkillError, loading: updateProfileSkillLoading },
 	] = useUpdateProfileSkill()
 
-	const t = useTranslations()
-	const userId = useAuthUserId()
-	let transformedSkillsData: Skill[] = []
-	let defaultValues: SkillMasteryFormInput | undefined = undefined
+	const [
+		addCvSkillQuery,
+		{ error: addCvSkillError, loading: addCvSkillLoading },
+	] = useAddCvSkill()
 
-	transformedSkillsData = [...skills].sort((a, b) => {
-		if (!a.category?.order || !b.category?.order) {
-			return 0
-		}
+	const [
+		updateCvSkillQuery,
+		{ error: updateCvSkillError, loading: updateCvSkillLoading },
+	] = useUpdateCvSkill()
 
-		if (a.category.order > b.category.order) {
-			return 1
-		}
-
-		return -1
-	})
-
-	if (skill) {
-		const foundSkill = skills.find((s) => s.name === skill.name)
-		foundSkill
-			? (defaultValues = { skill: foundSkill, mastery: skill.mastery })
-			: (defaultValues = undefined)
+	const skillQueries = {
+		addUser: addProfileSkillQuery,
+		updateUser: updateProfileSkillQuery,
+		addCv: addCvSkillQuery,
+		updateCv: updateCvSkillQuery,
 	}
 
-	if (userSkills) {
-		transformedSkillsData = transformedSkillsData.filter((skill) => {
-			return !userSkills.find((userSkill) => skill.name === userSkill.name)
-		})
-	}
+	let transformedAndFilteredSkills: Skill[] = getTransformedAndFilteredSkills(
+		skills,
+		sourceSkills,
+	)
+	let defaultValues: SkillMasteryFormInput | undefined = skill
+		? (() => {
+				const foundSkill = skills.find((s) => s.name === skill.name)
+				return foundSkill
+					? { skill: foundSkill, mastery: skill.mastery }
+					: undefined
+			})()
+		: undefined
 
-	const addProfileSkill = (data: SkillMasteryFormInput) => {
-		addProfileSkillQuery({
-			variables: {
-				skill: {
-					userId: userId,
-					name: data.skill.name,
-					categoryId: data.skill.category?.id,
-					mastery: data.mastery,
-				},
-			},
+	const handleSubmit = (data: SkillMasteryFormInput) => {
+		const query = skillQueries[`${mode}${type === "user" ? "User" : "Cv"}`]
+
+		const skill: any = {
+			name: data.skill.name,
+			categoryId: data.skill.category?.id,
+			mastery: data.mastery,
+		}
+
+		if (type === "user") {
+			skill.userId = id
+		} else {
+			skill.cvId = id
+		}
+
+		query({
+			variables: { skill },
 		}).then(() => {
-			addNotification(t("add skill notification"), "success")
+			addNotification(t(`${mode} skill notification`), "success")
 			hideDialog()
 		})
 	}
 
-	const updateProfileSkill = (data: SkillMasteryFormInput) => {
-		updateProfileSkillQuery({
-			variables: {
-				skill: {
-					userId: userId,
-					name: data.skill.name,
-					categoryId: data.skill.category?.id,
-					mastery: data.mastery,
-				},
-			},
-		}).then(() => {
-			addNotification(t("update skill notification"), "success")
-			hideDialog()
-		})
-	}
-
-	const error = addSkillError ?? updateSkillError
-
-	useEffect(() => {
-		if (error) {
-			addNotification(t(error.message), "error")
-		}
-	}, [error])
+	useErrorNotification([
+		addProfileSkillError,
+		updateProfileSkillError,
+		addCvSkillError,
+		updateCvSkillError,
+	])
 
 	return (
 		<FormWrapper<SkillMasteryFormInput>
-			onSubmit={mode === "add" ? addProfileSkill : updateProfileSkill}
-			// schema={schema}
-			defaultValues={defaultValues || { skill: undefined, mastery: Mastery.Novice }}
+			onSubmit={handleSubmit}
+			schema={schema}
+			defaultValues={
+				defaultValues || { skill: undefined, mastery: Mastery.Novice }
+			}
 		>
 			<DialogContent sx={styles.content}>
 				<SkillsSelect
-					skills={transformedSkillsData ? transformedSkillsData : []}
+					skills={
+						transformedAndFilteredSkills ? transformedAndFilteredSkills : []
+					}
 					disabled={mode === "update" ? true : false}
 				/>
 				<MasterySelect />
 			</DialogContent>
 			<DialogActions
-				loaders={[addSkillLoading, updateSkillLoading]}
+				loaders={[
+					addProfileSkillLoading,
+					updateProfileSkillLoading,
+					addCvSkillLoading,
+					updateCvSkillLoading,
+				]}
 				confirmButtonText="Confirm"
 			/>
 		</FormWrapper>

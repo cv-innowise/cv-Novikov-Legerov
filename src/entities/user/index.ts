@@ -5,6 +5,7 @@ export { userReducer, userAction } from "./model/userSlice"
 export type { UserState } from "./model/userSlice"
 export {
 	useAuthUserId,
-	useIsAuthUserDisabled,
-	useAuthUser 
+	useIsAuthUserHasAccess,
+	useAuthUser,
 } from "./hooks/authUserHooks"
+export { UserInfoSkeleton } from "./ui/UserInfo/UserInfo.skeleton"

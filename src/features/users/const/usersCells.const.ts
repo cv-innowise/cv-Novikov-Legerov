@@ -6,6 +6,11 @@ import { HeadCell } from "@shared/types"
 
 export const userHeadCells: HeadCell<User>[] = [
 	{
+		id: "0",
+		label: "",
+		getValue: (row) => "",
+	},
+	{
 		id: "1",
 		label: "table.firstName",
 		getValue: (row) => row.profile.first_name,

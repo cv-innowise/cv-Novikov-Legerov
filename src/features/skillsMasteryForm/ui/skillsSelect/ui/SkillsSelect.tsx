@@ -13,7 +13,7 @@ export const SkillsSelect = ({ skills, disabled }: SkillsSelectProps) => {
 	const t = useTranslations()
 	const { control } = useFormContext<SkillMasteryFormInput>()
 
-	let skillOptions = skills;
+	let skillOptions = skills
 
 	return (
 		<Controller

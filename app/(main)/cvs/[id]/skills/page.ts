@@ -1,0 +1,1 @@
+export { CvSkillsPage as default } from "@pages/cvSkills"

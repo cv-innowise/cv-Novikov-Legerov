@@ -1,1 +1,1 @@
-export { default as SkillsPage } from "./ui/SkillsPage"
+export { default as SkillsPage, metadata } from "./ui/SkillsPage"

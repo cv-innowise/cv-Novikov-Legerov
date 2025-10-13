@@ -1,0 +1,1 @@
+export { CVsTableSuspense } from "./ui/CVsTable/CVcTable"

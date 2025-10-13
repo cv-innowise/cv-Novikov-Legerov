@@ -10,7 +10,7 @@ export function minMaxFieldValidation(
 ): yup.StringSchema {
   return yup
     .string()
-    .required(t('auth.errors.required'))
-    .min(minValue, t('auth.errors.minLength', { count: minValue }))
-    .max(maxValue, t('auth.errors.maxLength', { count: maxValue }));
+    .required(t('errors.required'))
+    .min(minValue, t('errors.minLength', { count: minValue }))
+    .max(maxValue, t('errors.maxLength', { count: maxValue }));
 }

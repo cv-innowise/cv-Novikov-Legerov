@@ -2,7 +2,7 @@ import { SxThemeProps } from "@shared/types/sx.types"
 
 export const searchInputStyles = {
 	input: {
-		width: "50%",
+		width: "100%",
 		maxWidth: "340px",
 		paddingLeft: "20px",
 		marginBottom: "8px",

@@ -1,1 +1,1 @@
-export { default } from "./ui/UserSkills"
+export { UserSkillsSuspense } from "./ui/UserSkills"

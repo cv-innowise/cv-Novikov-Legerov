@@ -33,6 +33,7 @@ export const sidebarStyles = {
 	} satisfies SxProps<Theme>,
 
 	arrow: {
+		color: "icon.color",
 		padding: "10px",
 		marginLeft: "13px",
 	} satisfies SxProps<Theme>,

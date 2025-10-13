@@ -1,4 +1,4 @@
-import { createTheme, PaletteMode } from "@mui/material/styles"
+import { createTheme } from "@mui/material/styles"
 import { Roboto } from "next/font/google"
 
 import { darkPalette, lightPalette } from "./palette"
@@ -44,12 +44,13 @@ export const getTheme = () =>
 			MuiOutlinedInput: {
 				styleOverrides: {
 					root: {
-						height: 48,
-						padding: "12px",
-						borderRadius: 0,
+						minHeight: 47,
+						borderRadius: "0px",
 					},
 					input: {
-						padding: 0,
+						paddingTop: 0,
+						paddingBottom: 0,
+						boxSizing: 'border-box',
 					},
 					notchedOutline: {
 						borderWidth: "1px !important",

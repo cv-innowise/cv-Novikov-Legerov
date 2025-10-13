@@ -9,20 +9,19 @@ import { useTranslations } from "next-intl"
 import Loader from "../loader"
 import { BulkDeletionProps } from "./BulkDeletion.props"
 import { styles } from "./BulkDeletion.styles"
-import { useIsAuthUserDisabled } from "@entities/user"
 
 type BulkDeletionContextType = {
 	isDeletion: boolean
 	selectedItems: string[]
 	setSelectedItems: React.Dispatch<React.SetStateAction<string[]>>
-	isDisabled: boolean
+	hasAccess: boolean
 }
 
 export const BulkDeletionContext = createContext<BulkDeletionContextType>({
 	isDeletion: false,
 	selectedItems: [],
 	setSelectedItems: () => {},
-	isDisabled: true,
+	hasAccess: false,
 })
 
 const BulkDeletion = ({
@@ -31,12 +30,12 @@ const BulkDeletion = ({
 	isLoading,
 	onAdd,
 	mode,
+	hasAccess
 }: BulkDeletionProps) => {
 	const t = useTranslations()
-	const isDisabled = useIsAuthUserDisabled()
 	const [isDeletion, setIsDeletion] = useState(false)
 	const [selectedItems, setSelectedItems] = useState<string[]>([])
-
+	
 	const handleCancel = () => {
 		setIsDeletion(false)
 		setSelectedItems([])
@@ -57,7 +56,7 @@ const BulkDeletion = ({
 
 	return (
 		<BulkDeletionContext.Provider
-			value={{ isDeletion, selectedItems, setSelectedItems, isDisabled }}
+			value={{ isDeletion, selectedItems, setSelectedItems, hasAccess }}
 		>
 			<Stack spacing="32px">
 				{children}
@@ -97,7 +96,7 @@ const BulkDeletion = ({
 						</Button>
 					</Stack>
 				)}
-				{!isDeletion && !isDisabled && (
+				{!isDeletion && hasAccess && (
 					<Stack
 						direction="row"
 						spacing={2}
