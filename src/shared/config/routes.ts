@@ -3,6 +3,7 @@ export const enum RoutesPaths {
 	SIGNUP = "/auth/signup",
 	FORGOT_PASSWORD = "/forgot-password",
 	USERS = "/users",
+	PROJECTS = "/projects",
 	SKILLS = "/skills",
 	LANGUAGES = "/languages",
 	CVS = "/cvs",
