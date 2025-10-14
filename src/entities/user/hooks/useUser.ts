@@ -4,11 +4,12 @@ import { USER } from "../api/user"
 import { UserResult } from "../api/user.types"
 
 export const useUser = (userId: string) => {
-	const { data } = useSuspenseQuery<UserResult>(USER, {
+	const { data, error } = useSuspenseQuery<UserResult>(USER, {
 		variables: { userId },
 	})
 
 	return {
 		user: data.user,
+		error
 	}
 }

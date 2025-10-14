@@ -17,6 +17,7 @@ import { RoutesPaths } from "@shared/config"
 
 import { UserMenuProps } from "./UserMenu.props"
 import { userMenuStyles } from "./UserMenu.styles"
+import { useRouter } from "next/navigation"
 
 export const UserMenu: FC<UserMenuProps> = ({
 	anchorEl,
@@ -25,7 +26,10 @@ export const UserMenu: FC<UserMenuProps> = ({
 	userId,
 }) => {
 	const t = useTranslations()
-
+	const router = useRouter()
+	const handleLogout = () => {
+		router.push(RoutesPaths.LOGOUT)
+	}
 	return (
 		<Menu
 			transformOrigin={{ horizontal: "left", vertical: "bottom" }}
@@ -52,7 +56,7 @@ export const UserMenu: FC<UserMenuProps> = ({
 				<ListItemText>{t("user.menu.settings")}</ListItemText>
 			</MenuItem>
 			<Divider />
-			<MenuItem onClick={onClose}>
+			<MenuItem onClick={handleLogout}>
 				<ListItemIcon>
 					<Logout />
 				</ListItemIcon>

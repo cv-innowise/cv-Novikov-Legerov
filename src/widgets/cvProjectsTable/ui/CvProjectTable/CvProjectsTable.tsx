@@ -20,7 +20,7 @@ const CvProjectsTable = () => {
 
 	const { cv, error: cvError } = useCv(id)
 	const { projects, error: projectsError } = useProjects()
-	console.log(cv.projects);
+
 	const filteredProjects = projects.filter(
 		(pr) => !cv.projects?.find((cvPr) => cvPr.project.id === pr.id),
 	)

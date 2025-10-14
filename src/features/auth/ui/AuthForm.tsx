@@ -1,7 +1,6 @@
 "use client"
 
 import type { AuthInput } from "cv-graphql"
-import { useEffect } from "react"
 import { Button, Stack } from "@mui/material"
 import { useTranslations } from "next-intl"
 import { useRouter } from "next/navigation"
@@ -11,13 +10,13 @@ import FormPasswordField from "@shared/ui/form/FormPasswordField"
 import FormTextField from "@shared/ui/form/FormTextField"
 import FormWrapper from "@shared/ui/form/FormWrapper/FormWrapper"
 import Loader from "@shared/ui/loader"
-import { addNotification } from "@shared/ui/notification/notification.service"
 
 import { authValidation } from "../../../shared/model/validation/validation"
 import { useLogin } from "../hooks/useLogin"
 import { useSignup } from "../hooks/useSignup"
 import { successAuth } from "../model/authService"
 import { useDispatch } from "react-redux"
+import { useErrorNotification } from "@shared/hooks/useErrorNotification"
 
 const AuthForm = ({ mode }: { mode: "login" | "signup" }) => {
 	const [login, { error: loginError, loading: loginLoading }] = useLogin()
@@ -54,11 +53,7 @@ const AuthForm = ({ mode }: { mode: "login" | "signup" }) => {
 		}
 	}
 
-	useEffect(() => {
-		if (error) {
-			addNotification(t(error.message), "error")
-		}
-	}, [error])
+	useErrorNotification([error])
 
 	return (
 		<FormWrapper<AuthInput>

@@ -17,6 +17,7 @@ import { useProfileUpdate } from "../../hooks/useProfileUpdate"
 import { useUserUpdate } from "../../hooks/useUserUpdate"
 import { UserFormProps, UserFormValues } from "./UserForm.props"
 import { userFormStyles } from "./UserForm.styles"
+import { useErrorNotification } from "@shared/hooks/useErrorNotification"
 
 export const UserForm: FC<UserFormProps> = ({ user, isCurrentUser }) => {
 	const { id: userId } = user
@@ -59,7 +60,7 @@ export const UserForm: FC<UserFormProps> = ({ user, isCurrentUser }) => {
 			})
 
 			.catch((error) => {
-				addNotification(error.message, "error")
+				useErrorNotification([error])
 			})
 	}
 

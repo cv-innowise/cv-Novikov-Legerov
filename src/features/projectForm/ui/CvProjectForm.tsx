@@ -32,7 +32,7 @@ const CvProjectForm = ({ mode, project, projects }: CvProjectFormProps) => {
 	const [projectOption, setProjectOption] = useState<Project | null>(
 		project?.project || null,
 	)
-	console.log(projectOption)
+
 	const [
 		addCvProjectQuery,
 		{ error: addCvProjectError, loading: addCvProjectLoading },

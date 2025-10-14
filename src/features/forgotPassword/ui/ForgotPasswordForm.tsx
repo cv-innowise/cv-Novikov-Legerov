@@ -1,7 +1,5 @@
 "use client"
 
-import { useEffect } from "react"
-
 import { Button, Stack } from "@mui/material"
 import { ForgotPasswordInput } from "cv-graphql"
 import { useTranslations } from "next-intl"
@@ -13,6 +11,7 @@ import FormTextField from "@shared/ui/form/FormTextField"
 import FormWrapper from "@shared/ui/form/FormWrapper/FormWrapper"
 import Loader from "@shared/ui/loader"
 import { addNotification } from "@shared/ui/notification/notification.service"
+import { useErrorNotification } from "@shared/hooks/useErrorNotification"
 
 const ForgotPasswordForm = () => {
 	const link = RoutesPaths.LOGIN
@@ -33,11 +32,7 @@ const ForgotPasswordForm = () => {
 		})
 	}
 
-	useEffect(() => {
-		if (error) {
-			addNotification(t(`forgot-password.${error.message}`), "error")
-		}
-	}, [error])
+	useErrorNotification([error])
 
 	return (
 		<FormWrapper<ForgotPasswordInput>

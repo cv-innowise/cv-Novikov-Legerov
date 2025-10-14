@@ -18,15 +18,6 @@ export const successAuth = ({
 	dispatch(userAction.setUser(user))
 }
 
-export const logout = (dispatch: AppDispatch) => {
-	setTokens("", "")
-	dispatch(userAction.setUser({
-		id: null,
-		role: null,
-		email: null
-	}))
-}
-
 export const updateTokenRequest = async (refresh_token: string | undefined) => {
 	if (!refresh_token) return { access_token: "" }
 	const res = await fetch("https://cv-project-js.inno.ws/api/graphql", {

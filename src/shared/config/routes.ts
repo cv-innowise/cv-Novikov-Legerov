@@ -1,5 +1,6 @@
 export const enum RoutesPaths {
 	LOGIN = "/auth/login",
+	LOGOUT = "/api/logout",
 	SIGNUP = "/auth/signup",
 	FORGOT_PASSWORD = "/forgot-password",
 	USERS = "/users",

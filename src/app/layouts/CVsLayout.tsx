@@ -3,7 +3,7 @@ import { ReactNode } from "react"
 import { Box } from "@mui/material"
 
 import { cvTabs } from "@shared/const/tabs.const"
-import { BasicTabs } from "@shared/ui/BasicTabs"
+import { BasicTabs } from "@shared/ui/basicTabs"
 
 interface UserLayoutProps {
     params: Promise<{ id: string }>

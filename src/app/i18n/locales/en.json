@@ -16,6 +16,8 @@
 		}
 	},
 	"errors": {
+		"default": "Oops... Something went wrong :(",
+		"unauthorized": "Session expired!",
 		"required": "Required field",
 		"minLength": "Must be at least {count} characters",
 		"maxLength": "Must be no more than {count} characters",
@@ -68,7 +70,7 @@
 	"delete language notification": "Languages successfully deleted!",
 	"english": "English",
 	"russian": "Russian",
-	
+
 	"navigation": {
 		"employees": "Employees",
 		"skills": "Skills",

@@ -1,7 +1,5 @@
 "use client"
 
-import { useEffect } from "react"
-
 import { DialogContent } from "@mui/material"
 import { useTranslations } from "next-intl"
 
@@ -19,6 +17,7 @@ import { CVFormInput } from "../model/CVForm.types"
 import { useCreateCV, useUpdateCV } from "./../hooks"
 import { CVFormProps } from "./CVForm.props"
 import { styles } from "./CVForm.styles"
+import { useErrorNotification } from "@shared/hooks/useErrorNotification"
 
 export const CVForm = ({ mode, cv }: CVFormProps) => {
 	const t = useTranslations()
@@ -54,7 +53,7 @@ export const CVForm = ({ mode, cv }: CVFormProps) => {
 					name: data.name,
 					education: data.education,
 					description: data.description,
-					userId: userId,
+					userId: "userId",
 				},
 			},
 		}).then(() => {
@@ -81,11 +80,7 @@ export const CVForm = ({ mode, cv }: CVFormProps) => {
 
 	const error = createCVError ?? updateCVError
 
-	useEffect(() => {
-		if (error) {
-			addNotification(t(error.message), "error")
-		}
-	}, [error])
+	useErrorNotification([error])
 
 	return (
 		<FormWrapper<CVFormInput>
