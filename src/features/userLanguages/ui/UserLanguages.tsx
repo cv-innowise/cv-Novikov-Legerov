@@ -5,7 +5,11 @@ import { Suspense } from "react"
 import { Box, Stack } from "@mui/material"
 import { useTranslations } from "next-intl"
 
-import { useAuthUser, useAuthUserId, useIsAuthUserHasAccess } from "@entities/user"
+import {
+	useAuthUser,
+	useAuthUserId,
+	useIsAuthUserHasAccess,
+} from "@entities/user"
 import { useUserProfile } from "@entities/userProfileMenu/hooks/useUserProfile"
 import { useLanguageProficiencyDialog } from "@features/languageProficiencyForm/hooks"
 import { RoutesPaths } from "@shared/config"
@@ -24,7 +28,7 @@ import { useErrorNotification } from "@shared/hooks/useErrorNotification"
 
 const UserLanguages = () => {
 	const t = useTranslations()
-	const params = useParams<{id: string}>()
+	const params = useParams<{ id: string }>()
 	const userId = params?.id || useAuthUserId()
 
 	const hasAccess = useIsAuthUserHasAccess()
@@ -35,11 +39,17 @@ const UserLanguages = () => {
 
 	const user = useAuthUser()
 
-	useBreadcrumbs({
-		path: `${RoutesPaths.USERS}/${profile.id}`,
-		text: profile.full_name || user.email || "",
-		icon: BreadcrumbIconType.Person,
-	})
+	useBreadcrumbs([
+		{
+			path: `${RoutesPaths.USERS}/${profile.id}`,
+			text: profile.full_name || user.email || "",
+			icon: BreadcrumbIconType.Person,
+		},
+		{
+			path: `${RoutesPaths.USERS}/${profile.id}${RoutesPaths.LANGUAGES}`,
+			text: t("navigation.languages"),
+		},
+	])
 
 	const [
 		deleteLanguagesQuery,

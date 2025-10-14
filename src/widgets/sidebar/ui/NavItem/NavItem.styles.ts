@@ -1,42 +1,58 @@
-import { SxThemeProps } from "@shared/types/sx.types"
+import { SxProps, Theme } from "@mui/material"
 
 export const navItemStyles = {
-	container: {
-		width: "100%",
-		padding: "16px 0 16px 18px",
-		borderTopRightRadius: "50px",
-		borderBottomRightRadius: "50px",
-		transition: "all 0.3s ease",
+	container:
+		(isActive: boolean): SxProps<Theme> =>
+		(theme) => ({
+			justifyContent: "center",
+			padding: "16px 0 16px 18px",
+			borderTopRightRadius: "50px",
+			borderBottomRightRadius: "50px",
+			transition: "all 0.3s ease",
 
-		"&:nth-of-type(4)": {
-			marginTop: "20px",
-		},
-
-		active: {
-			background: "#0000000a",
-		},
-	},
-	icon: {
-		minWidth: "40px",
-		color: "icon.color",
-		active: {
-			color: "icon.color.active",
-		},
-	},
-
-	text: {
-		margin: 0,
-		"& .MuiListItemText-primary": {
-			fontSize: "16px",
-			fontWeight: "400",
-			lineHeight: "24px",
-			color: "secondary.main",
-		},
-
-		active: {
-			"& .MuiListItemText-primary": {
-				color: "text.primary",
+			"& .MuiListItemIcon-root": {
+				justifyContent: "center",
 			},
-		},
-	},
-} satisfies SxThemeProps
+			"&:nth-of-type(4)": {
+				marginTop: "20px",
+			},
+
+			[theme.breakpoints.down("md")]: {
+				padding: "4px 8px",
+				borderRadius: "200px",
+				height: "40px",
+				gap: "8px",
+			},
+			...(isActive && {
+				background: "#0000000a",
+			}),
+		}),
+
+	icon:
+		(isActive: boolean): SxProps<Theme> =>
+		(theme) => ({
+			minWidth: 40,
+			color: theme.vars?.palette.icon.color,
+			...(isActive && {
+				color: theme.vars?.palette.icon.active.color,
+			}),
+		}),
+
+	text:
+		(isActive: boolean): SxProps<Theme> =>
+		(theme) => ({
+			margin: 0,
+			"& .MuiListItemText-primary": {
+				fontSize: 16,
+				fontWeight: 400,
+				lineHeight: "24px",
+				color: theme.vars?.palette.secondary.main,
+				...(isActive && {
+					color: theme.vars?.palette.text.primary,
+				}),
+			},
+			[theme.breakpoints.down("sm")]: {
+				display: "none",
+			},
+		}),
+}
