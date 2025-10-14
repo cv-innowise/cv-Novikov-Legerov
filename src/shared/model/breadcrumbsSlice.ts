@@ -24,6 +24,9 @@ const breadcrumbsSlice = createSlice({
 				state.config.push(action.payload)
 			}
 		},
+		replaceAllBreadcrumbs: (state, action: PayloadAction<BreadcrumbItem[]>) => {
+			state.config = action.payload
+		},
 		clearBreadcrumbs: (state) => {
 			state.config = []
 		},

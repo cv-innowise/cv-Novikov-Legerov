@@ -12,8 +12,8 @@ export const AvatarSkeleton: FC = () => {
 			<Skeleton
 				variant="circular"
 				animation="wave"
-				width={avatarStyles.avatar.width}
-				height={avatarStyles.avatar.height}
+				width={120}
+				height={120}
 				sx={{ flexShrink: 0 }}
 			/>
 			<Box sx={avatarStyles.infoBox}>

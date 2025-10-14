@@ -57,5 +57,8 @@ export const darkPalette: PaletteOptions = {
 	},
 	icon: {
 		color: "#FFFFFFB2",
+		active: {
+			color: "#ffffff",
+		},
 	},
 }
