@@ -1,10 +1,9 @@
 "use client"
 
-import { Suspense, useEffect } from "react"
+import { Suspense } from "react"
 
 import { Box, Stack } from "@mui/material"
 import { useTranslations } from "next-intl"
-import { useParams } from "next/navigation"
 
 import {
 	useAuthUser,
@@ -24,6 +23,8 @@ import { useDeleteProfileLanguage } from "../hooks/useDeleteProfileLanguage"
 import { useLanguages } from "../hooks/useLanguages"
 import LanguageButton from "./languageButton/LanguageButton"
 import { styles } from "./UserLanguages.styles"
+import { useParams } from "next/navigation"
+import { useErrorNotification } from "@shared/hooks/useErrorNotification"
 
 const UserLanguages = () => {
 	const t = useTranslations()
@@ -69,11 +70,7 @@ const UserLanguages = () => {
 
 	const error = profileError || languagesError || deleteLanguagesError
 
-	useEffect(() => {
-		if (error) {
-			addNotification(t(error.message), "error")
-		}
-	}, [error])
+	useErrorNotification([error])
 
 	let openAddDialog = () => {}
 	if (profile && languages) {

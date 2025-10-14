@@ -6,7 +6,6 @@ import DialogActions from "@shared/ui/dialog/ui/dialogActions/ui/DialogActions"
 import { useTranslations } from "next-intl"
 import { DeletionDialogContentProps } from "./DeletionDialogContent.props"
 import { addNotification } from "@shared/ui/notification/notification.service"
-import { useEffect } from "react"
 import { hideDialog } from "@shared/ui/dialog/model/dialogService"
 import { useErrorNotification } from "@shared/hooks/useErrorNotification"
 

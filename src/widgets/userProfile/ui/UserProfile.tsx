@@ -10,9 +10,10 @@ import { BreadcrumbIconType } from "@shared/const"
 import { useBreadcrumbs } from "@shared/hooks"
 
 import { UserProfileProps } from "./UserProfile.props"
+import { useErrorNotification } from "@shared/hooks/useErrorNotification"
 
 export const UserProfile: FC<UserProfileProps> = ({ userId }) => {
-	const { user } = useUser(userId)
+	const { user, error } = useUser(userId)
 
 	const currentUserId = useAuthUserId()
 
@@ -23,6 +24,8 @@ export const UserProfile: FC<UserProfileProps> = ({ userId }) => {
 	})
 
 	const isCurrentUser = userId === currentUserId
+	console.log(user)
+	useErrorNotification([error])
 
 	return (
 		<>

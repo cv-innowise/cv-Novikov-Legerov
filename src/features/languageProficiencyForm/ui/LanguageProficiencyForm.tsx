@@ -1,7 +1,5 @@
 "use client"
 
-import { useEffect, useState } from "react"
-
 import { DialogContent } from "@mui/material"
 import { useTranslations } from "next-intl"
 
@@ -20,6 +18,7 @@ import { Language } from "cv-graphql"
 import { Proficiency } from "@shared/model/proficiency"
 import { useAuthUserId } from "@entities/user"
 import { languageFormValidation } from "@shared/model/validation/validation"
+import { useErrorNotification } from "@shared/hooks/useErrorNotification"
 
 const LanguageProficiencyForm = ({
 	language,
@@ -86,11 +85,7 @@ const LanguageProficiencyForm = ({
 
 	const error = addLanguageError ?? updateLanguageError
 
-	useEffect(() => {
-		if (error) {
-			addNotification(t(error.message), "error")
-		}
-	}, [error])
+	useErrorNotification([error])
 
 	return (
 		<FormWrapper<LanguageProficiency>

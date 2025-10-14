@@ -7,7 +7,7 @@ import { useTranslations } from "next-intl"
 export const ThemeModeSwitcher = () => {
 	const { mode, setMode } = useColorScheme()
 	const t = useTranslations()
-	console.log(mode)
+
 	return (
 		<FormControl fullWidth>
 			<InputLabel id="color-theme-select">{t("color theme")}</InputLabel>

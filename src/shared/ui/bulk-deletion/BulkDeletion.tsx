@@ -1,6 +1,6 @@
 "use client"
 
-import { createContext, memo, useEffect, useState } from "react"
+import { createContext, memo, useState } from "react"
 
 import { Add, DeleteForever } from "@mui/icons-material"
 import { Button, Stack, Typography } from "@mui/material"
