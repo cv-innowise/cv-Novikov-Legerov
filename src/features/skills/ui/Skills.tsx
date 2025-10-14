@@ -145,11 +145,19 @@ const UserSkills = () => {
 	const { profile, error } = useUserProfile(id)
 	const hasAccess = useIsAuthUserHasAccess()
 
-	useBreadcrumbs({
-		path: `${RoutesPaths.USERS}/${profile.id}`,
-		text: profile.full_name || user.email || "",
-		icon: BreadcrumbIconType.Person,
-	})
+	const t = useTranslations()
+
+	useBreadcrumbs([
+		{
+			path: `${RoutesPaths.USERS}/${profile.id}`,
+			text: profile.full_name || user.email || "",
+			icon: BreadcrumbIconType.Person,
+		},
+		{
+			path: `${RoutesPaths.USERS}/${profile.id}${RoutesPaths.SKILLS}`,
+			text: t("navigation.skills"),
+		},
+	])
 
 	useErrorNotification([error])
 
@@ -175,8 +183,21 @@ export const CvSkills = () => {
 	const params = useParams<{ id: string }>()
 	const id = params?.id as string
 
+	const t = useTranslations()
+
 	const { cv, error } = useCv(id)
 	const hasAccess = useIsAuthUserHasAccess(cv)
+
+	useBreadcrumbs([
+		{
+			path: `${RoutesPaths.CVS}/${cv.id}`,
+			text: cv.name,
+		},
+		{
+			path: `${RoutesPaths.CVS}/${cv.id}${RoutesPaths.SKILLS}`,
+			text: t("navigation.skills"),
+		},
+	])
 
 	useErrorNotification([error])
 

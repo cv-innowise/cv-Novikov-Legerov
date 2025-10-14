@@ -32,9 +32,9 @@ export const navItemStyles = {
 		(isActive: boolean): SxProps<Theme> =>
 		(theme) => ({
 			minWidth: 40,
-			color: theme.palette.icon.color,
+			color: theme.vars?.palette.icon.color,
 			...(isActive && {
-				color: theme.palette.icon.active.color,
+				color: theme.vars?.palette.icon.active.color,
 			}),
 		}),
 
@@ -46,9 +46,9 @@ export const navItemStyles = {
 				fontSize: 16,
 				fontWeight: 400,
 				lineHeight: "24px",
-				color: theme.palette.secondary.main,
+				color: theme.vars?.palette.secondary.main,
 				...(isActive && {
-					color: theme.palette.text.primary,
+					color: theme.vars?.palette.text.primary,
 				}),
 			},
 			[theme.breakpoints.down("sm")]: {
